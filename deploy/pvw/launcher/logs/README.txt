@@ -1,0 +1,1 @@
+This directory will contain the logs of the ParaView sessions

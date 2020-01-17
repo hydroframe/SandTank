@@ -1,0 +1,50 @@
+{
+  "configuration": {
+    "host" : "localhost",
+    "port" : 9000,
+    "endpoint": "paraview",
+    "sessionURL": "SESSION_URL_ROOT/proxy?sessionId=${id}&path=ws",
+    "proxy_file": "/opt/launcher/proxy-mapping.txt",
+    "log_dir" : "/pvw/launcher/logs",
+    "timeout" : 45,
+    "upload_dir": "",
+    "fields" : []
+  },
+  "resources" : [ { "host" : "localhost", "port_range" : [9001, 9021] } ],
+  "properties" : {
+    "dataDir": "/data",
+    "python_exec" : "/opt/paraview/bin/pvpython",
+    "server": "/pvw/server/pvw-parflow.py"
+  },
+  "apps": {
+    "sandtank": {
+      "cmd": [
+          "${python_exec}",
+          "${server}",
+          "--port", "${port}",
+          "--data", "${dataDir}",
+          "--authKey", "${secret}"
+      ],
+      "ready_line" : "Starting factory"
+    },
+    "parflow": {
+      "cmd": [
+        "/pvw/simulations/runSimulation.sh",
+        "${runId}", "${runLength}", "${runReset}",
+        "${hLeft}", "${hRight}",
+        "${wellFlux_01}",
+        "${wellFlux_02}",
+        "${wellFlux_03}",
+        "${wellFlux_04}",
+        "${wellFlux_05}",
+        "${wellFlux_06}",
+        "${wellFlux_07}",
+        "${wellFlux_08}",
+        "${wellFlux_09}",
+        "${wellFlux_010}",
+        "${wellFlux_011}"
+      ],
+      "ready_line": "Run Complete"
+    }
+  }
+}
