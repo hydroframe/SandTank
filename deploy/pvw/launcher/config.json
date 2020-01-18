@@ -20,6 +20,7 @@
     "sandtank": {
       "cmd": [
           "${python_exec}",
+          "-dr", "--mesa-swr",
           "${server}",
           "--port", "${port}",
           "--data", "${dataDir}",

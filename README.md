@@ -4,35 +4,38 @@ This application aims to provide a standalone solution for simulating a specific
 
 ## Building docker images
 
-We provide a custom docker image that will encapsulate all the software required to run this application.
-
-To build the `development` image, just run the following command line
+### Docker Development
 
 ```
-cd parflow-sandtank/docker/development
+cd ./docker/development
 ./build.sh
 ```
 
-## Running a standalone ParFlow run
+### Docker Web
 
 ```
-cd sample
-./run.sh SandTank.tcl
+cd ./docker/web
+./build.sh
 ```
 
-## Runing the Web application
-
-### Build the web application
+## Build the web client
 
 ```
-cd client
+cd ./client
 npm install
 npm run build
-cd ..
 ```
 
-### Run it via docker
+## Run Web application with docker
 
 ```
-docker run -v "$PWD/deploy/pvw:/pvw -t pvw-parflow
+docker run                        \
+  -e PROTOCOL="ws"                 \
+  -p 0.0.0.0:9000:80                \
+  -e SERVER_NAME="localhost:9000"    \
+  -v "$PWD/deploy/pvw:/pvw            \ 
+  -t pvw-parflow
 ```
+
+Open your browser to `http://localhost:9000/`
+
