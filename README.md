@@ -33,7 +33,7 @@ docker run                        \
   -e PROTOCOL="ws"                 \
   -p 0.0.0.0:9000:80                \
   -e SERVER_NAME="localhost:9000"    \
-  -v "$PWD/deploy/pvw:/pvw            \ 
+  -v "$PWD/deploy/pvw:/pvw"           \ 
   -t pvw-parflow
 ```
 

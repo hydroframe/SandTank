@@ -1,0 +1,47 @@
+<v-app id="inspire">
+  <v-app-bar app dense flat>
+    <v-btn icon @click="toggleTheme">
+      <v-icon v-text="`$logo`" color="blue" />
+    </v-btn>
+    <v-toolbar-title class="pl-0">Sandtank @ Parflow</v-toolbar-title>
+    <v-spacer />
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn v-on="on" class="mx-4" icon small @click="toggleMode">
+          <v-icon v-text="`$settings`" />
+        </v-btn>
+      </template>
+      <span v-show="showVisualization">Edit materials</span>
+      <span v-show="showMaterialEdit">Show visualization</span>
+    </v-tooltip>
+    <v-btn outlined @click="fakeBusy" :disabled="busy">
+      <v-progress-circular
+        v-show="busy"
+        size="20"
+        width="2"
+        indeterminate
+        color="primary"
+        class="mr-2"
+        style="width: 30px;"
+      />
+      <v-icon
+        v-show="!busy"
+        v-text="`$ready`"
+        class="mr-2"
+        style="width: 30px;"
+      />
+      Next
+    </v-btn>
+  </v-app-bar>
+
+  <v-content>
+    <v-container class="fill-height" fluid>
+      <v-layout column v-show="showVisualization">
+        Visualization
+      </v-layout>
+      <v-layout column v-if="showMaterialEdit">
+        Edit materials
+      </v-layout>
+    </v-container>
+  </v-content>
+</v-app>
