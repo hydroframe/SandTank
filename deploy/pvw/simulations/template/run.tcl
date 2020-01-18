@@ -237,8 +237,9 @@ pfset Geom.domain.Saturation.SSat         1.0
 pfset Wells.Names                         "w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11"
 # pfset Wells.Names                       ""
 
+# -----------------------------------------------------------------------------
+
 pfset Wells.w1.InputType                          Vertical
-#pfset Wells.w1.Action                             Extraction
 pfset Wells.w1.Type                               Flux
 pfset Wells.w1.X                                  11.5
 pfset Wells.w1.Y                                  0.5
@@ -246,20 +247,18 @@ pfset Wells.w1.ZUpper                             15.9
 pfset Wells.w1.ZLower                             15.1
 pfset Wells.w1.Cycle                              constant
 pfset Wells.w1.alltime.Saturation.water.Value     1.0
-#pfset Wells.w1.alltime.Flux.water.Value           $w1flux
 pfset Wells.w1.Method                             Standard
 if {$w1flux >= 0} {
-	pfset Wells.w1.Action                             Extraction
-	pfset Wells.w1.alltime.Flux.water.Value           $w1flux
+  pfset Wells.w1.Action                           Extraction
+  pfset Wells.w1.alltime.Flux.water.Value         $w1flux
 } else {
-	pfset Wells.w1.Action                             Injection
-	pfset Wells.w1.alltime.Flux.water.Value          [expr  -1*$w1flux]
+  pfset Wells.w1.Action                           Injection
+  pfset Wells.w1.alltime.Flux.water.Value         [expr  -1*$w1flux]
 }
 
-
+# -----------------------------------------------------------------------------
 
 pfset Wells.w2.InputType                          Vertical
-pfset Wells.w2.Action                             Extraction
 pfset Wells.w2.Type                               Flux
 pfset Wells.w2.X                                  23.5
 pfset Wells.w2.Y                                  0.5
@@ -267,11 +266,18 @@ pfset Wells.w2.ZUpper                             1.9
 pfset Wells.w2.ZLower                             1.1
 pfset Wells.w2.Cycle                              constant
 pfset Wells.w2.alltime.Saturation.water.Value     1.0
-pfset Wells.w2.alltime.Flux.water.Value           $w2flux
 pfset Wells.w2.Method                             Standard
+if {$w2flux >= 0} {
+  pfset Wells.w2.Action                           Extraction
+  pfset Wells.w2.alltime.Flux.water.Value         $w2flux
+} else {
+  pfset Wells.w2.Action                           Injection
+  pfset Wells.w2.alltime.Flux.water.Value         [expr  -1*$w2flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w3.InputType                          Vertical
-pfset Wells.w3.Action                             Extraction
 pfset Wells.w3.Type                               Flux
 pfset Wells.w3.X                                  26.5
 pfset Wells.w3.Y                                  0.5
@@ -279,11 +285,18 @@ pfset Wells.w3.ZUpper                             15.9
 pfset Wells.w3.ZLower                             15.1
 pfset Wells.w3.Cycle                              constant
 pfset Wells.w3.alltime.Saturation.water.Value     1.0
-pfset Wells.w3.alltime.Flux.water.Value           $w3flux
 pfset Wells.w3.Method                             Standard
+if {$w3flux >= 0} {
+  pfset Wells.w3.Action                           Extraction
+  pfset Wells.w3.alltime.Flux.water.Value         $w3flux
+} else {
+  pfset Wells.w3.Action                           Injection
+  pfset Wells.w3.alltime.Flux.water.Value         [expr  -1*$w3flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w4.InputType                          Vertical
-pfset Wells.w4.Action                             Extraction
 pfset Wells.w4.Type                               Flux
 pfset Wells.w4.X                                  29.5
 pfset Wells.w4.Y                                  0.5
@@ -291,11 +304,18 @@ pfset Wells.w4.ZUpper                             27.9
 pfset Wells.w4.ZLower                             27.1
 pfset Wells.w4.Cycle                              constant
 pfset Wells.w4.alltime.Saturation.water.Value     1.0
-pfset Wells.w4.alltime.Flux.water.Value           $w4flux
 pfset Wells.w4.Method                             Standard
+if {$w4flux >= 0} {
+  pfset Wells.w4.Action                           Extraction
+  pfset Wells.w4.alltime.Flux.water.Value         $w4flux
+} else {
+  pfset Wells.w4.Action                           Injection
+  pfset Wells.w4.alltime.Flux.water.Value         [expr  -1*$w4flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w5.InputType                          Vertical
-pfset Wells.w5.Action                             Extraction
 pfset Wells.w5.Type                               Flux
 pfset Wells.w5.X                                  48.5
 pfset Wells.w5.Y                                  0.5
@@ -303,11 +323,18 @@ pfset Wells.w5.ZUpper                             1.9
 pfset Wells.w5.ZLower                             1.1
 pfset Wells.w5.Cycle                              constant
 pfset Wells.w5.alltime.Saturation.water.Value     1.0
-pfset Wells.w5.alltime.Flux.water.Value           $w5flux
 pfset Wells.w5.Method                             Standard
+if {$w5flux >= 0} {
+  pfset Wells.w5.Action                           Extraction
+  pfset Wells.w5.alltime.Flux.water.Value         $w5flux
+} else {
+  pfset Wells.w5.Action                           Injection
+  pfset Wells.w5.alltime.Flux.water.Value         [expr  -1*$w5flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w6.InputType                          Vertical
-pfset Wells.w6.Action                             Extraction
 pfset Wells.w6.Type                               Flux
 pfset Wells.w6.X                                  51.5
 pfset Wells.w6.Y                                  0.5
@@ -315,11 +342,18 @@ pfset Wells.w6.ZUpper                             13.9
 pfset Wells.w6.ZLower                             13.1
 pfset Wells.w6.Cycle                              constant
 pfset Wells.w6.alltime.Saturation.water.Value     1.0
-pfset Wells.w6.alltime.Flux.water.Value           $w6flux
 pfset Wells.w6.Method                             Standard
+if {$w6flux >= 0} {
+  pfset Wells.w6.Action                           Extraction
+  pfset Wells.w6.alltime.Flux.water.Value         $w6flux
+} else {
+  pfset Wells.w6.Action                           Injection
+  pfset Wells.w6.alltime.Flux.water.Value         [expr  -1*$w6flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w7.InputType                          Vertical
-pfset Wells.w7.Action                             Extraction
 pfset Wells.w7.Type                               Flux
 pfset Wells.w7.X                                  54.5
 pfset Wells.w7.Y                                  0.5
@@ -327,11 +361,18 @@ pfset Wells.w7.ZUpper                             15.9
 pfset Wells.w7.ZLower                             15.1
 pfset Wells.w7.Cycle                              constant
 pfset Wells.w7.alltime.Saturation.water.Value     1.0
-pfset Wells.w7.alltime.Flux.water.Value           $w7flux
 pfset Wells.w7.Method                             Standard
+if {$w7flux >= 0} {
+  pfset Wells.w7.Action                           Extraction
+  pfset Wells.w7.alltime.Flux.water.Value         $w7flux
+} else {
+  pfset Wells.w7.Action                           Injection
+  pfset Wells.w7.alltime.Flux.water.Value         [expr  -1*$w7flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w8.InputType                          Vertical
-pfset Wells.w8.Action                             Extraction
 pfset Wells.w8.Type                               Flux
 pfset Wells.w8.X                                  57.5
 pfset Wells.w8.Y                                  0.5
@@ -339,11 +380,18 @@ pfset Wells.w8.ZUpper                             1.9
 pfset Wells.w8.ZLower                             1.1
 pfset Wells.w8.Cycle                              constant
 pfset Wells.w8.alltime.Saturation.water.Value     1.0
-pfset Wells.w8.alltime.Flux.water.Value           $w8flux
 pfset Wells.w8.Method                             Standard
+if {$w8flux >= 0} {
+  pfset Wells.w8.Action                           Extraction
+  pfset Wells.w8.alltime.Flux.water.Value         $w8flux
+} else {
+  pfset Wells.w8.Action                           Injection
+  pfset Wells.w8.alltime.Flux.water.Value         [expr  -1*$w8flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w9.InputType                          Vertical
-pfset Wells.w9.Action                             Extraction
 pfset Wells.w9.Type                               Flux
 pfset Wells.w9.X                                  82.5
 pfset Wells.w9.Y                                  0.5
@@ -351,11 +399,18 @@ pfset Wells.w9.ZUpper                             1.9
 pfset Wells.w9.ZLower                             1.1
 pfset Wells.w9.Cycle                              constant
 pfset Wells.w9.alltime.Saturation.water.Value     1.0
-pfset Wells.w9.alltime.Flux.water.Value           $w9flux
 pfset Wells.w9.Method                             Standard
+if {$w9flux >= 0} {
+  pfset Wells.w9.Action                           Extraction
+  pfset Wells.w9.alltime.Flux.water.Value         $w9flux
+} else {
+  pfset Wells.w9.Action                           Injection
+  pfset Wells.w9.alltime.Flux.water.Value         [expr  -1*$w9flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w10.InputType                         Vertical
-pfset Wells.w10.Action                            Extraction
 pfset Wells.w10.Type                              Flux
 pfset Wells.w10.X                                 87.5
 pfset Wells.w10.Y                                 0.5
@@ -363,11 +418,18 @@ pfset Wells.w10.ZUpper                            14.9
 pfset Wells.w10.ZLower                            14.1
 pfset Wells.w10.Cycle                             constant
 pfset Wells.w10.alltime.Saturation.water.Value    1.0
-pfset Wells.w10.alltime.Flux.water.Value          $w10flux
 pfset Wells.w10.Method                            Standard
+if {$w10flux >= 0} {
+  pfset Wells.w10.Action                          Extraction
+  pfset Wells.w10.alltime.Flux.water.Value        $w10flux
+} else {
+  pfset Wells.w10.Action                          Injection
+  pfset Wells.w10.alltime.Flux.water.Value        [expr  -1*$w10flux]
+}
+
+# -----------------------------------------------------------------------------
 
 pfset Wells.w11.InputType                         Vertical
-pfset Wells.w11.Action                            Extraction
 pfset Wells.w11.Type                              Flux
 pfset Wells.w11.X                                 92.5
 pfset Wells.w11.Y                                 0.5
@@ -375,8 +437,14 @@ pfset Wells.w11.ZUpper                            26.9
 pfset Wells.w11.ZLower                            26.1
 pfset Wells.w11.Cycle                             constant
 pfset Wells.w11.alltime.Saturation.water.Value    1.0
-pfset Wells.w11.alltime.Flux.water.Value          $w11flux
 pfset Wells.w11.Method                            Standard
+if {$w11flux >= 0} {
+  pfset Wells.w11.Action                          Extraction
+  pfset Wells.w11.alltime.Flux.water.Value        $w11flux
+} else {
+  pfset Wells.w11.Action                          Injection
+  pfset Wells.w11.alltime.Flux.water.Value        [expr  -1*$w11flux]
+}
 
 # -----------------------------------------------------------------------------
 # Time Cycles
@@ -496,18 +564,19 @@ pfset Solver.PrintMask                            True
 # -----------------------------------------------------------------------------
 # Initial conditions: water pressure
 # -----------------------------------------------------------------------------
+
 if {$reset == 1} {
-  pfset ICPressure.Type                                   HydroStaticPatch
-  pfset ICPressure.GeomNames                              domain
-  pfset Geom.domain.ICPressure.Value                      30.0
-  pfset Geom.domain.ICPressure.RefGeom                    domain
-  pfset Geom.domain.ICPressure.RefPatch                   z-lower
+  pfset ICPressure.Type                           HydroStaticPatch
+  pfset ICPressure.GeomNames                      domain
+  pfset Geom.domain.ICPressure.Value              30.0
+  pfset Geom.domain.ICPressure.RefGeom            domain
+  pfset Geom.domain.ICPressure.RefPatch           z-lower
 } else {
   set fname_ic [format "/pvw/simulations/runs/$runname/$runname.out.press.%05d.pfb" $StartNumber]
   puts "Initial Conditions: $fname_ic"
-  pfset ICPressure.Type                             PFBFile
-  pfset ICPressure.GeomNames                        domain
-  pfset Geom.domain.ICPressure.FileName             $fname_ic
+  pfset ICPressure.Type                           PFBFile
+  pfset ICPressure.GeomNames                      domain
+  pfset Geom.domain.ICPressure.FileName           $fname_ic
   pfdist $fname_ic
 }
 
