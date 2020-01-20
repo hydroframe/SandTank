@@ -1,11 +1,15 @@
 export default {
   state: {
-    domainSize: [1, 1, 1],
+    domainSize: null,
     indicatorArray: null,
+    saturationArray: null,
   },
   getters: {
     SANDTANK_INDICATOR(state) {
       return state.indicatorArray;
+    },
+    SANDTANK_SATURATION(state) {
+      return state.saturationArray;
     },
     SANDTANK_SIZE(state) {
       return state.domainSize;
@@ -23,6 +27,11 @@ export default {
         } else {
           console.log('need to fetch indicator again');
         }
+      });
+    },
+    SANDTANK_SATURATION_UPDATE({ state }, saturationArray) {
+      saturationArray.arrayBuffer().then((arrayBuffer) => {
+        state.saturationArray = new Uint8Array(arrayBuffer);
       });
     },
   },

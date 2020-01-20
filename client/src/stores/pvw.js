@@ -65,7 +65,7 @@ export default {
     },
   },
   actions: {
-    PVW_CONNECT({ commit, state }) {
+    PVW_CONNECT({ commit, state, dispatch }) {
       // Bind vtkWSLinkClient to our SmartConnect
       vtkWSLinkClient.setSmartConnectClass(SmartConnect);
 
@@ -125,6 +125,14 @@ export default {
             commit('PVW_CLIENT_SET', validClient);
             clientToConnect.endBusy();
             commit('PVW_CONNECTED_SET', true);
+
+            // Attach subscription
+            validClient
+              .getRemote()
+              .Parflow.subscribeToSaturation(([saturationArray]) => {
+                dispatch('SANDTANK_SATURATION_UPDATE', saturationArray);
+              });
+
             resolve(validClient);
           })
           .catch((error) => {

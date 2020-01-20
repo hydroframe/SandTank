@@ -9,8 +9,12 @@ export default {
     ...mapGetters({
       imageSize: 'SANDTANK_SIZE',
       data: 'SANDTANK_INDICATOR',
+      water: 'SANDTANK_SATURATION',
     }),
     size() {
+      if (!this.imageSize) {
+        return [10, 10];
+      }
       return this.imageSize.filter((a) => a > 1);
     },
   },

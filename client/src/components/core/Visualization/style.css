@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  height: 50vh;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleY(-1);
+}
+
+.bg {
+  composes: canvas;
+  z-index: 0;
+}
+
+.front {
+  composes: canvas;
+  z-index: 1;
+}

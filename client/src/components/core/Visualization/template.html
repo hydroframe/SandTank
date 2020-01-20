@@ -1,3 +1,9 @@
-<div>
-  <image-widget :size="size" :data="data" />
+<div :class="$style.container">
+  <image-widget :class="$style.bg" :size="size" :data="data" />
+  <image-widget
+    :class="$style.front"
+    :size="size"
+    :water="water"
+    :waterOpacity="0.4"
+  />
 </div>

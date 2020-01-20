@@ -29,7 +29,11 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         simple.LoadDistributedPlugin('ParFlow')
         self.indicatorArray = None
         self.indicatorDimensions = None
+        self.pfbReader = None
 
+        self.lastProcessedTimestep = -1
+        self.runName = os.path.basename(self.workdir)
+        self.saturationArray = None
 
     @exportRpc("parflow.sandtank.indicator")
     def getIndicator(self):
@@ -45,21 +49,16 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             print('no file for indicator')
             return None
 
-        print('File exists: %s' % filePath)
+        if self.pfbReader:
+            self.pfbReader.FileNames=[filePath]
+        else:
+            self.pfbReader = simple.PFBreader(FileNames=[filePath], IsCLMFile = 'No')
+        self.pfbReader.UpdatePipeline()
 
-        reader = simple.PFBreader(FileNames=[filePath], IsCLMFile = 'No')
-        reader.UpdatePipeline()
-
-        print('Read PFB')
-
-        imageData = reader.GetClientSideObject().GetOutput().GetBlock(0)
+        imageData = self.pfbReader.GetClientSideObject().GetOutput().GetBlock(0)
         imageSize = [v - 1 for v in imageData.GetDimensions()]
         array = imageData.GetCellData().GetArray(0)
         size = array.GetNumberOfTuples()
-
-        print('imageSize', imageSize)
-        print('size', size)
-        print('array', array)
 
         self.indicatorDimensions = imageSize
         self.indicatorArray = vtkUnsignedCharArray()
@@ -67,7 +66,9 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         for i in range(size):
             self.indicatorArray.SetValue(i, int(array.GetValue(i)))
 
-        simple.Delete(reader)
+
+        # Schedule saturation exchange...
+        self.pushSaturation()
 
         return {
             'dimensions': self.indicatorDimensions,
@@ -75,3 +76,29 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         }
 
 
+    def pushSaturation(self):
+        nextFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
+        if os.path.exists(nextFile):
+            self.lastProcessedTimestep += 1
+            self.pfbReader.FileNames=[nextFile]
+            self.pfbReader.UpdatePipeline()
+            imageData = self.pfbReader.GetClientSideObject().GetOutput().GetBlock(0)
+            array = imageData.GetCellData().GetArray(0)
+            size = array.GetNumberOfTuples()
+
+            if not self.saturationArray:
+                self.saturationArray = vtkUnsignedCharArray()
+
+            self.saturationArray.SetNumberOfTuples(size)
+            for i in range(size):
+                value = array.GetValue(i)
+                if value >= 1.0:
+                    self.saturationArray.SetValue(i, 255)
+                elif value < 0.0:
+                    self.saturationArray.SetValue(i, 0)
+                else:
+                    self.saturationArray.SetValue(i, int(value * 255))
+            print('push %s' % nextFile)
+            self.publish('parflow.sandtank.saturation', self.addAttachment(buffer(self.saturationArray).tobytes()))
+
+        reactor.callLater(0.5, lambda: self.pushSaturation())
