@@ -1,0 +1,115 @@
+<v-layout column :class="$style.rootContainer">
+  <v-layout justify-space-between d-flex :class="$style.container">
+    <v-switch label="Reset" v-model="runReset" dense :class="$style.field" />
+    <v-text-field
+      label="Nb steps"
+      type="number"
+      v-model="runLength"
+      hide-details
+      :class="$style.field"
+    />
+
+    <v-text-field
+      label="H Left"
+      type="number"
+      v-model="hLeft"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="H Right"
+      type="number"
+      v-model="hRight"
+      hide-details
+      :class="$style.field"
+    />
+    <v-select
+      label="Type"
+      v-model="isLake"
+      :items="[{ text: 'Lake', value: 1}, { text: 'River', value: 0}]"
+      hide-details
+      :class="$style.field"
+    />
+    <v-spacer />
+  </v-layout>
+  <v-layout justify-space-between d-flex :class="$style.container">
+    <v-text-field
+      label="Well 1"
+      type="number"
+      v-model="wellFlux_1"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 2"
+      type="number"
+      v-model="wellFlux_2"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 3"
+      type="number"
+      v-model="wellFlux_3"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 4"
+      type="number"
+      v-model="wellFlux_4"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 5"
+      type="number"
+      v-model="wellFlux_5"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 6"
+      type="number"
+      v-model="wellFlux_6"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 7"
+      type="number"
+      v-model="wellFlux_7"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 8"
+      type="number"
+      v-model="wellFlux_8"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 9"
+      type="number"
+      v-model="wellFlux_9"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 10"
+      type="number"
+      v-model="wellFlux_10"
+      hide-details
+      :class="$style.field"
+    />
+    <v-text-field
+      label="Well 11"
+      type="number"
+      v-model="wellFlux_11"
+      hide-details
+      :class="$style.field"
+    />
+    <v-spacer />
+  </v-layout>
+</v-layout>

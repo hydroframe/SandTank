@@ -1,3 +1,5 @@
+import 'core-js/modules/web.immediate';
+
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Vuetify from 'vuetify';

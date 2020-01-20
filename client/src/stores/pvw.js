@@ -1,12 +1,35 @@
 import SmartConnect from 'wslink/src/SmartConnect';
 import vtkWSLinkClient from 'vtk.js/Sources/IO/Core/WSLinkClient';
+import vtkURLExtract from 'vtk.js/Sources/Common/Core/URLExtract';
 
 import Parflow from 'parflow-web/src/io/parflow';
+
+// ----------------------------------------------------------------------------
+// Ensure we keep the same hostname regardless what the server advertise
+// ----------------------------------------------------------------------------
+
+// Process arguments from URL
+const userParams = vtkURLExtract.extractURLParameters();
+
+function configDecorator(config) {
+  // We actually have a sessionURL in the config, we rewrite it
+  if (config.sessionURL && !userParams.dev) {
+    const sessionUrl = new URL(config.sessionURL);
+    sessionUrl.host = window.location.host;
+    return Object.assign({}, config, {
+      sessionURL: sessionUrl.toString(),
+    });
+  }
+  return config;
+}
+
+// ----------------------------------------------------------------------------
 
 export default {
   state: {
     config: {
       application: 'sandtank',
+      sessionURL: userParams.dev ? 'ws://localhost:1234/ws' : null,
     },
     client: null,
     error: null,
@@ -16,6 +39,15 @@ export default {
   getters: {
     PVW_CONNECTED(state) {
       return state.connected;
+    },
+    PVW_BUSY(state) {
+      return !!state.busyCount;
+    },
+    PVW_RUN_ID(state) {
+      if (userParams.dev) {
+        return 'devrun';
+      }
+      return state.client && state.client.getConfig().id;
     },
   },
   mutations: {
@@ -49,7 +81,7 @@ export default {
         }
         let clientToConnect = client;
         if (!clientToConnect) {
-          clientToConnect = vtkWSLinkClient.newInstance();
+          clientToConnect = vtkWSLinkClient.newInstance({ configDecorator });
           clientToConnect.setProtocols({
             Parflow,
           });
@@ -86,6 +118,7 @@ export default {
         });
 
         // Connect
+        console.log('connect', config);
         clientToConnect
           .connect(config)
           .then((validClient) => {
@@ -114,6 +147,12 @@ export default {
           commit('PVW_CONNECTED_SET', false);
         }
       });
+    },
+    async PVW_INDICATOR_GET({ state }) {
+      return state.client
+        .getRemote()
+        .Parflow.getIndicator()
+        .catch(console.error);
     },
   },
 };

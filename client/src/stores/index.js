@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 
 import parflow from './parflow';
 import pvw from './pvw';
+import sandtank from './sandtank';
 import ui from './ui';
 
 function createStore() {
@@ -9,6 +10,7 @@ function createStore() {
     modules: {
       parflow,
       pvw,
+      sandtank,
       ui,
     },
   });

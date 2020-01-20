@@ -14,7 +14,7 @@
       <span v-show="showVisualization">Edit materials</span>
       <span v-show="showMaterialEdit">Show visualization</span>
     </v-tooltip>
-    <v-btn outlined @click="fakeBusy" :disabled="busy">
+    <v-btn outlined @click="runParflow" :disabled="busy || !connected">
       <v-progress-circular
         v-show="busy"
         size="20"
@@ -32,14 +32,23 @@
       />
       Next
     </v-btn>
+    <v-progress-linear
+      :active="pvwBusy"
+      absolute
+      bottom
+      color="light-blue"
+      height="4"
+      indeterminate
+    />
   </v-app-bar>
-
   <v-content>
     <v-container class="fill-height" fluid>
-      <v-layout column v-show="showVisualization">
-        Visualization
+      <v-layout column v-show="connected && showVisualization">
+        <parflow-config-editor />
+        <visualization />
+        <v-spacer />
       </v-layout>
-      <v-layout column v-if="showMaterialEdit">
+      <v-layout column v-if="connected && showMaterialEdit">
         Edit materials
       </v-layout>
     </v-container>

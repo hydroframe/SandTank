@@ -8,7 +8,7 @@
     "log_dir" : "/pvw/launcher/logs",
     "timeout" : 45,
     "upload_dir": "",
-    "fields" : []
+    "fields" : ["id"]
   },
   "resources" : [ { "host" : "localhost", "port_range" : [9001, 9021] } ],
   "properties" : {
@@ -20,32 +20,20 @@
     "sandtank": {
       "cmd": [
           "${python_exec}",
-          "-dr", "--mesa-swr",
           "${server}",
           "--port", "${port}",
-          "--data", "${dataDir}",
+          "--run", "${id}",
+          "--basepath", "/pvw/simulations/runs",
           "--authKey", "${secret}"
       ],
       "ready_line" : "Starting factory"
     },
     "parflow": {
       "cmd": [
-        "/pvw/simulations/runSimulation.sh",
-        "${runId}", "${runLength}", "${runReset}",
-        "${hLeft}", "${hRight}",
-        "${wellFlux_01}",
-        "${wellFlux_02}",
-        "${wellFlux_03}",
-        "${wellFlux_04}",
-        "${wellFlux_05}",
-        "${wellFlux_06}",
-        "${wellFlux_07}",
-        "${wellFlux_08}",
-        "${wellFlux_09}",
-        "${wellFlux_010}",
-        "${wellFlux_011}"
+        "su", "-", "ubuntu", "-c",
+        "export PARFLOW_DIR=/opt/parflow && /pvw/simulations/runSimulation.sh ${runId} ${runLength} ${runReset} ${hLeft} ${hRight} ${isLake} ${wellFlux_1} ${wellFlux_2} ${wellFlux_3} ${wellFlux_4} ${wellFlux_5} ${wellFlux_6} ${wellFlux_7} ${wellFlux_8} ${wellFlux_9} ${wellFlux_10} ${wellFlux_11}"
       ],
-      "ready_line": "Run Complete"
+      "ready_line": "Complete"
     }
   }
 }

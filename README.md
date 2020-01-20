@@ -33,9 +33,43 @@ docker run                        \
   -e PROTOCOL="ws"                 \
   -p 0.0.0.0:9000:80                \
   -e SERVER_NAME="localhost:9000"    \
-  -v "$PWD/deploy/pvw:/pvw"           \ 
+  -v "$PWD/deploy/pvw:/pvw"           \
   -t pvw-parflow
 ```
 
 Open your browser to `http://localhost:9000/`
 
+## Development setup
+
+To speed up web programing, we need to run 3 process independently like described below
+
+### Web server
+
+```
+cd client
+npm run serve
+```
+
+### ParaView process
+
+```
+cd deploy/pvw
+/Applications/ParaView-5.7.0.app/Contents/bin/pvpython ./server/pvw-parflow.py --run devrun --basepath "$PWD/simulations/runs" --port 1234
+```
+
+### Launcher for Parflow
+
+```
+docker run                        \
+  -e PROTOCOL="ws"                 \
+  -p 0.0.0.0:9000:80                \
+  -e SERVER_NAME="localhost:9000"    \
+  -v "$PWD/deploy/pvw:/pvw"           \
+  -t pvw-parflow
+```
+
+### Web Client
+
+```
+open http://localhost:8080/?dev
+```

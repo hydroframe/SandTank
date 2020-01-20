@@ -1,0 +1,12 @@
+.rootContainer {
+  max-height: 120px;
+}
+
+.container {
+  max-height: 60px;
+}
+
+.field {
+  max-width: 100px;
+  margin-right: 20px;
+}
