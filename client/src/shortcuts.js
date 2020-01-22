@@ -2,7 +2,7 @@ import Mousetrap from 'mousetrap';
 
 // ----------------------------------------------------------
 
-const SHORTCUTS = [{ key: 'r', action: 'API_RESET_CAMERA' }];
+const SHORTCUTS = [{ key: 'n', action: 'PARFLOW_RUN' }];
 
 // ----------------------------------------------------------
 

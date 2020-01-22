@@ -1,10 +1,12 @@
 /* eslint-disable arrow-body-style */
 export default function createMethods(session) {
   return {
-    getIndicator: () => session.call('parflow.sandtank.indicator', []),
+    getServerState: () => session.call('parflow.sandtank.initialize', []),
+    reset: () => session.call('parflow.sandtank.reset', []),
     subscribeToSaturation: (callback) =>
       session.subscribe('parflow.sandtank.saturation', callback),
-    unsubscribeToSaturation: (subscription) =>
-      session.unsubscribe(subscription),
+    subscribeToIndicator: (callback) =>
+      session.subscribe('parflow.sandtank.indicator', callback),
+    unsubscribe: (subscription) => session.unsubscribe(subscription),
   };
 }

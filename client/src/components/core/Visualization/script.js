@@ -1,21 +1,35 @@
 import { mapGetters, mapMutations } from 'vuex';
 
-import ImageWidget from 'parflow-web/src/components/widgets/ImageWidget';
+import MaterialLayer from 'parflow-web/src/components/widgets/MaterialLayer';
+import SaturationLayer from 'parflow-web/src/components/widgets/SaturationLayer';
 
 export default {
   name: 'Visualization',
-  components: { ImageWidget },
+  components: {
+    MaterialLayer,
+    SaturationLayer,
+  },
+  data() {
+    return {
+      scale: 15,
+    };
+  },
   computed: {
     ...mapGetters({
-      imageSize: 'SANDTANK_SIZE',
-      data: 'SANDTANK_INDICATOR',
-      water: 'SANDTANK_SATURATION',
+      domain: 'SANDTANK_DOMAIN',
+      indicatorMask: 'SANDTANK_INDICATOR',
+      saturation: 'SANDTANK_SATURATION',
     }),
     size() {
-      if (!this.imageSize) {
+      if (!this.domain) {
         return [10, 10];
       }
-      return this.imageSize.filter((a) => a > 1);
+      return this.domain.dimensions;
+    },
+    containerStyle() {
+      return {
+        height: `${this.domain.dimensions[1] * this.scale}px`,
+      };
     },
   },
   methods: {

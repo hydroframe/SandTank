@@ -17,22 +17,8 @@ export default {
       showVisualization: 'UI_MODE_IS_VISUALIZATION',
       parflowExecutionCount: 'PARFLOW_EXEC_COUNT',
       //
-      indicatorContent: 'SANDTANK_INDICATOR',
-      indicatorSize: 'SANDTANK_SIZE',
+      time: 'SANDTANK_TIME',
     }),
-  },
-  watch: {
-    parflowExecutionCount(count) {
-      if (count === 1) {
-        this.fetchIndicator();
-      }
-    },
-    indicatorContent(c) {
-      console.log(c);
-    },
-    indicatorSize(c) {
-      console.log(c);
-    },
   },
   methods: {
     ...mapMutations({
@@ -43,7 +29,6 @@ export default {
       pvwConnect: 'PVW_CONNECT',
       pvwDisconnect: 'PVW_DISCONNECT',
       runParflow: 'PARFLOW_RUN',
-      fetchIndicator: 'SANDTANK_INDICATOR_UPDATE',
     }),
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;

@@ -1,0 +1,22 @@
+{
+  "dimensions": [100, 50],
+  "wells": [
+    { "name": "w1", "position": [11, 15] },
+    { "name": "w2", "position": [23, 1] },
+    { "name": "w3", "position": [26, 15] },
+    { "name": "w4", "position": [29, 27] },
+    { "name": "w5", "position": [48, 1] },
+    { "name": "w6", "position": [51, 13] },
+    { "name": "w7", "position": [54, 15] },
+    { "name": "w8", "position": [57, 1] },
+    { "name": "w9", "position": [82, 1] },
+    { "name": "w10", "position": [87, 14] },
+    { "name": "w11", "position": [92, 26] }
+  ],
+  "materials": {
+    "1": "gravel",
+    "2": "clay",
+    "3": "loam",
+    "4": "sand"
+  }
+}

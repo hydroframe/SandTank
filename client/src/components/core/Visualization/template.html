@@ -1,9 +1,18 @@
-<div :class="$style.container">
-  <image-widget :class="$style.bg" :size="size" :data="data" />
-  <image-widget
+<div :class="$style.container" :style="containerStyle">
+  <material-layer
+    :class="$style.bg"
+    v-for="(value, key) in domain.materials"
+    :key="key"
+    :scale="scale"
+    :size="domain.dimensions"
+    :indicatorMask="indicatorMask"
+    :texture="value"
+    :indicatorValue="Number(key)"
+  />
+  <saturation-layer
     :class="$style.front"
-    :size="size"
-    :water="water"
-    :waterOpacity="0.4"
+    :scale="scale"
+    :size="domain.dimensions"
+    :saturation="saturation"
   />
 </div>

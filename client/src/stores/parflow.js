@@ -77,12 +77,16 @@ export default {
     },
   },
   actions: {
-    PARFLOW_RUN({ state, getters }) {
+    async PARFLOW_RUN({ state, getters, dispatch }) {
       state.busyCount += 1;
 
       const job = getters.PARFLOW_JOB;
+
+      if (job.runReset) {
+        await dispatch('PVW_RESET');
+      }
+
       const task = JSON.stringify(job);
-      console.log(task);
       new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 

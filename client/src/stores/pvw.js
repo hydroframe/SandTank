@@ -133,6 +133,21 @@ export default {
                 dispatch('SANDTANK_SATURATION_UPDATE', saturationArray);
               });
 
+            validClient
+              .getRemote()
+              .Parflow.subscribeToIndicator(([indicator]) => {
+                dispatch('SANDTANK_INDICATOR_UPDATE', indicator);
+              });
+
+            // Initialize server
+            validClient
+              .getRemote()
+              .Parflow.getServerState()
+              .then((domain) => {
+                commit('SANDTANK_DOMAIN_SET', domain);
+              })
+              .catch(console.error);
+
             resolve(validClient);
           })
           .catch((error) => {
@@ -156,10 +171,10 @@ export default {
         }
       });
     },
-    async PVW_INDICATOR_GET({ state }) {
+    async PVW_RESET({ state }) {
       return state.client
         .getRemote()
-        .Parflow.getIndicator()
+        .Parflow.reset()
         .catch(console.error);
     },
   },

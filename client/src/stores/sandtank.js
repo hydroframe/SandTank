@@ -1,36 +1,41 @@
 export default {
   state: {
-    domainSize: null,
     indicatorArray: null,
     saturationArray: null,
+    time: 0,
+    domain: {
+      dimensions: [100, 50],
+      wells: [{ name: 'w1', position: [11, 15] }],
+    },
   },
   getters: {
+    SANDTANK_DOMAIN(state) {
+      return state.domain;
+    },
     SANDTANK_INDICATOR(state) {
       return state.indicatorArray;
     },
     SANDTANK_SATURATION(state) {
       return state.saturationArray;
     },
-    SANDTANK_SIZE(state) {
-      return state.domainSize;
+    SANDTANK_TIME(state) {
+      return state.time;
+    },
+  },
+  mutations: {
+    SANDTANK_DOMAIN_SET(state, value) {
+      state.domain = value;
     },
   },
   actions: {
-    SANDTANK_INDICATOR_UPDATE({ state, dispatch }) {
-      dispatch('PVW_INDICATOR_GET').then((response) => {
-        if (response) {
-          const { dimensions, array } = response;
-          state.domainSize = dimensions;
-          array.arrayBuffer().then((arrayBuffer) => {
-            state.indicatorArray = new Uint8Array(arrayBuffer);
-          });
-        } else {
-          console.log('need to fetch indicator again');
-        }
+    SANDTANK_INDICATOR_UPDATE({ state }, { array }) {
+      array.arrayBuffer().then((arrayBuffer) => {
+        state.indicatorArray = new Uint8Array(arrayBuffer);
       });
     },
-    SANDTANK_SATURATION_UPDATE({ state }, saturationArray) {
-      saturationArray.arrayBuffer().then((arrayBuffer) => {
+    SANDTANK_SATURATION_UPDATE({ state }, { array, time }) {
+      state.time = time;
+      array.arrayBuffer().then((arrayBuffer) => {
         state.saturationArray = new Uint8Array(arrayBuffer);
       });
     },

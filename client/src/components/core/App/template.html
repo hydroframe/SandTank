@@ -5,6 +5,10 @@
     </v-btn>
     <v-toolbar-title class="pl-0">Sandtank @ Parflow</v-toolbar-title>
     <v-spacer />
+
+    <v-icon v-text="`$time`" class="mr-2" />
+    {{ time }}
+
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" class="mx-4" icon small @click="toggleMode">

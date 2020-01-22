@@ -28,6 +28,7 @@ export default {
       logo: 'mdi-water',
       settings: 'mdi-tune',
       ready: 'mdi-autorenew',
+      time: 'mdi-clock-outline',
     },
   },
 };

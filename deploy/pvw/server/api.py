@@ -1,4 +1,4 @@
-import os, sys, types, inspect, traceback, logging, re, json, fnmatch, time
+import os, sys, shutil, types, inspect, traceback, logging, re, json, fnmatch, time
 
 from wslink import register as exportRpc
 
@@ -25,25 +25,35 @@ else:
 class SandTankEngine(pv_protocols.ParaViewWebProtocol):
     def __init__(self, simulationDirectory = '', **kwargs):
         super(SandTankEngine, self).__init__()
+        self.runName = os.path.basename(simulationDirectory)
         self.workdir = simulationDirectory
-        simple.LoadDistributedPlugin('ParFlow')
-        self.indicatorArray = None
-        self.indicatorDimensions = None
         self.pfbReader = None
-
         self.lastProcessedTimestep = -1
-        self.runName = os.path.basename(self.workdir)
-        self.saturationArray = None
+        self.templateName = 'template'
 
-    @exportRpc("parflow.sandtank.indicator")
-    def getIndicator(self):
-        print('getIndicator')
-        if self.indicatorArray:
-            return {
-                'dimensions': self.indicatorDimensions,
-                'array': self.addAttachment(buffer(self.indicatorArray).tobytes()),
-            }
+        simple.LoadDistributedPlugin('ParFlow')
+        self.reset()
 
+    # -------------------------------------------------------------------------
+
+    @exportRpc("parflow.sandtank.reset")
+    def reset(self):
+        '''
+        mkdir -p "/pvw/simulations/runs/$runId"
+        cd "/pvw/simulations/runs/$runId"
+
+        cp /pvw/simulations/template/* "/pvw/simulations/runs/$runId/"
+        '''
+        self.lastProcessedTimestep = -1
+        if os.path.exists(self.workdir):
+            shutil.rmtree(self.workdir)
+
+        tplPath = os.path.abspath(os.path.join(self.workdir, '../..', self.templateName))
+        shutil.copytree(tplPath, self.workdir)
+
+    # -------------------------------------------------------------------------
+
+    def pushIndicator(self):
         filePath = os.path.join(self.workdir, 'SandTank_Indicator.pfb')
         if not os.path.exists(filePath):
             print('no file for indicator')
@@ -60,21 +70,23 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         array = imageData.GetCellData().GetArray(0)
         size = array.GetNumberOfTuples()
 
-        self.indicatorDimensions = imageSize
-        self.indicatorArray = vtkUnsignedCharArray()
-        self.indicatorArray.SetNumberOfTuples(size)
+        indicatorDimensions = imageSize
+        indicatorArray = vtkUnsignedCharArray()
+        indicatorArray.SetNumberOfTuples(size)
         for i in range(size):
-            self.indicatorArray.SetValue(i, int(array.GetValue(i)))
+            indicatorArray.SetValue(i, int(array.GetValue(i)))
 
+        self.publish('parflow.sandtank.indicator',
+            {
+            'dimensions': indicatorDimensions,
+            'array': self.addAttachment(buffer(indicatorArray).tobytes()),
+            }
+        )
 
         # Schedule saturation exchange...
         self.pushSaturation()
 
-        return {
-            'dimensions': self.indicatorDimensions,
-            'array': self.addAttachment(buffer(self.indicatorArray).tobytes()),
-        }
-
+    # -------------------------------------------------------------------------
 
     def pushSaturation(self):
         nextFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
@@ -86,19 +98,32 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             array = imageData.GetCellData().GetArray(0)
             size = array.GetNumberOfTuples()
 
-            if not self.saturationArray:
-                self.saturationArray = vtkUnsignedCharArray()
-
-            self.saturationArray.SetNumberOfTuples(size)
+            # Data convertion
+            saturationArray = vtkUnsignedCharArray()
+            saturationArray.SetNumberOfTuples(size)
             for i in range(size):
                 value = array.GetValue(i)
                 if value >= 1.0:
-                    self.saturationArray.SetValue(i, 255)
+                    saturationArray.SetValue(i, 255)
                 elif value < 0.0:
-                    self.saturationArray.SetValue(i, 0)
+                    saturationArray.SetValue(i, 0)
                 else:
-                    self.saturationArray.SetValue(i, int(value * 255))
+                    saturationArray.SetValue(i, int(value * 255))
             print('push %s' % nextFile)
-            self.publish('parflow.sandtank.saturation', self.addAttachment(buffer(self.saturationArray).tobytes()))
+            self.publish('parflow.sandtank.saturation', {
+                'time': self.lastProcessedTimestep,
+                'array': self.addAttachment(buffer(saturationArray).tobytes())
+            })
+            reactor.callLater(1, lambda: self.pushSaturation())
+        else:
+            reactor.callLater(0.5, lambda: self.pushSaturation())
 
-        reactor.callLater(0.5, lambda: self.pushSaturation())
+    # -------------------------------------------------------------------------
+
+    @exportRpc("parflow.sandtank.initialize")
+    def getServerState(self):
+        self.pushIndicator()
+        filePath = os.path.join(self.workdir, 'domain.json')
+        with open(filePath) as f:
+            return json.load(f)
+        return None
