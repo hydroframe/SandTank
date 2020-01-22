@@ -29,15 +29,18 @@ npm run build
 ## Run Web application with docker
 
 ```
-docker run                        \
+cd ./
+docker run --rm                   \
   -e PROTOCOL="ws"                 \
   -p 0.0.0.0:9000:80                \
   -e SERVER_NAME="localhost:9000"    \
   -v "$PWD/deploy/pvw:/pvw"           \
-  -t pvw-parflow
+  -it pvw-parflow
 ```
 
 Open your browser to `http://localhost:9000/`
+
+Use `Ctrl+C` to stop the container.
 
 ## Development setup
 
@@ -60,13 +63,15 @@ cd deploy/pvw
 ### Launcher for Parflow
 
 ```
-docker run                        \
+docker run --rm                   \
   -e PROTOCOL="ws"                 \
   -p 0.0.0.0:9000:80                \
   -e SERVER_NAME="localhost:9000"    \
   -v "$PWD/deploy/pvw:/pvw"           \
-  -t pvw-parflow
+  -it pvw-parflow
 ```
+
+Use `Ctrl+C` to stop the container.
 
 ### Web Client
 
