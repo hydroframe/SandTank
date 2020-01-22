@@ -25,13 +25,16 @@ export default {
   },
   watch: {
     scale() {
-      this.draw();
+      this.$nextTick(this.draw);
     },
     size() {
-      this.draw();
+      this.$nextTick(this.draw);
     },
     saturation() {
-      this.draw();
+      this.$nextTick(this.draw);
+    },
+    opacity() {
+      this.$nextTick(this.draw);
     },
   },
   methods: {
@@ -63,7 +66,7 @@ export default {
           for (let dy = 0; dy < this.scale; dy++) {
             for (let dx = 0; dx < this.scale; dx++) {
               const dOffset = 4 * (dx + dy * width * this.scale);
-              bgImage.data[offset + dOffset + 3] = alpha;
+              bgImage.data[offset + dOffset + 3] = alpha * this.opacity;
             }
           }
         }
@@ -76,7 +79,7 @@ export default {
       for (let i = 0; i < width; i++) {
         for (let j = height; j > 0; j--) {
           if (this.saturation[i + j * width] === 255) {
-            table[i] = j;
+            table[i] = j + 0.5;
             i++;
             j = height;
           }

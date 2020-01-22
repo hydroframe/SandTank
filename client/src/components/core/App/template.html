@@ -6,19 +6,34 @@
     <v-toolbar-title class="pl-0">Sandtank @ Parflow</v-toolbar-title>
     <v-spacer />
 
-    <v-icon v-text="`$time`" class="mr-2" />
-    {{ time }}
+    <div class="mr-4">
+      <v-icon v-text="`$time`" class="mr-2" />
+      {{ time }}
+    </div>
 
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" class="mx-4" icon small @click="toggleMode">
+        <v-btn v-on="on" class="mx-2" icon small @click="toggleMode">
           <v-icon v-text="`$settings`" />
         </v-btn>
       </template>
       <span v-show="showVisualization">Edit materials</span>
       <span v-show="showMaterialEdit">Show visualization</span>
     </v-tooltip>
-    <v-btn outlined @click="runParflow" :disabled="busy || !connected">
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn v-on="on" class="mx-2" icon small @click="toggleJobParameter">
+          <v-icon v-text="`$jobParameters`" />
+        </v-btn>
+      </template>
+      <span>Toggle job parameters</span>
+    </v-tooltip>
+    <v-btn
+      outlined
+      @click="runParflow"
+      :disabled="busy || !connected"
+      class="ml-2"
+    >
       <v-progress-circular
         v-show="busy"
         size="20"
@@ -48,8 +63,8 @@
   <v-content>
     <v-container class="fill-height" fluid>
       <v-layout column v-show="connected && showVisualization">
-        <parflow-config-editor />
         <visualization />
+        <parflow-config-editor v-show="showJobParams" />
         <v-spacer />
       </v-layout>
       <v-layout column v-if="connected && showMaterialEdit">

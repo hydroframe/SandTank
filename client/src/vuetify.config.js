@@ -27,6 +27,7 @@ export default {
     values: {
       logo: 'mdi-water',
       settings: 'mdi-tune',
+      jobParameters: 'mdi-cogs',
       ready: 'mdi-autorenew',
       time: 'mdi-clock-outline',
     },

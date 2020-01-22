@@ -47,19 +47,19 @@ export default {
   },
   watch: {
     scale() {
-      this.draw();
+      this.$nextTick(this.draw);
     },
     size() {
-      this.draw();
+      this.$nextTick(this.draw);
     },
     indicatorMask() {
-      this.draw();
+      this.$nextTick(this.draw);
     },
     texture() {
-      this.draw();
+      this.$nextTick(this.draw);
     },
     indicatorValue() {
-      this.draw();
+      this.$nextTick(this.draw);
     },
   },
   methods: {

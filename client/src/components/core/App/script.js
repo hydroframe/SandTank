@@ -8,6 +8,11 @@ export default {
     ParflowConfigEditor,
     Visualization,
   },
+  data() {
+    return {
+      showJobParams: false,
+    };
+  },
   computed: {
     ...mapGetters({
       busy: 'PARFLOW_BUSY',
@@ -32,6 +37,9 @@ export default {
     }),
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
+    toggleJobParameter() {
+      this.showJobParams = !this.showJobParams;
     },
   },
   created() {

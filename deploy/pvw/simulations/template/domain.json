@@ -1,17 +1,17 @@
 {
   "dimensions": [100, 50],
   "wells": [
-    { "name": "w1", "position": [11, 15] },
-    { "name": "w2", "position": [23, 1] },
-    { "name": "w3", "position": [26, 15] },
-    { "name": "w4", "position": [29, 27] },
-    { "name": "w5", "position": [48, 1] },
-    { "name": "w6", "position": [51, 13] },
-    { "name": "w7", "position": [54, 15] },
-    { "name": "w8", "position": [57, 1] },
-    { "name": "w9", "position": [82, 1] },
-    { "name": "w10", "position": [87, 14] },
-    { "name": "w11", "position": [92, 26] }
+    { "name": "A", "position": [11, 15], "key": "wellFlux_1" },
+    { "name": "B", "position": [23, 1], "key": "wellFlux_2" },
+    { "name": "C", "position": [26, 15], "key": "wellFlux_3" },
+    { "name": "D", "position": [29, 27], "key": "wellFlux_4" },
+    { "name": "E", "position": [48, 1], "key": "wellFlux_5" },
+    { "name": "F", "position": [51, 13], "key": "wellFlux_6" },
+    { "name": "G", "position": [54, 15], "key": "wellFlux_7" },
+    { "name": "H", "position": [57, 1], "key": "wellFlux_8" },
+    { "name": "I", "position": [82, 1], "key": "wellFlux_9" },
+    { "name": "J", "position": [87, 14], "key": "wellFlux_10" },
+    { "name": "K", "position": [92, 26], "key": "wellFlux_11" }
   ],
   "materials": {
     "1": "gravel",
