@@ -70,12 +70,11 @@ cd "/pvw/simulations/runs/$runId"
 if [ $runReset -eq 1 ]
 then
   echo "Reseting to initial conditions"
-  cd "/pvw/simulations/runs"
-  rm -rf "/pvw/simulations/runs/$runId"
-  mkdir -p "/pvw/simulations/runs/$runId"
-  cd "/pvw/simulations/runs/$runId"
-
-  cp /pvw/simulations/template/* "/pvw/simulations/runs/$runId/"
+  # cd "/pvw/simulations/runs"
+  # rm -rf "/pvw/simulations/runs/$runId"
+  # mkdir -p "/pvw/simulations/runs/$runId"
+  # cd "/pvw/simulations/runs/$runId"
+  # cp /pvw/simulations/template/* "/pvw/simulations/runs/$runId/"
 
   echo "Run Starting"
   tclsh run.tcl $runId 1 0 $runLength $hLeft $hRight $isLake $wellFlux_01 $wellFlux_02 $wellFlux_03 $wellFlux_04 $wellFlux_05 $wellFlux_06 $wellFlux_07 $wellFlux_08 $wellFlux_09 $wellFlux_10 $wellFlux_11
