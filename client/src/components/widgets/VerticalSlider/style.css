@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+  border: solid 1px #aaa;
+}
+
+.water {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  background: #03a9f4;
+  cursor: grab;
+  border-top: solid 4px #01579b;
+}
+
+.value {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+  user-select: none;
+}

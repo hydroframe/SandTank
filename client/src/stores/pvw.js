@@ -118,7 +118,6 @@ export default {
         });
 
         // Connect
-        console.log('connect', config);
         clientToConnect
           .connect(config)
           .then((validClient) => {

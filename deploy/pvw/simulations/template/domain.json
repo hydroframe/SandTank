@@ -18,5 +18,10 @@
     "2": "clay",
     "3": "loam",
     "4": "sand"
+  },
+  "setup": {
+    "maxHeight": 60,
+    "hLeft": 30,
+    "hRight": 30
   }
 }

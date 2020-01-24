@@ -19,9 +19,7 @@ export default {
         return !!this.config.runReset;
       },
       set(v) {
-        if (v) {
-          this.resetJob();
-        }
+        this.setReset(v);
       },
     },
     hLeft: {
@@ -142,7 +140,7 @@ export default {
   methods: {
     ...mapMutations({
       setParflowBusy: 'UI_BUSY_PARFLOW_SET',
-      resetJob: 'PARFLOW_RESET',
+      setReset: 'PARFLOW_RESET_SET',
       setJobLength: 'PARFLOW_RUN_LENGTH_SET',
       setLeftPressure: 'PARFLOW_LEFT_PRESSURE_SET',
       setRightPressure: 'PARFLOW_RIGHT_PRESSURE_SET',

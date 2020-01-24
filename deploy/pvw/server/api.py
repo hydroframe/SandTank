@@ -44,12 +44,12 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
 
         cp /pvw/simulations/template/* "/pvw/simulations/runs/$runId/"
         '''
-        self.lastProcessedTimestep = -1
         if os.path.exists(self.workdir):
             shutil.rmtree(self.workdir)
 
         tplPath = os.path.abspath(os.path.join(self.workdir, '../..', self.templateName))
         shutil.copytree(tplPath, self.workdir)
+        self.lastProcessedTimestep = -1
 
     # -------------------------------------------------------------------------
 

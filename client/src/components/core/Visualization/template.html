@@ -1,7 +1,14 @@
 <v-layout column>
   <v-layout align-end :style="maxTankHeightStyle">
     <v-spacer />
-    <vertical-slider />
+    <vertical-slider
+      :scale="scale"
+      :domainSize="domain.dimensions"
+      :width="sliderWidth"
+      :maxHeight="domain.setup.maxHeight"
+      :value="jobConfig.hLeft"
+      @input="setLeftPressure"
+    />
     <div :class="$style.container" :style="containerStyle">
       <material-layer
         :class="$style.material"
@@ -30,7 +37,14 @@
         :opacity="opacityWells"
       />
     </div>
-    <vertical-slider />
+    <vertical-slider
+      :scale="scale"
+      :domainSize="domain.dimensions"
+      :width="sliderWidth"
+      :maxHeight="domain.setup.maxHeight"
+      :value="jobConfig.hRight"
+      @input="setRightPressure"
+    />
     <v-spacer />
   </v-layout>
   <v-layout style="max-height: 50px;" align-center>

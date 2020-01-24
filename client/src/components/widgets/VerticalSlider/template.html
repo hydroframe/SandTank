@@ -1,1 +1,10 @@
-<div style="background: #03A9F4; height: 50%; width: 20px; cursor: grab;" />
+<div
+  :class="$style.container"
+  :style="containerStyle"
+  v-on:mousedown="onMouseDown"
+  v-on:mouseup="onMouseUp"
+  v-on:mousemove="onMouseMove"
+>
+  <div :class="$style.water" :style="waterStyle" />
+  <div :class="$style.value">{{ height.toFixed(2) }}</div>
+</div>

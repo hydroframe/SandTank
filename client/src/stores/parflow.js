@@ -57,8 +57,8 @@ export default {
     },
   },
   mutations: {
-    PARFLOW_RESET(state) {
-      state.runReset = 1;
+    PARFLOW_RESET_SET(state, value) {
+      state.runReset = value ? 1 : 0;
     },
     PARFLOW_RUN_LENGTH_SET(state, value) {
       state.runLength = value;
@@ -87,7 +87,7 @@ export default {
       }
 
       const task = JSON.stringify(job);
-      new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = (e) => {

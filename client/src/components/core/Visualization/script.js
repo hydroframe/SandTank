@@ -15,10 +15,16 @@ export default {
     WellLayer,
     VerticalSlider,
   },
+  props: {
+    sliderWidth: {
+      type: Number,
+      default: 80,
+    },
+  },
   data() {
     return {
       opacitySoil: 1,
-      opacityWater: 1,
+      opacityWater: 0.5,
       opacityWells: 1,
       adjustingWaterOpacity: false,
       maxWidth: 0,
@@ -30,6 +36,7 @@ export default {
       domain: 'SANDTANK_DOMAIN',
       indicatorMask: 'SANDTANK_INDICATOR',
       saturation: 'SANDTANK_SATURATION',
+      jobConfig: 'PARFLOW_JOB',
     }),
     size() {
       if (!this.domain) {
@@ -45,7 +52,10 @@ export default {
     },
     maxTankHeightStyle() {
       return {
-        maxHeight: `${this.domain.dimensions[1] * this.scale}px`,
+        maxHeight: `${Math.max(
+          this.domain.setup.maxHeight,
+          this.domain.dimensions[1]
+        ) * this.scale}px`,
       };
     },
     slowWaterOpacity() {
@@ -73,7 +83,7 @@ export default {
   },
   created() {
     this.onResize = debounce(() => {
-      this.maxWidth = window.innerWidth - 50;
+      this.maxWidth = window.innerWidth - 2 * this.sliderWidth - 20;
       this.maxHeight = window.innerHeight - 250;
     }, 200);
   },

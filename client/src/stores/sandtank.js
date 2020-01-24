@@ -1,3 +1,13 @@
+function blobToArrayBuffer(blob) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      resolve(e.target.result);
+    };
+    reader.readAsArrayBuffer(blob);
+  });
+}
+
 export default {
   state: {
     indicatorArray: null,
@@ -6,6 +16,9 @@ export default {
     domain: {
       dimensions: [100, 50],
       wells: [{ name: 'w1', position: [11, 15] }],
+      setup: {
+        maxHeight: 30,
+      },
     },
   },
   getters: {
@@ -29,13 +42,13 @@ export default {
   },
   actions: {
     SANDTANK_INDICATOR_UPDATE({ state }, { array }) {
-      array.arrayBuffer().then((arrayBuffer) => {
+      blobToArrayBuffer(array).then((arrayBuffer) => {
         state.indicatorArray = new Uint8Array(arrayBuffer);
       });
     },
     SANDTANK_SATURATION_UPDATE({ state }, { array, time }) {
       state.time = time;
-      array.arrayBuffer().then((arrayBuffer) => {
+      blobToArrayBuffer(array).then((arrayBuffer) => {
         state.saturationArray = new Uint8Array(arrayBuffer);
       });
     },
