@@ -34,7 +34,11 @@ export default {
     },
     texture: {
       type: String,
-      default: 'clay',
+      default: null,
+    },
+    color: {
+      type: String,
+      default: '#ccc',
     },
     indicatorValue: {
       type: Number,
@@ -58,25 +62,39 @@ export default {
     texture() {
       this.$nextTick(this.draw);
     },
+    color() {
+      this.$nextTick(this.draw);
+    },
     indicatorValue() {
       this.$nextTick(this.draw);
     },
   },
   methods: {
     draw() {
+      if (!this.$el) {
+        return;
+      }
       const [width, height] = this.size;
       const ctx = this.$el.getContext('2d');
 
-      // Fill canvas with texture
-      const texture = TEXTURES[this.texture];
-      const textureWidth = texture.width;
-      const textureHeight = texture.height;
+      // Fill canas with color
+      if (this.color) {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(0, 0, width * this.scale, height * this.scale);
+      }
 
-      const nx = Math.ceil((width * this.scale) / textureWidth);
-      const ny = Math.ceil((height * this.scale) / textureHeight);
-      for (let x = 0; x < nx; x++) {
-        for (let y = 0; y < ny; y++) {
-          ctx.drawImage(texture, x * textureWidth, y * textureHeight);
+      // Fill canvas with texture
+      if (this.texture) {
+        const texture = TEXTURES[this.texture];
+        const textureWidth = texture.width;
+        const textureHeight = texture.height;
+
+        const nx = Math.ceil((width * this.scale) / textureWidth);
+        const ny = Math.ceil((height * this.scale) / textureHeight);
+        for (let x = 0; x < nx; x++) {
+          for (let y = 0; y < ny; y++) {
+            ctx.drawImage(texture, x * textureWidth, y * textureHeight);
+          }
         }
       }
 

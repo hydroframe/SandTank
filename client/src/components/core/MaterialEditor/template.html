@@ -1,0 +1,29 @@
+<v-layout column>
+  <v-layout align-center>
+    <div>Material editor</div>
+    <v-spacer />
+    <v-switch v-model="showSoil" label="Soil" dense hide-details class="mt-0" />
+  </v-layout>
+  <v-layout align-end :style="maxTankHeightStyle" class="mt-3">
+    <v-spacer />
+    <div :class="$style.container" :style="containerStyle">
+      <material-layer
+        :class="$style.material"
+        v-for="(value, key) in domain.materials"
+        :key="key"
+        :scale="scale"
+        :size="domain.dimensions"
+        :indicatorMask="indicatorMask"
+        :texture="showSoil ? getTexture(key): null"
+        :color="palette[Number(key)]"
+        :indicatorValue="Number(key)"
+      />
+    </div>
+    <v-spacer />
+  </v-layout>
+  <v-layout column>
+    <div>Table control</div>
+    <material-table :indicators="indicators" @change="onPermeabilityChange" />
+  </v-layout>
+  <v-spacer />
+</v-layout>

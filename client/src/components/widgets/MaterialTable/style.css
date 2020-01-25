@@ -1,0 +1,53 @@
+:root {
+  --text-shadow-bg-color: #000;
+}
+
+.text {
+  text-shadow: 1px 1px 4px var(--text-shadow-bg-color);
+}
+
+.bg {
+  line-height: 30px;
+  composes: text;
+  background-repeat: repeat;
+  border-left: 1px solid var(--text-shadow-bg-color);
+  border-right: 1px solid var(--text-shadow-bg-color);
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 30px 1fr 2fr 4fr 3fr;
+  grid-auto-rows: auto;
+}
+
+.small {
+  width: 100%;
+  line-height: 30px;
+  composes: text;
+  border-top: 1px solid var(--text-shadow-bg-color);
+  border-bottom: 1px solid var(--text-shadow-bg-color);
+}
+
+.slider {
+  grid-column: 2 / -1;
+}
+
+.clay {
+  background-image: url('../../../assets/clay.jpg');
+  composes: bg;
+}
+
+.gravel {
+  background-image: url('../../../assets/gravel.jpg');
+  composes: bg;
+}
+
+.loam {
+  background-image: url('../../../assets/loam.jpg');
+  composes: bg;
+}
+
+.sand {
+  background-image: url('../../../assets/sand.jpg');
+  composes: bg;
+}

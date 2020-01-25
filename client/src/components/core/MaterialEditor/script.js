@@ -1,0 +1,107 @@
+import { mapGetters, mapMutations } from 'vuex';
+import { debounce } from 'vtk.js/Sources/macro';
+
+import MaterialLayer from 'parflow-web/src/components/widgets/MaterialLayer';
+import MaterialTable from 'parflow-web/src/components/widgets/MaterialTable';
+import { fromPermeabilityToType } from 'parflow-web/src/utils/Permeability';
+
+export default {
+  name: 'MaterialEditor',
+  components: {
+    MaterialLayer,
+    MaterialTable,
+  },
+  props: {
+    palette: {
+      type: Array,
+      default() {
+        return [
+          '#FFDB15',
+          '#D3B340',
+          '#826121',
+          '#ECE7CE',
+          '#CFC96C',
+          '#E98973',
+          '#E7D4C0',
+          '#35454C',
+          '#A4E8E0',
+          '#020301',
+          '#F3F5F9',
+        ];
+      },
+    },
+  },
+  data() {
+    return {
+      maxWidth: 0,
+      maxHeight: 0,
+      showSoil: false,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      domain: 'SANDTANK_DOMAIN',
+      indicatorMask: 'SANDTANK_INDICATOR',
+      jobConfig: 'PARFLOW_JOB',
+      permeabilityMap: 'PARFLOW_K',
+    }),
+    size() {
+      if (!this.domain) {
+        return [10, 10];
+      }
+      return this.domain.dimensions;
+    },
+    containerStyle() {
+      return {
+        height: `${this.domain.dimensions[1] * this.scale}px`,
+        width: `${this.domain.dimensions[0] * this.scale}px`,
+      };
+    },
+    maxTankHeightStyle() {
+      return {
+        maxHeight: `${this.domain.dimensions[1] * this.scale}px`,
+      };
+    },
+    scale() {
+      const wScale = this.maxWidth / this.size[0];
+      const hScale = this.maxHeight / this.size[1];
+      return Math.floor(Math.max(1, Math.min(wScale, hScale)));
+    },
+    indicators() {
+      if (this.domain && this.domain.setup && this.domain.setup.indicators) {
+        return this.domain.setup.indicators.map(({ key }, idx) => ({
+          key,
+          value: this.permeabilityMap[key],
+          color: this.palette[idx],
+        }));
+      }
+      return [];
+    },
+  },
+  methods: {
+    ...mapMutations({
+      updatePermeabilityMap: 'PARFLOW_K_SET',
+    }),
+    onPermeabilityChange({ key, value }) {
+      this.updatePermeabilityMap({ [key]: value });
+    },
+    getTexture(key) {
+      return fromPermeabilityToType(this.permeabilityMap[key]);
+    },
+  },
+  created() {
+    this.onResize = debounce(() => {
+      this.maxWidth = window.innerWidth - 20;
+      this.maxHeight = window.innerHeight - 250;
+    }, 200);
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+      this.onResize();
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize);
+  },
+};

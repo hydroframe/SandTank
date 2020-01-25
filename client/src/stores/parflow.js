@@ -24,6 +24,7 @@ export default {
     wellFlux_9: 0,
     wellFlux_10: 0,
     wellFlux_11: 0,
+    k: {},
   },
   getters: {
     PARFLOW_BUSY(state) {
@@ -55,6 +56,9 @@ export default {
         wellFlux_11: state.wellFlux_11,
       };
     },
+    PARFLOW_K(state) {
+      return state.k;
+    },
   },
   mutations: {
     PARFLOW_RESET_SET(state, value) {
@@ -74,6 +78,9 @@ export default {
     },
     PARFLOW_WELL_SET(state, { well, value }) {
       Vue.set(state, `wellFlux_${well}`, value);
+    },
+    PARFLOW_K_SET(state, value) {
+      state.k = Object.assign({}, state.k, value);
     },
   },
   actions: {

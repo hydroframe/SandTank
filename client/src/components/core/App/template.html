@@ -67,8 +67,8 @@
         <parflow-config-editor v-show="showJobParams" />
         <v-spacer />
       </v-layout>
-      <v-layout column v-if="connected && showMaterialEdit">
-        Edit materials
+      <v-layout column v-show="connected && showMaterialEdit">
+        <material-editor />
       </v-layout>
     </v-container>
   </v-content>

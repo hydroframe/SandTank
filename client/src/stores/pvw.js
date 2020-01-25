@@ -144,6 +144,9 @@ export default {
               .Parflow.getServerState()
               .then((domain) => {
                 commit('SANDTANK_DOMAIN_SET', domain);
+                domain.setup.indicators.forEach(({ key, value }) => {
+                  commit('PARFLOW_K_SET', { [key]: value });
+                });
               })
               .catch(console.error);
 

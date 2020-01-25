@@ -1,0 +1,29 @@
+<div :class="$style.table">
+  <div />
+  <div class="text-center" :class="$style.clay">Clay</div>
+  <div class="text-center" :class="$style.loam">Loam</div>
+  <div class="text-center" :class="$style.sand">Sand</div>
+  <div class="text-center" :class="$style.gravel">Gravel</div>
+  <template v-for="item in indicators">
+    <div
+      :key="item.key"
+      class="text-center"
+      :class="$style.small"
+      :style="`background: ${item.color}`"
+    >
+      {{ item.key }}
+    </div>
+    <div :class="$style.slider" :key="`slider-${item.key}`">
+      <v-slider
+        dense
+        hide-details
+        thumb-label
+        :value="item.value"
+        @input="updateIndicator(item.key, $event)"
+        :min="0.01"
+        :max="1.0"
+        :step="0.01"
+      />
+    </div>
+  </template>
+</div>

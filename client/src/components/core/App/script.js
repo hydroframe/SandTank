@@ -1,12 +1,14 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import ParflowConfigEditor from 'parflow-web/src/components/core/ParflowConfigEditor';
 import Visualization from 'parflow-web/src/components/core/Visualization';
+import MaterialEditor from 'parflow-web/src/components/core/MaterialEditor';
 
 export default {
   name: 'ParflowWeb',
   components: {
     ParflowConfigEditor,
     Visualization,
+    MaterialEditor,
   },
   data() {
     return {
