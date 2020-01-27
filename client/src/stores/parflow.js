@@ -114,6 +114,7 @@ export default {
             }
             if (xhr.status === 200 || xhr.status === 0) {
               state.runReset = 0;
+              dispatch('PARFLOW_RESET_WELLS');
               resolve(JSON.parse(xhr.responseText));
             } else {
               reject({ xhr, e });
@@ -132,6 +133,14 @@ export default {
         xhr.responseType = 'text';
         xhr.send(task);
       });
+    },
+    PARFLOW_RESET_WELLS({ state }) {
+      const { wells } = state;
+      const resetWells = {};
+      Object.keys(wells).forEach((key) => {
+        resetWells[key] = 0;
+      });
+      state.wells = resetWells;
     },
   },
 };

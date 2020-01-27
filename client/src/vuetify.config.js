@@ -26,6 +26,7 @@ export default {
     iconfont: 'mdi',
     values: {
       logo: 'mdi-water',
+      help: 'mdi-help-circle-outline',
       settings: 'mdi-tune',
       jobParameters: 'mdi-cogs',
       ready: 'mdi-autorenew',

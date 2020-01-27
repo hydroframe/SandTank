@@ -70,6 +70,9 @@
       />
       Next
     </v-btn>
+    <v-btn icon small @click="aboutDialog = !aboutDialog" class="ml-3">
+      <v-icon v-text="`$help`" />
+    </v-btn>
 
     <v-progress-linear
       :active="pvwBusy"
@@ -86,4 +89,8 @@
       <material-editor v-show="connected && showMaterialEdit" />
     </v-container>
   </v-content>
+  <!-- about dialog -->
+  <v-dialog v-model="aboutDialog" max-width="50%">
+    <about @close="aboutDialog = false" />
+  </v-dialog>
 </v-app>

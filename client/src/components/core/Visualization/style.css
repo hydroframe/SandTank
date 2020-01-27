@@ -31,6 +31,6 @@
 
 .wellControl {
   position: absolute;
-  top: -25px; /* well offset */
+  top: -10px; /* well offset */
   transform: translateX(-50%) translateY(-100%);
 }

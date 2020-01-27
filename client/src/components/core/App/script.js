@@ -1,18 +1,22 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex';
+
+import About from 'parflow-web/src/components/core/About';
+import MaterialEditor from 'parflow-web/src/components/core/MaterialEditor';
 import ParflowConfigEditor from 'parflow-web/src/components/core/ParflowConfigEditor';
 import Visualization from 'parflow-web/src/components/core/Visualization';
-import MaterialEditor from 'parflow-web/src/components/core/MaterialEditor';
 
 export default {
   name: 'ParflowWeb',
   components: {
+    About,
+    MaterialEditor,
     ParflowConfigEditor,
     Visualization,
-    MaterialEditor,
   },
   data() {
     return {
       showJobParams: false,
+      aboutDialog: false,
     };
   },
   computed: {
