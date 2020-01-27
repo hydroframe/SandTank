@@ -31,7 +31,7 @@
     "parflow": {
       "cmd": [
         "su", "-", "ubuntu", "-c",
-        "export PARFLOW_DIR=/opt/parflow && /pvw/simulations/runSimulation.sh ${runId} ${runLength} ${runReset} ${hLeft} ${hRight} ${isLake} ${wellFlux_1} ${wellFlux_2} ${wellFlux_3} ${wellFlux_4} ${wellFlux_5} ${wellFlux_6} ${wellFlux_7} ${wellFlux_8} ${wellFlux_9} ${wellFlux_10} ${wellFlux_11}"
+        "export PARFLOW_DIR=/opt/parflow && /pvw/simulations/runSimulation.sh ${runId}"
       ],
       "ready_line": "Complete"
     }

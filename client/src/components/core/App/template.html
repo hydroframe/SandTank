@@ -5,6 +5,19 @@
     </v-btn>
     <v-toolbar-title class="pl-0">Sandtank @ Parflow</v-toolbar-title>
     <v-spacer />
+    <parflow-config-editor v-show="showJobParams" style="flex: none" />
+    <v-spacer />
+
+    <div class="mr-4">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on" class="mx-2" icon small @click="toggleJobParameter">
+            <v-icon v-text="`$jobParameters`" />
+          </v-btn>
+        </template>
+        <span>Toggle job parameters</span>
+      </v-tooltip>
+    </div>
 
     <div class="mr-4">
       <v-icon v-text="`$time`" class="mr-2" />
@@ -20,14 +33,7 @@
       <span v-show="showVisualization">Edit materials</span>
       <span v-show="showMaterialEdit">Show visualization</span>
     </v-tooltip>
-    <v-tooltip bottom>
-      <template v-slot:activator="{ on }">
-        <v-btn v-on="on" class="mx-2" icon small @click="toggleJobParameter">
-          <v-icon v-text="`$jobParameters`" />
-        </v-btn>
-      </template>
-      <span>Toggle job parameters</span>
-    </v-tooltip>
+
     <v-btn
       outlined
       @click="runParflow"
@@ -51,6 +57,7 @@
       />
       Next
     </v-btn>
+
     <v-progress-linear
       :active="pvwBusy"
       absolute
@@ -62,14 +69,8 @@
   </v-app-bar>
   <v-content>
     <v-container class="fill-height" fluid>
-      <v-layout column v-show="connected && showVisualization">
-        <visualization />
-        <parflow-config-editor v-show="showJobParams" />
-        <v-spacer />
-      </v-layout>
-      <v-layout column v-show="connected && showMaterialEdit">
-        <material-editor />
-      </v-layout>
+      <visualization v-show="connected && showVisualization" />
+      <material-editor v-show="connected && showMaterialEdit" />
     </v-container>
   </v-content>
 </v-app>

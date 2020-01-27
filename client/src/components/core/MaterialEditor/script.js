@@ -88,6 +88,9 @@ export default {
     getTexture(key) {
       return fromPermeabilityToType(this.permeabilityMap[key]);
     },
+    updateVisibility(v) {
+      this.showSoil = v;
+    },
   },
   created() {
     this.onResize = debounce(() => {

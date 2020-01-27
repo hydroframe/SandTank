@@ -25,6 +25,10 @@ export default {
       type: String,
       default: '#333',
     },
+    offset: {
+      type: Number,
+      default: 20,
+    },
   },
   computed: {
     width() {

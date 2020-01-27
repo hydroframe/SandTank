@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import vtkURLExtract from 'vtk.js/Sources/Common/Core/URLExtract';
 
 // Process arguments from URL
@@ -13,18 +12,20 @@ export default {
     hLeft: 30,
     hRight: 30,
     isLake: 0,
-    wellFlux_1: 0,
-    wellFlux_2: 0,
-    wellFlux_3: 0,
-    wellFlux_4: 0,
-    wellFlux_5: 0,
-    wellFlux_6: 0,
-    wellFlux_7: 0,
-    wellFlux_8: 0,
-    wellFlux_9: 0,
-    wellFlux_10: 0,
-    wellFlux_11: 0,
     k: {},
+    wells: {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+      10: 0,
+      11: 0,
+    },
   },
   getters: {
     PARFLOW_BUSY(state) {
@@ -43,17 +44,8 @@ export default {
         hLeft: state.hLeft,
         hRight: state.hRight,
         isLake: state.isLake,
-        wellFlux_1: state.wellFlux_1,
-        wellFlux_2: state.wellFlux_2,
-        wellFlux_3: state.wellFlux_3,
-        wellFlux_4: state.wellFlux_4,
-        wellFlux_5: state.wellFlux_5,
-        wellFlux_6: state.wellFlux_6,
-        wellFlux_7: state.wellFlux_7,
-        wellFlux_8: state.wellFlux_8,
-        wellFlux_9: state.wellFlux_9,
-        wellFlux_10: state.wellFlux_10,
-        wellFlux_11: state.wellFlux_11,
+        k: state.k,
+        wells: state.wells,
       };
     },
     PARFLOW_K(state) {
@@ -75,25 +67,34 @@ export default {
     },
     PARFLOW_LAKE_SET(state, value) {
       state.isLake = value ? 1 : 0;
+      state.runReset = 1;
     },
     PARFLOW_WELL_SET(state, { well, value }) {
-      Vue.set(state, `wellFlux_${well}`, value);
+      state.wells = Object.assign({}, state.wells, { [well]: value });
     },
     PARFLOW_K_SET(state, value) {
       state.k = Object.assign({}, state.k, value);
+      state.runReset = 1;
     },
   },
   actions: {
     async PARFLOW_RUN({ state, getters, dispatch }) {
+      if (state.busyCount) {
+        return;
+      }
       state.busyCount += 1;
 
       const job = getters.PARFLOW_JOB;
+      const { application, runId } = job;
 
       if (job.runReset) {
         await dispatch('PVW_RESET');
       }
 
-      const task = JSON.stringify(job);
+      // Push configuration
+      await dispatch('PVW_CONFIG_UPDATE', job);
+
+      const task = JSON.stringify({ application, runId });
       return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 

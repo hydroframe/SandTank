@@ -1,5 +1,6 @@
 :root {
   --text-shadow-bg-color: #000;
+  --text-transparent-bg-color: rgba(0, 0, 0, 0.25);
 }
 
 .text {
@@ -16,7 +17,7 @@
 
 .table {
   display: grid;
-  grid-template-columns: 30px 1fr 2fr 4fr 3fr;
+  grid-template-columns: 40px 1fr 2fr 4fr 3fr;
   grid-auto-rows: auto;
 }
 
@@ -50,4 +51,10 @@
 .sand {
   background-image: url('../../../assets/sand.jpg');
   composes: bg;
+}
+
+.txtBg {
+  background: var(--text-transparent-bg-color);
+  padding: 4px 15px;
+  border-radius: 50%;
 }

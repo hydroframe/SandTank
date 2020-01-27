@@ -17,7 +17,7 @@
         :scale="scale"
         :size="domain.dimensions"
         :indicatorMask="indicatorMask"
-        :texture="value"
+        :texture="getTexture(key)"
         :indicatorValue="Number(key)"
         :opacity="opacitySoil"
       />
@@ -78,5 +78,4 @@
       hide-details
     />
   </v-layout>
-  <v-spacer />
 </v-layout>

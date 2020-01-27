@@ -1,9 +1,23 @@
 <div :class="$style.table">
-  <div />
-  <div class="text-center" :class="$style.clay">Clay</div>
-  <div class="text-center" :class="$style.loam">Loam</div>
-  <div class="text-center" :class="$style.sand">Sand</div>
-  <div class="text-center" :class="$style.gravel">Gravel</div>
+  <v-switch
+    dense
+    hide-details
+    class="mt-0"
+    :value="soilVisibility"
+    @change="updateSoilVisibility"
+  />
+  <div class="text-center" :class="$style.clay">
+    <span :class="$style.txtBg">Clay</span>
+  </div>
+  <div class="text-center" :class="$style.loam">
+    <span :class="$style.txtBg">Loam</span>
+  </div>
+  <div class="text-center" :class="$style.sand">
+    <span :class="$style.txtBg">Sand</span>
+  </div>
+  <div class="text-center" :class="$style.gravel">
+    <span :class="$style.txtBg">Gravel</span>
+  </div>
   <template v-for="item in indicators">
     <div
       :key="item.key"

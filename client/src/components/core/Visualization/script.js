@@ -4,6 +4,7 @@ import MaterialLayer from 'parflow-web/src/components/widgets/MaterialLayer';
 import SaturationLayer from 'parflow-web/src/components/widgets/SaturationLayer';
 import WellLayer from 'parflow-web/src/components/widgets/WellLayer';
 import VerticalSlider from 'parflow-web/src/components/widgets/VerticalSlider';
+import { fromPermeabilityToType } from 'parflow-web/src/utils/Permeability';
 
 import { debounce } from 'vtk.js/Sources/macro';
 
@@ -37,6 +38,7 @@ export default {
       indicatorMask: 'SANDTANK_INDICATOR',
       saturation: 'SANDTANK_SATURATION',
       jobConfig: 'PARFLOW_JOB',
+      permeabilityMap: 'PARFLOW_K',
     }),
     size() {
       if (!this.domain) {
@@ -80,6 +82,9 @@ export default {
       setTypeToLake: 'PARFLOW_LAKE_SET',
       setWell: 'PARFLOW_WELL_SET',
     }),
+    getTexture(key) {
+      return fromPermeabilityToType(this.permeabilityMap[key]);
+    },
   },
   created() {
     this.onResize = debounce(() => {

@@ -1,9 +1,13 @@
-<svg :width="width * scale" :height="height * scale" :style="{ opacity }">
+<svg
+  :width="width * scale"
+  :height="height * scale + offset"
+  :style="{ opacity }"
+>
   <circle
     v-for="well, idx in wells"
     :key="`circle-${idx}`"
     :cx="well.position[0] * scale"
-    :cy="height * scale - well.position[1] * scale"
+    :cy="offset + height * scale - well.position[1] * scale"
     :r="scale / 2"
     :stroke="color"
     stroke-width="4"
@@ -15,7 +19,7 @@
     :x1="well.position[0] * scale"
     :x2="well.position[0] * scale"
     :y1="0"
-    :y2="height * scale - well.position[1] * scale - scale / 2"
+    :y2="offset + height * scale - well.position[1] * scale - scale / 2"
     :stroke="color"
     :stroke-width="scale / 2"
   />
@@ -23,7 +27,7 @@
     v-for="well, idx in wells"
     :key="`txt-${idx}`"
     :x="well.position[0] * scale + scale"
-    :y="height * scale - well.position[1] * scale + scale / 2"
+    :y="offset + height * scale - well.position[1] * scale + scale / 2"
     :fill="color"
     font-weight="bold"
     font-size="20"

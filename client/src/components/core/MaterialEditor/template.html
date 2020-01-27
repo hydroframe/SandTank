@@ -1,10 +1,11 @@
 <v-layout column>
-  <v-layout align-center>
-    <div>Material editor</div>
-    <v-spacer />
-    <v-switch v-model="showSoil" label="Soil" dense hide-details class="mt-0" />
-  </v-layout>
-  <v-layout align-end :style="maxTankHeightStyle" class="mt-3">
+  <material-table
+    :indicators="indicators"
+    @change="onPermeabilityChange"
+    :soilVisibility="showSoil"
+    @visibility="updateVisibility"
+  />
+  <v-layout align-end :style="maxTankHeightStyle" class="mt-4">
     <v-spacer />
     <div :class="$style.container" :style="containerStyle">
       <material-layer
@@ -21,9 +22,6 @@
     </div>
     <v-spacer />
   </v-layout>
-  <v-layout column>
-    <div>Table control</div>
-    <material-table :indicators="indicators" @change="onPermeabilityChange" />
-  </v-layout>
+
   <v-spacer />
 </v-layout>

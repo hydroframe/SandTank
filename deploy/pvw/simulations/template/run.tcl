@@ -18,31 +18,64 @@ pfset Process.Topology.Q    1
 pfset Process.Topology.R    1
 
 # -----------------------------------------------------------------------------
-# Read in command line arguments
+# Read configuration
 # -----------------------------------------------------------------------------
 
-set runname         [lindex $argv 0]
-set reset           [lindex $argv 1]
+set runname    [lindex $argv 0]
 
-set StartNumber     [lindex $argv 2]
-set RunLength       [lindex $argv 3]
+puts "-------------------------------------------"
+puts "Loading configuration for $runname"
+puts "-------------------------------------------"
+source "/pvw/simulations/runs/$runname/config.tcl"
 
-set hleft           [lindex $argv 4]
-set hright          [lindex $argv 5]
-
-set lake            [lindex $argv 6]
-
-set w1flux          [lindex $argv 7]
-set w2flux          [lindex $argv 8]
-set w3flux          [lindex $argv 9]
-set w4flux          [lindex $argv 10]
-set w5flux          [lindex $argv 11]
-set w6flux          [lindex $argv 12]
-set w7flux          [lindex $argv 13]
-set w8flux          [lindex $argv 14]
-set w9flux          [lindex $argv 15]
-set w10flux         [lindex $argv 16]
-set w11flux         [lindex $argv 17]
+puts "reset:        $reset"
+puts ""
+puts "StartNumber:  $StartNumber"
+puts "RunLength:    $RunLength"
+puts ""
+puts "hleft:        $hleft"
+puts "hright:       $hright"
+puts ""
+puts "lake:         $lake"
+puts ""
+puts "k_1:         $k_1"
+puts "k_2:         $k_2"
+puts "k_3:         $k_3"
+puts "k_4:         $k_4"
+puts ""
+puts "well_1_action:        $well_1_action"
+puts "well_1_value:         $well_1_value"
+puts ""
+puts "well_2_action:        $well_2_action"
+puts "well_2_value:         $well_2_value"
+puts ""
+puts "well_3_action:        $well_3_action"
+puts "well_3_value:         $well_3_value"
+puts ""
+puts "well_4_action:        $well_4_action"
+puts "well_4_value:         $well_4_value"
+puts ""
+puts "well_5_action:        $well_5_action"
+puts "well_5_value:         $well_5_value"
+puts ""
+puts "well_6_action:        $well_6_action"
+puts "well_6_value:         $well_6_value"
+puts ""
+puts "well_7_action:        $well_7_action"
+puts "well_7_value:         $well_7_value"
+puts ""
+puts "well_8_action:        $well_8_action"
+puts "well_8_value:         $well_8_value"
+puts ""
+puts "well_9_action:        $well_9_action"
+puts "well_9_value:         $well_9_value"
+puts ""
+puts "well_10_action:       $well_10_action"
+puts "well_10_value:        $well_10_value"
+puts ""
+puts "well_11_action:       $well_11_action"
+puts "well_11_value:        $well_11_value"
+puts "-------------------------------------------"
 
 # -----------------------------------------------------------------------------
 # Computational Grid
@@ -184,16 +217,16 @@ pfset Geom.domain.Porosity.Type           Constant
 pfset Geom.domain.Porosity.Value          0.4
 
 pfset Geom.s1.Porosity.Type               Constant
-pfset Geom.s1.Porosity.Value              0.4
+pfset Geom.s1.Porosity.Value              $k_1
 
 pfset Geom.s2.Porosity.Type               Constant
-pfset Geom.s2.Porosity.Value              0.25
+pfset Geom.s2.Porosity.Value              $k_2
 
 pfset Geom.s3.Porosity.Type               Constant
-pfset Geom.s3.Porosity.Value              0.3
+pfset Geom.s3.Porosity.Value              $k_3
 
 pfset Geom.s4.Porosity.Type               Constant
-pfset Geom.s4.Porosity.Value              0.35
+pfset Geom.s4.Porosity.Value              $k_4
 
 # -----------------------------------------------------------------------------
 # Domain
@@ -248,13 +281,9 @@ pfset Wells.w1.ZLower                             15.1
 pfset Wells.w1.Cycle                              constant
 pfset Wells.w1.alltime.Saturation.water.Value     1.0
 pfset Wells.w1.Method                             Standard
-if {$w1flux >= 0} {
-  pfset Wells.w1.Action                           Extraction
-  pfset Wells.w1.alltime.Flux.water.Value         $w1flux
-} else {
-  pfset Wells.w1.Action                           Injection
-  pfset Wells.w1.alltime.Flux.water.Value         [expr  -1*$w1flux]
-}
+
+pfset Wells.w1.Action                             $well_1_action
+pfset Wells.w1.alltime.Flux.water.Value           $well_1_value
 
 # -----------------------------------------------------------------------------
 
@@ -267,13 +296,9 @@ pfset Wells.w2.ZLower                             1.1
 pfset Wells.w2.Cycle                              constant
 pfset Wells.w2.alltime.Saturation.water.Value     1.0
 pfset Wells.w2.Method                             Standard
-if {$w2flux >= 0} {
-  pfset Wells.w2.Action                           Extraction
-  pfset Wells.w2.alltime.Flux.water.Value         $w2flux
-} else {
-  pfset Wells.w2.Action                           Injection
-  pfset Wells.w2.alltime.Flux.water.Value         [expr  -1*$w2flux]
-}
+
+pfset Wells.w2.Action                             $well_2_action
+pfset Wells.w2.alltime.Flux.water.Value           $well_2_value
 
 # -----------------------------------------------------------------------------
 
@@ -286,13 +311,9 @@ pfset Wells.w3.ZLower                             15.1
 pfset Wells.w3.Cycle                              constant
 pfset Wells.w3.alltime.Saturation.water.Value     1.0
 pfset Wells.w3.Method                             Standard
-if {$w3flux >= 0} {
-  pfset Wells.w3.Action                           Extraction
-  pfset Wells.w3.alltime.Flux.water.Value         $w3flux
-} else {
-  pfset Wells.w3.Action                           Injection
-  pfset Wells.w3.alltime.Flux.water.Value         [expr  -1*$w3flux]
-}
+
+pfset Wells.w3.Action                             $well_3_action
+pfset Wells.w3.alltime.Flux.water.Value           $well_3_value
 
 # -----------------------------------------------------------------------------
 
@@ -305,13 +326,9 @@ pfset Wells.w4.ZLower                             27.1
 pfset Wells.w4.Cycle                              constant
 pfset Wells.w4.alltime.Saturation.water.Value     1.0
 pfset Wells.w4.Method                             Standard
-if {$w4flux >= 0} {
-  pfset Wells.w4.Action                           Extraction
-  pfset Wells.w4.alltime.Flux.water.Value         $w4flux
-} else {
-  pfset Wells.w4.Action                           Injection
-  pfset Wells.w4.alltime.Flux.water.Value         [expr  -1*$w4flux]
-}
+
+pfset Wells.w4.Action                             $well_4_action
+pfset Wells.w4.alltime.Flux.water.Value           $well_4_value
 
 # -----------------------------------------------------------------------------
 
@@ -324,13 +341,9 @@ pfset Wells.w5.ZLower                             1.1
 pfset Wells.w5.Cycle                              constant
 pfset Wells.w5.alltime.Saturation.water.Value     1.0
 pfset Wells.w5.Method                             Standard
-if {$w5flux >= 0} {
-  pfset Wells.w5.Action                           Extraction
-  pfset Wells.w5.alltime.Flux.water.Value         $w5flux
-} else {
-  pfset Wells.w5.Action                           Injection
-  pfset Wells.w5.alltime.Flux.water.Value         [expr  -1*$w5flux]
-}
+
+pfset Wells.w5.Action                             $well_5_action
+pfset Wells.w5.alltime.Flux.water.Value           $well_5_value
 
 # -----------------------------------------------------------------------------
 
@@ -343,13 +356,9 @@ pfset Wells.w6.ZLower                             13.1
 pfset Wells.w6.Cycle                              constant
 pfset Wells.w6.alltime.Saturation.water.Value     1.0
 pfset Wells.w6.Method                             Standard
-if {$w6flux >= 0} {
-  pfset Wells.w6.Action                           Extraction
-  pfset Wells.w6.alltime.Flux.water.Value         $w6flux
-} else {
-  pfset Wells.w6.Action                           Injection
-  pfset Wells.w6.alltime.Flux.water.Value         [expr  -1*$w6flux]
-}
+
+pfset Wells.w6.Action                             $well_6_action
+pfset Wells.w6.alltime.Flux.water.Value           $well_6_value
 
 # -----------------------------------------------------------------------------
 
@@ -362,13 +371,9 @@ pfset Wells.w7.ZLower                             15.1
 pfset Wells.w7.Cycle                              constant
 pfset Wells.w7.alltime.Saturation.water.Value     1.0
 pfset Wells.w7.Method                             Standard
-if {$w7flux >= 0} {
-  pfset Wells.w7.Action                           Extraction
-  pfset Wells.w7.alltime.Flux.water.Value         $w7flux
-} else {
-  pfset Wells.w7.Action                           Injection
-  pfset Wells.w7.alltime.Flux.water.Value         [expr  -1*$w7flux]
-}
+
+pfset Wells.w7.Action                             $well_7_action
+pfset Wells.w7.alltime.Flux.water.Value           $well_7_value
 
 # -----------------------------------------------------------------------------
 
@@ -381,13 +386,9 @@ pfset Wells.w8.ZLower                             1.1
 pfset Wells.w8.Cycle                              constant
 pfset Wells.w8.alltime.Saturation.water.Value     1.0
 pfset Wells.w8.Method                             Standard
-if {$w8flux >= 0} {
-  pfset Wells.w8.Action                           Extraction
-  pfset Wells.w8.alltime.Flux.water.Value         $w8flux
-} else {
-  pfset Wells.w8.Action                           Injection
-  pfset Wells.w8.alltime.Flux.water.Value         [expr  -1*$w8flux]
-}
+
+pfset Wells.w8.Action                             $well_8_action
+pfset Wells.w8.alltime.Flux.water.Value           $well_8_value
 
 # -----------------------------------------------------------------------------
 
@@ -400,13 +401,9 @@ pfset Wells.w9.ZLower                             1.1
 pfset Wells.w9.Cycle                              constant
 pfset Wells.w9.alltime.Saturation.water.Value     1.0
 pfset Wells.w9.Method                             Standard
-if {$w9flux >= 0} {
-  pfset Wells.w9.Action                           Extraction
-  pfset Wells.w9.alltime.Flux.water.Value         $w9flux
-} else {
-  pfset Wells.w9.Action                           Injection
-  pfset Wells.w9.alltime.Flux.water.Value         [expr  -1*$w9flux]
-}
+
+pfset Wells.w9.Action                            $well_9_action
+pfset Wells.w9.alltime.Flux.water.Value          $well_9_value
 
 # -----------------------------------------------------------------------------
 
@@ -419,13 +416,9 @@ pfset Wells.w10.ZLower                            14.1
 pfset Wells.w10.Cycle                             constant
 pfset Wells.w10.alltime.Saturation.water.Value    1.0
 pfset Wells.w10.Method                            Standard
-if {$w10flux >= 0} {
-  pfset Wells.w10.Action                          Extraction
-  pfset Wells.w10.alltime.Flux.water.Value        $w10flux
-} else {
-  pfset Wells.w10.Action                          Injection
-  pfset Wells.w10.alltime.Flux.water.Value        [expr  -1*$w10flux]
-}
+
+pfset Wells.w10.Action                            $well_10_action
+pfset Wells.w10.alltime.Flux.water.Value          $well_10_value
 
 # -----------------------------------------------------------------------------
 
@@ -438,13 +431,9 @@ pfset Wells.w11.ZLower                            26.1
 pfset Wells.w11.Cycle                             constant
 pfset Wells.w11.alltime.Saturation.water.Value    1.0
 pfset Wells.w11.Method                            Standard
-if {$w11flux >= 0} {
-  pfset Wells.w11.Action                          Extraction
-  pfset Wells.w11.alltime.Flux.water.Value        $w11flux
-} else {
-  pfset Wells.w11.Action                          Injection
-  pfset Wells.w11.alltime.Flux.water.Value        [expr  -1*$w11flux]
-}
+
+pfset Wells.w11.Action                            $well_11_action
+pfset Wells.w11.alltime.Flux.water.Value          $well_11_value
 
 # -----------------------------------------------------------------------------
 # Time Cycles

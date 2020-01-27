@@ -29,6 +29,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.workdir = simulationDirectory
         self.pfbReader = None
         self.lastProcessedTimestep = -1
+        self.lastConfig = None
         self.templateName = 'template'
 
         simple.LoadDistributedPlugin('ParFlow')
@@ -50,6 +51,48 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         tplPath = os.path.abspath(os.path.join(self.workdir, '../..', self.templateName))
         shutil.copytree(tplPath, self.workdir)
         self.lastProcessedTimestep = -1
+
+
+    # -------------------------------------------------------------------------
+
+    @exportRpc("parflow.sandtank.config.update")
+    def updateConfiguration(self, config = None):
+        if config:
+            self.lastConfig = config
+        filePath = os.path.abspath(os.path.join(self.workdir, 'config.tcl'))
+        startNumber = self.getLastTimeStep()
+        if self.lastProcessedTimestep > startNumber:
+            self.lastProcessedTimestep = startNumber
+
+        with open(filePath, 'w') as f:
+            # Global
+            f.write('# Global settings\n')
+            f.write('set reset          %s\n' % self.lastConfig['runReset'])
+            f.write('\n')
+            f.write('set StartNumber    %s\n' % startNumber)
+            f.write('set RunLength      %s\n' % self.lastConfig['runLength'])
+            f.write('\n')
+            f.write('set hleft          %s\n' % self.lastConfig['hLeft'])
+            f.write('set hright         %s\n' % self.lastConfig['hRight'])
+            f.write('\n')
+            f.write('set lake           %s\n' % self.lastConfig['isLake'])
+
+            # Porosity
+            f.write('\n# Update Porosity\n')
+            for key in self.lastConfig['k']:
+                f.write('set k_%s       %s\n' % (key, self.lastConfig['k'][key]))
+
+            # Wells
+            f.write('\n# Update Wells\n')
+            for key in self.lastConfig['wells']:
+                value = self.lastConfig['wells'][key]
+                action = 'Extraction'
+                if value < 0:
+                    action = 'Injection'
+                    value *= -1.0
+                f.write('set well_%s_action     %s\n' % (key, action))
+                f.write('set well_%s_value      %s\n' % (key, value))
+
 
     # -------------------------------------------------------------------------
 
@@ -117,6 +160,15 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             reactor.callLater(1, lambda: self.pushSaturation())
         else:
             reactor.callLater(0.5, lambda: self.pushSaturation())
+
+    # -------------------------------------------------------------------------
+
+    def getLastTimeStep(self):
+        count = 0
+        filePattern = os.path.join(self.workdir, '%s.out.satur.%s.pfb')
+        while os.path.exists(filePattern % (self.runName, str(count + 1).zfill(5))):
+            count += 1
+        return count
 
     # -------------------------------------------------------------------------
 

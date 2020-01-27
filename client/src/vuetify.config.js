@@ -30,6 +30,9 @@ export default {
       jobParameters: 'mdi-cogs',
       ready: 'mdi-autorenew',
       time: 'mdi-clock-outline',
+      waterOff: 'mdi-water-pump-off',
+      waterExtraction: 'mdi-water-pump',
+      waterInjection: 'mdi-flask-empty-plus-outline',
     },
   },
 };

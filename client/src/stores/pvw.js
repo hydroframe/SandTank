@@ -179,5 +179,11 @@ export default {
         .Parflow.reset()
         .catch(console.error);
     },
+    async PVW_CONFIG_UPDATE({ state }, config = null) {
+      return state.client
+        .getRemote()
+        .Parflow.updateConfiguration(config)
+        .catch(console.error);
+    },
   },
 };
