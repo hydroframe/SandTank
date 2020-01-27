@@ -51,6 +51,9 @@ export default {
     PARFLOW_K(state) {
       return state.k;
     },
+    PARFLOW_WELLS(state) {
+      return state.wells;
+    },
   },
   mutations: {
     PARFLOW_RESET_SET(state, value) {
@@ -93,6 +96,9 @@ export default {
 
       // Push configuration
       await dispatch('PVW_CONFIG_UPDATE', job);
+
+      // Show visualization
+      dispatch('UI_VISUALIZATION');
 
       const task = JSON.stringify({ application, runId });
       return new Promise((resolve, reject) => {

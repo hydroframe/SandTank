@@ -12,6 +12,9 @@ export default {
   },
   mutations: {},
   actions: {
+    UI_VISUALIZATION({ state }) {
+      state.mode = 'visualization';
+    },
     UI_TOGGLE_MODE({ state }) {
       state.mode =
         state.mode === 'visualization' ? 'material' : 'visualization';

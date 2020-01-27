@@ -2,8 +2,9 @@ import { mapGetters, mapMutations } from 'vuex';
 
 import MaterialLayer from 'parflow-web/src/components/widgets/MaterialLayer';
 import SaturationLayer from 'parflow-web/src/components/widgets/SaturationLayer';
-import WellLayer from 'parflow-web/src/components/widgets/WellLayer';
 import VerticalSlider from 'parflow-web/src/components/widgets/VerticalSlider';
+import WellControl from 'parflow-web/src/components/widgets/WellControl';
+import WellLayer from 'parflow-web/src/components/widgets/WellLayer';
 import { fromPermeabilityToType } from 'parflow-web/src/utils/Permeability';
 
 import { debounce } from 'vtk.js/Sources/macro';
@@ -13,8 +14,9 @@ export default {
   components: {
     MaterialLayer,
     SaturationLayer,
-    WellLayer,
     VerticalSlider,
+    WellControl,
+    WellLayer,
   },
   props: {
     sliderWidth: {
@@ -39,6 +41,7 @@ export default {
       saturation: 'SANDTANK_SATURATION',
       jobConfig: 'PARFLOW_JOB',
       permeabilityMap: 'PARFLOW_K',
+      wellsMap: 'PARFLOW_WELLS',
     }),
     size() {
       if (!this.domain) {
@@ -80,10 +83,26 @@ export default {
       setLeftPressure: 'PARFLOW_LEFT_PRESSURE_SET',
       setRightPressure: 'PARFLOW_RIGHT_PRESSURE_SET',
       setTypeToLake: 'PARFLOW_LAKE_SET',
-      setWell: 'PARFLOW_WELL_SET',
+      updateWell: 'PARFLOW_WELL_SET',
     }),
     getTexture(key) {
       return fromPermeabilityToType(this.permeabilityMap[key]);
+    },
+    getWellMode(key) {
+      return Math.sign(this.wellsMap[key]);
+    },
+    canPump(well, i, j) {
+      if (this.saturation) {
+        const saturation = this.saturation[i + j * this.domain.dimensions[0]];
+        if (saturation === 255) {
+          return true;
+        }
+      }
+      if (this.wellsMap[well] > 0) {
+        this.updateWell({ well, value: 0 });
+      }
+
+      return false;
     },
   },
   created() {

@@ -29,3 +29,8 @@
   user-select: none;
 }
 
+.wellControl {
+  position: absolute;
+  top: -25px; /* well offset */
+  transform: translateX(-50%) translateY(-100%);
+}

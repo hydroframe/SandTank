@@ -25,11 +25,21 @@ export default {
       parflowExecutionCount: 'PARFLOW_EXEC_COUNT',
       //
       time: 'SANDTANK_TIME',
+      config: 'PARFLOW_JOB',
     }),
+    isLake: {
+      get() {
+        return this.config.isLake;
+      },
+      set(v) {
+        this.setTypeToLake(Number(v));
+      },
+    },
   },
   methods: {
     ...mapMutations({
       setParflowBusy: 'UI_BUSY_PARFLOW_SET',
+      setTypeToLake: 'PARFLOW_LAKE_SET',
     }),
     ...mapActions({
       toggleMode: 'UI_TOGGLE_MODE',

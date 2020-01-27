@@ -8,10 +8,10 @@
     <parflow-config-editor v-show="showJobParams" style="flex: none" />
     <v-spacer />
 
-    <div class="mr-4">
+    <div>
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn v-on="on" class="mx-2" icon small @click="toggleJobParameter">
+          <v-btn v-on="on" icon @click="toggleJobParameter">
             <v-icon v-text="`$jobParameters`" />
           </v-btn>
         </template>
@@ -20,19 +20,32 @@
     </div>
 
     <div class="mr-4">
-      <v-icon v-text="`$time`" class="mr-2" />
-      {{ time }}
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on" class="mx-2" icon @click="toggleMode">
+            <v-icon v-text="`$settings`" />
+          </v-btn>
+        </template>
+        <span v-show="showVisualization">Edit materials</span>
+        <span v-show="showMaterialEdit">Show visualization</span>
+      </v-tooltip>
     </div>
 
-    <v-tooltip bottom>
-      <template v-slot:activator="{ on }">
-        <v-btn v-on="on" class="mx-2" icon small @click="toggleMode">
-          <v-icon v-text="`$settings`" />
-        </v-btn>
-      </template>
-      <span v-show="showVisualization">Edit materials</span>
-      <span v-show="showMaterialEdit">Show visualization</span>
-    </v-tooltip>
+    <v-select
+      v-model="isLake"
+      :items="[{ text: 'Lake', value: 1}, { text: 'River', value: 0}]"
+      dense
+      hide-details
+      class="mr-4"
+      style="max-width: 100px;"
+    />
+
+    <v-layout class="mr-4" style="max-width: 54px; text-align: right">
+      <v-icon v-text="`$time`" />
+      <div style="min-width: 30px;">
+        {{ time }}
+      </div>
+    </v-layout>
 
     <v-btn
       outlined

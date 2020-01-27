@@ -3,6 +3,7 @@ import { debounce } from 'vtk.js/Sources/macro';
 
 import MaterialLayer from 'parflow-web/src/components/widgets/MaterialLayer';
 import MaterialTable from 'parflow-web/src/components/widgets/MaterialTable';
+import WellLayer from 'parflow-web/src/components/widgets/WellLayer';
 import { fromPermeabilityToType } from 'parflow-web/src/utils/Permeability';
 
 export default {
@@ -10,6 +11,7 @@ export default {
   components: {
     MaterialLayer,
     MaterialTable,
+    WellLayer,
   },
   props: {
     palette: {

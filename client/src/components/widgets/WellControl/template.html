@@ -1,0 +1,30 @@
+<v-layout column>
+  <v-btn
+    small
+    icon
+    :outlined="mode !== -1"
+    @click="trigger(-1)"
+    :color="color(-1)"
+  >
+    <v-icon small v-text="`$waterInjection`" />
+  </v-btn>
+  <v-btn
+    small
+    icon
+    :outlined="mode !== 0"
+    @click="trigger(0)"
+    :color="color(0)"
+  >
+    <v-icon small v-text="`$waterOff`" />
+  </v-btn>
+  <v-btn
+    small
+    icon
+    :outlined="mode !== 1"
+    :disabled="!canPump"
+    @click="trigger(1)"
+    :color="color(1)"
+  >
+    <v-icon small v-text="`$waterExtraction`" />
+  </v-btn>
+</v-layout>

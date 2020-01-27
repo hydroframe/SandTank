@@ -12,13 +12,13 @@
     <div :class="$style.container" :style="containerStyle">
       <material-layer
         :class="$style.material"
-        v-for="(value, key) in domain.materials"
-        :key="key"
+        v-for="item in domain.setup.indicators"
+        :key="item.key"
         :scale="scale"
         :size="domain.dimensions"
         :indicatorMask="indicatorMask"
-        :texture="getTexture(key)"
-        :indicatorValue="Number(key)"
+        :texture="getTexture(item.key)"
+        :indicatorValue="item.key"
         :opacity="opacitySoil"
       />
       <saturation-layer
@@ -35,7 +35,20 @@
         :scale="scale"
         :wells="domain.wells"
         :opacity="opacityWells"
+        color="#444"
       />
+      <v-layout>
+        <well-control
+          v-for="well in domain.wells"
+          :key="well.key"
+          :class="$style.wellControl"
+          :style="`left: ${(well.position[0] / domain.dimensions[0])* (scale * domain.dimensions[0])}px`"
+          :id="well.key"
+          :mode="getWellMode(well.key)"
+          :canPump="canPump(well.key, well.position[0], well.position[1])"
+          @change="updateWell"
+        />
+      </v-layout>
     </div>
     <vertical-slider
       :scale="scale"

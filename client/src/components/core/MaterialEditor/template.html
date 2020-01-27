@@ -10,14 +10,22 @@
     <div :class="$style.container" :style="containerStyle">
       <material-layer
         :class="$style.material"
-        v-for="(value, key) in domain.materials"
-        :key="key"
+        v-for="item in domain.setup.indicators"
+        :key="item.key"
         :scale="scale"
         :size="domain.dimensions"
         :indicatorMask="indicatorMask"
-        :texture="showSoil ? getTexture(key): null"
-        :color="palette[Number(key)]"
-        :indicatorValue="Number(key)"
+        :texture="showSoil ? getTexture(item.key): null"
+        :color="palette[item.key]"
+        :indicatorValue="item.key"
+      />
+      <well-layer
+        :class="$style.wells"
+        :size="domain.dimensions"
+        :scale="scale"
+        :wells="domain.wells"
+        color="#444"
+        :offset="0"
       />
     </div>
     <v-spacer />

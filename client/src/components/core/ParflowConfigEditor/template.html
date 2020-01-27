@@ -1,11 +1,4 @@
   <v-layout justify-space-between align-center>
-    <v-select
-      v-model="isLake"
-      :items="[{ text: 'Lake', value: 1}, { text: 'River', value: 0}]"
-      dense
-      hide-details
-      :class="$style.field"
-    />
     <div class="mr-4">Simulation length:</div>
     <v-text-field
       type="number"
@@ -21,7 +14,5 @@
       hide-details
       :class="$style.field"
     />
-
-    <v-spacer />
   </v-layout>
 </v-layout>

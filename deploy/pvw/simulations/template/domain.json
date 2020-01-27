@@ -1,24 +1,18 @@
 {
   "dimensions": [100, 50],
   "wells": [
-    { "name": "A", "position": [11, 15], "key": "wellFlux_1" },
-    { "name": "B", "position": [23, 1], "key": "wellFlux_2" },
-    { "name": "C", "position": [26, 15], "key": "wellFlux_3" },
-    { "name": "D", "position": [29, 27], "key": "wellFlux_4" },
-    { "name": "E", "position": [48, 1], "key": "wellFlux_5" },
-    { "name": "F", "position": [51, 13], "key": "wellFlux_6" },
-    { "name": "G", "position": [54, 15], "key": "wellFlux_7" },
-    { "name": "H", "position": [57, 1], "key": "wellFlux_8" },
-    { "name": "I", "position": [82, 1], "key": "wellFlux_9" },
-    { "name": "J", "position": [87, 14], "key": "wellFlux_10" },
-    { "name": "K", "position": [92, 26], "key": "wellFlux_11" }
+    { "name": "A", "position": [11, 15], "key": "1" },
+    { "name": "B", "position": [23, 1], "key": "2" },
+    { "name": "C", "position": [26, 15], "key": "3" },
+    { "name": "D", "position": [29, 27], "key": "4" },
+    { "name": "E", "position": [48, 1], "key": "5" },
+    { "name": "F", "position": [51, 13], "key": "6" },
+    { "name": "G", "position": [54, 15], "key": "7" },
+    { "name": "H", "position": [57, 1], "key": "8" },
+    { "name": "I", "position": [82, 1], "key": "9" },
+    { "name": "J", "position": [87, 14], "key": "10" },
+    { "name": "K", "position": [92, 26], "key": "11" }
   ],
-  "materials": {
-    "1": "gravel",
-    "2": "clay",
-    "3": "loam",
-    "4": "sand"
-  },
   "setup": {
     "maxHeight": 60,
     "hLeft": 30,
