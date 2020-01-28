@@ -1,4 +1,5 @@
-<v-layout column class="pa-4">
+<v-layout column class="pa-4" align-center>
+  <div :class="$style.flux">{{ value }}</div>
   <v-tooltip left>
     <template v-slot:activator="{ on }">
       <v-btn

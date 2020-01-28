@@ -49,6 +49,7 @@
           :name="well.name"
           :mode="getWellMode(well.key)"
           :canPump="canPump(well.key, well.position[0], well.position[1])"
+          :value="getWellValue(well.key)"
           @change="updateWell"
         />
       </v-layout>

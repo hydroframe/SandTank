@@ -23,6 +23,10 @@ export default {
       type: Number,
       default: 80,
     },
+    controlOffset: {
+      type: Number,
+      default: 150,
+    },
   },
   data() {
     return {
@@ -58,8 +62,10 @@ export default {
     },
     maxTankHeightStyle() {
       return {
-        maxHeight: `${Math.max(this.domain.setup.maxHeight, this.size[1]) *
-          this.scale}px`,
+        maxHeight: `${Math.max(
+          this.domain.setup.maxHeight * this.scale,
+          this.size[1] * this.scale + this.controlOffset
+        )}px`,
       };
     },
     slowWaterOpacity() {
@@ -89,6 +95,9 @@ export default {
     },
     getWellMode(key) {
       return Math.sign(this.wellsMap[key]);
+    },
+    getWellValue(key) {
+      return this.wellsMap[key];
     },
     canPump(well, i, j) {
       if (this.saturation) {

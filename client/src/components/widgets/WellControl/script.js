@@ -13,9 +13,13 @@ export default {
       type: Boolean,
       default: true,
     },
-    value: {
+    delta: {
       type: Number,
       default: 5,
+    },
+    value: {
+      type: Number,
+      default: 0,
     },
     name: {
       type: String,
@@ -26,12 +30,6 @@ export default {
       default: '#03A9F4',
     },
   },
-  data() {
-    return {
-      delta: this.value,
-      deltas: [2, 5, 10, 15, 20],
-    };
-  },
   methods: {
     color(currentMode) {
       if (currentMode === this.mode) {
@@ -40,13 +38,13 @@ export default {
       return null;
     },
     trigger(mode) {
-      const { id, value, canPump } = this;
+      const { id, delta, value, canPump } = this;
       if (mode > 0 && !canPump) {
         return;
       }
       this.$emit('change', {
         well: id,
-        value: value * mode,
+        value: mode ? value + delta * mode : 0,
       });
     },
   },
