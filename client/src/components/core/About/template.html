@@ -1,16 +1,16 @@
 <v-card>
   <v-card-title>
-    <a href="https://www.hydroframe.org/">Hydroframe</a>
+    <a href="https://www.hydroframe.org/">HydroFrame</a>
     <div class="pl-2">Sand Tank outreach tool</div>
     <v-spacer />
-    <v-btn flat icon v-on:click="$emit('close')">
+    <v-btn icon v-on:click="$emit('close')">
       <v-icon v-text="`$close`" />
     </v-btn>
   </v-card-title>
   <hr />
   <v-card-text>
-    <p class="body-1">
-      <a href="https://github.com/hydroframe/SandTank">ParFlow Sandtank</a>
+    <p class="body-1 pt-4">
+      <a href="https://github.com/hydroframe/SandTank">ParaFlow Sandtank</a>
       is an open-source web application developed by
       <a href="https://www.kitware.com/">Kitware</a>
       for educational purpose. It is using
@@ -23,11 +23,11 @@
       <b>Acknowledgment:</b> This material is based upon work supported by the
       Department of Energy under Award Number(s) DE-SC0019609 - Cloud/Web-based
       Advanced Modeling and Simulation Turnkey High-Performance Computing
-      Environment for Surface and Subsurface Science and the US National Science 
-      Foundation Office of Advanced Cyberinfrastructure 
-      under Award number OAC-1835855.
+      Environment for Surface and Subsurface Science and the US National Science
+      Foundation Office of Advanced Cyberinfrastructure under Award number
+      OAC-1835855.
     </p>
-    <div class="pt-3 d-block text-xs-center grey--text text--darken-2">
+    <div class="pt-3 d-block text-xs-center">
       &copy; {{ new Date().getFullYear() }} — Kitware, Inc.
     </div>
   </v-card-text>
