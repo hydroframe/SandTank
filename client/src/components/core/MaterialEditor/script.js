@@ -51,17 +51,17 @@ export default {
       if (!this.domain) {
         return [10, 10];
       }
-      return this.domain.dimensions;
+      return this.domain.dimensions.filter((v) => v > 1);
     },
     containerStyle() {
       return {
-        height: `${this.domain.dimensions[1] * this.scale}px`,
-        width: `${this.domain.dimensions[0] * this.scale}px`,
+        height: `${this.size[1] * this.scale}px`,
+        width: `${this.size[0] * this.scale}px`,
       };
     },
     maxTankHeightStyle() {
       return {
-        maxHeight: `${this.domain.dimensions[1] * this.scale}px`,
+        maxHeight: `${this.size[1] * this.scale}px`,
       };
     },
     scale() {

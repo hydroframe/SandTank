@@ -12,9 +12,11 @@ export default {
   state: {
     indicatorArray: null,
     saturationArray: null,
+    solidArray: null,
+    solidScaling: 1,
     time: 0,
     domain: {
-      dimensions: [100, 50],
+      dimensions: [100, 1, 50],
       wells: [{ name: 'w1', position: [11, 15] }],
       setup: {
         maxHeight: 30,
@@ -34,6 +36,16 @@ export default {
     SANDTANK_TIME(state) {
       return state.time;
     },
+    SANDTANK_MASK(state) {
+      if (!state.solidArray) {
+        return null;
+      }
+
+      return {
+        scale: state.solidScaling,
+        array: state.solidArray,
+      };
+    },
   },
   mutations: {
     SANDTANK_DOMAIN_SET(state, value) {
@@ -50,6 +62,12 @@ export default {
       state.time = time;
       blobToArrayBuffer(array).then((arrayBuffer) => {
         state.saturationArray = new Uint8Array(arrayBuffer);
+      });
+    },
+    SANDTANK_MASK_UPDATE({ state }, { scale, array }) {
+      state.solidScaling = scale;
+      blobToArrayBuffer(array).then((arrayBuffer) => {
+        state.solidArray = new Uint8Array(arrayBuffer);
       });
     },
   },

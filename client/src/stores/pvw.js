@@ -147,6 +147,14 @@ export default {
                 domain.setup.indicators.forEach(({ key, value }) => {
                   commit('PARFLOW_K_SET', { [key]: value });
                 });
+
+                // Get solid mask
+                validClient
+                  .getRemote()
+                  .Parflow.getSolidMask(10)
+                  .then((mask) => {
+                    dispatch('SANDTANK_MASK_UPDATE', mask);
+                  });
               })
               .catch(console.error);
 

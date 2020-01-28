@@ -48,6 +48,10 @@ export default {
       type: Number,
       default: 1,
     },
+    mask: {
+      type: Object,
+      default: null,
+    },
   },
   watch: {
     scale() {
@@ -66,6 +70,9 @@ export default {
       this.$nextTick(this.draw);
     },
     indicatorValue() {
+      this.$nextTick(this.draw);
+    },
+    mask() {
       this.$nextTick(this.draw);
     },
   },
@@ -120,6 +127,24 @@ export default {
                 const dOffset = 4 * (dx + dy * width * this.scale);
                 bgImage.data[offset + dOffset + 3] = alpha;
               }
+            }
+          }
+        }
+        ctx.putImageData(bgImage, 0, 0);
+      }
+
+      // Solid mask cutoff
+      if (this.mask) {
+        const { scale, array } = this.mask;
+        const fullWidth = width * this.scale;
+        const fullHeight = height * this.scale;
+        for (let j = 0; j < fullHeight; j++) {
+          const jSrc = Math.floor((j / fullHeight) * height * scale);
+          for (let i = 0; i < fullWidth; i++) {
+            const iSrc = Math.floor((i / fullWidth) * width * scale);
+            const idxSrc = iSrc + jSrc * width * scale;
+            if (array[idxSrc] === 0) {
+              bgImage.data[4 * (i + j * fullWidth) + 3] = 0;
             }
           }
         }

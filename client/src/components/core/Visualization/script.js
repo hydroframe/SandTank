@@ -42,25 +42,24 @@ export default {
       jobConfig: 'PARFLOW_JOB',
       permeabilityMap: 'PARFLOW_K',
       wellsMap: 'PARFLOW_WELLS',
+      mask: 'SANDTANK_MASK',
     }),
     size() {
       if (!this.domain) {
         return [10, 10];
       }
-      return this.domain.dimensions;
+      return this.domain.dimensions.filter((v) => v > 1);
     },
     containerStyle() {
       return {
-        height: `${this.domain.dimensions[1] * this.scale}px`,
-        width: `${this.domain.dimensions[0] * this.scale}px`,
+        height: `${this.size[1] * this.scale}px`,
+        width: `${this.size[0] * this.scale}px`,
       };
     },
     maxTankHeightStyle() {
       return {
-        maxHeight: `${Math.max(
-          this.domain.setup.maxHeight,
-          this.domain.dimensions[1]
-        ) * this.scale}px`,
+        maxHeight: `${Math.max(this.domain.setup.maxHeight, this.size[1]) *
+          this.scale}px`,
       };
     },
     slowWaterOpacity() {
@@ -93,7 +92,7 @@ export default {
     },
     canPump(well, i, j) {
       if (this.saturation) {
-        const saturation = this.saturation[i + j * this.domain.dimensions[0]];
+        const saturation = this.saturation[i + j * this.size[0]];
         if (saturation === 255) {
           return true;
         }

@@ -3,7 +3,7 @@
     <v-spacer />
     <vertical-slider
       :scale="scale"
-      :domainSize="domain.dimensions"
+      :domainSize="size"
       :width="sliderWidth"
       :maxHeight="domain.setup.maxHeight"
       :value="jobConfig.hLeft"
@@ -15,23 +15,25 @@
         v-for="item in domain.setup.indicators"
         :key="item.key"
         :scale="scale"
-        :size="domain.dimensions"
+        :size="size"
         :indicatorMask="indicatorMask"
         :texture="getTexture(item.key)"
         :indicatorValue="item.key"
         :opacity="opacitySoil"
+        :mask="mask"
       />
       <saturation-layer
         :class="$style.water"
         :scale="scale"
-        :size="domain.dimensions"
+        :size="size"
         :saturation="saturation"
         :opacity="slowWaterOpacity"
         :style="{ opacity: fastWaterOpacity }"
+        :mask="mask"
       />
       <well-layer
         :class="$style.wells"
-        :size="domain.dimensions"
+        :size="size"
         :scale="scale"
         :wells="domain.wells"
         :opacity="opacityWells"
@@ -42,7 +44,7 @@
           v-for="well in domain.wells"
           :key="well.key"
           :class="$style.wellControl"
-          :style="`left: ${(well.position[0] / domain.dimensions[0])* (scale * domain.dimensions[0])}px`"
+          :style="`left: ${(well.position[0] / size[0])* (scale * size[0])}px`"
           :id="well.key"
           :name="well.name"
           :mode="getWellMode(well.key)"
@@ -53,7 +55,7 @@
     </div>
     <vertical-slider
       :scale="scale"
-      :domainSize="domain.dimensions"
+      :domainSize="size"
       :width="sliderWidth"
       :maxHeight="domain.setup.maxHeight"
       :value="jobConfig.hRight"

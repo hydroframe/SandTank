@@ -13,7 +13,7 @@
         v-for="item in domain.setup.indicators"
         :key="item.key"
         :scale="scale"
-        :size="domain.dimensions"
+        :size="size"
         :indicatorMask="indicatorMask"
         :texture="showSoil ? getTexture(item.key): null"
         :color="palette[item.key]"
@@ -21,7 +21,7 @@
       />
       <well-layer
         :class="$style.wells"
-        :size="domain.dimensions"
+        :size="size"
         :scale="scale"
         :wells="domain.wells"
         color="#444"

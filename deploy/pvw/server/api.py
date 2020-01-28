@@ -31,6 +31,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.lastProcessedTimestep = -1
         self.lastConfig = None
         self.templateName = 'template'
+        self.domain = None
 
         simple.LoadDistributedPlugin('ParFlow')
         self.reset()
@@ -163,6 +164,21 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
 
     # -------------------------------------------------------------------------
 
+    @exportRpc("parflow.sandtank.solid.mask")
+    def getSolidMask(self, scale=4):
+        sampling = [v * scale if v > 1 else 1 for v in self.domain['dimensions']]
+        filePath = os.path.join(self.workdir, 'SandTank.vtk')
+        solidGeometry = simple.LegacyVTKReader(FileNames=[filePath])
+        solidImage = simple.ResampleToImage(Input=solidGeometry, SamplingBounds=self.domain['bounds'], SamplingDimensions=sampling)
+        solidImage.UpdatePipeline()
+        mask = solidImage.GetClientSideObject().GetOutput().GetPointData().GetArray('vtkValidPointMask')
+        return {
+            'scale': scale,
+            'array': self.addAttachment(buffer(mask).tobytes()),
+        }
+
+    # -------------------------------------------------------------------------
+
     def getLastTimeStep(self):
         count = 0
         filePattern = os.path.join(self.workdir, '%s.out.satur.%s.pfb')
@@ -177,5 +193,5 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.pushIndicator()
         filePath = os.path.join(self.workdir, 'domain.json')
         with open(filePath) as f:
-            return json.load(f)
-        return None
+            self.domain = json.load(f)
+        return self.domain
