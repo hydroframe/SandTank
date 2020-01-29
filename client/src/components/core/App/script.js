@@ -15,7 +15,6 @@ export default {
   },
   data() {
     return {
-      showJobParams: false,
       aboutDialog: false,
     };
   },
@@ -24,8 +23,6 @@ export default {
       busy: 'PARFLOW_BUSY',
       connected: 'PVW_CONNECTED',
       pvwBusy: 'PVW_BUSY',
-      showMaterialEdit: 'UI_MODE_IS_MATERIAL_DEFINITION',
-      showVisualization: 'UI_MODE_IS_VISUALIZATION',
       parflowExecutionCount: 'PARFLOW_EXEC_COUNT',
       //
       time: 'SANDTANK_TIME',
@@ -46,16 +43,13 @@ export default {
       setTypeToLake: 'PARFLOW_LAKE_SET',
     }),
     ...mapActions({
-      toggleMode: 'UI_TOGGLE_MODE',
       pvwConnect: 'PVW_CONNECT',
       pvwDisconnect: 'PVW_DISCONNECT',
       runParflow: 'PARFLOW_RUN',
+      resetSimulation: 'SANDTANK_RESET',
     }),
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-    },
-    toggleJobParameter() {
-      this.showJobParams = !this.showJobParams;
     },
   },
   created() {

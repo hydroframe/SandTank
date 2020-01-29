@@ -12,6 +12,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showSoilToggle: {
+      type: Boolean,
+      default: false,
+    },
   },
   watch: {
     dark(v) {

@@ -70,5 +70,13 @@ export default {
         state.solidArray = new Uint8Array(arrayBuffer);
       });
     },
+    async SANDTANK_RESET({ state, commit, dispatch }) {
+      state.time = 0;
+      dispatch('PARFLOW_RESET_WELLS');
+      commit('PARFLOW_LEFT_PRESSURE_SET', state.domain.setup.hLeft);
+      commit('PARFLOW_RIGHT_PRESSURE_SET', state.domain.setup.hRight);
+      commit('PARFLOW_RESET_SET', true);
+      return dispatch('PVW_RESET');
+    },
   },
 };

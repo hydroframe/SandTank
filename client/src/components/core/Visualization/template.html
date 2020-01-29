@@ -1,14 +1,20 @@
 <v-layout column>
   <v-layout align-end :style="maxTankHeightStyle">
     <v-spacer />
-    <vertical-slider
-      :scale="scale"
-      :domainSize="size"
-      :width="sliderWidth"
-      :maxHeight="domain.setup.maxHeight"
-      :value="jobConfig.hLeft"
-      @input="setLeftPressure"
-    />
+    <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <vertical-slider
+          v-on="on"
+          :scale="scale"
+          :domainSize="size"
+          :width="sliderWidth"
+          :maxHeight="domain.setup.maxHeight"
+          :value="jobConfig.hLeft"
+          @input="setLeftPressure"
+        />
+      </template>
+      <span>Drag to change water level</span>
+    </v-tooltip>
     <div :class="$style.container" :style="containerStyle">
       <material-layer
         :class="$style.material"
@@ -54,17 +60,26 @@
         />
       </v-layout>
     </div>
-    <vertical-slider
-      :scale="scale"
-      :domainSize="size"
-      :width="sliderWidth"
-      :maxHeight="domain.setup.maxHeight"
-      :value="jobConfig.hRight"
-      @input="setRightPressure"
-    />
+    <v-tooltip left>
+      <template v-slot:activator="{ on }">
+        <vertical-slider
+          v-on="on"
+          :scale="scale"
+          :domainSize="size"
+          :width="sliderWidth"
+          :maxHeight="domain.setup.maxHeight"
+          :value="jobConfig.hRight"
+          @input="setRightPressure"
+        />
+      </template>
+      <span>Drag to change water level</span>
+    </v-tooltip>
     <v-spacer />
   </v-layout>
   <v-layout style="max-height: 50px;" align-center>
+    <v-btn icon small @click="showOpacitySliders = !showOpacitySliders">
+      <v-icon v-text="`$jobParameters`" />
+    </v-btn>
     <v-slider
       class="mx-4"
       label="Soil opacity"
@@ -73,6 +88,7 @@
       step="0.01"
       max="1"
       hide-details
+      v-show="showOpacitySliders"
     />
     <v-slider
       class="mx-4"
@@ -84,6 +100,7 @@
       @start="adjustingWaterOpacity = true"
       @end="adjustingWaterOpacity = false"
       hide-details
+      v-show="showOpacitySliders"
     />
     <v-slider
       class="mx-4"
@@ -93,6 +110,7 @@
       step="0.01"
       max="1"
       hide-details
+      v-show="showOpacitySliders"
     />
   </v-layout>
 </v-layout>

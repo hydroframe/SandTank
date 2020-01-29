@@ -1,10 +1,5 @@
 <v-layout column>
-  <material-table
-    :indicators="indicators"
-    @change="onPermeabilityChange"
-    :soilVisibility="showSoil"
-    @visibility="updateVisibility"
-  />
+  <material-table :indicators="indicators" @change="onPermeabilityChange" />
   <v-layout align-end :style="maxTankHeightStyle" class="mt-4">
     <v-spacer />
     <div :class="$style.container" :style="containerStyle">
@@ -18,14 +13,6 @@
         :texture="showSoil ? getTexture(item.key): null"
         :color="palette[item.key]"
         :indicatorValue="item.key"
-      />
-      <well-layer
-        :class="$style.wells"
-        :size="size"
-        :scale="scale"
-        :wells="domain.wells"
-        color="#444"
-        :offset="0"
       />
     </div>
     <v-spacer />

@@ -96,8 +96,9 @@ export default {
   },
   created() {
     this.onResize = debounce(() => {
-      this.maxWidth = window.innerWidth - 20;
-      this.maxHeight = window.innerHeight - 250;
+      const { width, height } = this.$el.getBoundingClientRect();
+      this.maxWidth = width;
+      this.maxHeight = Math.max(height, window.innerHeight - 250);
     }, 200);
   },
   mounted() {

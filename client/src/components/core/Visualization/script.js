@@ -30,6 +30,7 @@ export default {
   },
   data() {
     return {
+      showOpacitySliders: false,
       opacitySoil: 1,
       opacityWater: 0.5,
       opacityWells: 1,
@@ -115,8 +116,9 @@ export default {
   },
   created() {
     this.onResize = debounce(() => {
-      this.maxWidth = window.innerWidth - 2 * this.sliderWidth - 20;
-      this.maxHeight = window.innerHeight - 250;
+      const { width, height } = this.$el.getBoundingClientRect();
+      this.maxWidth = width - 2 * this.sliderWidth - 20;
+      this.maxHeight = Math.max(height, window.innerHeight - 250);
     }, 200);
   },
   mounted() {

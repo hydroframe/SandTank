@@ -28,7 +28,7 @@ export default {
       logo: 'mdi-water',
       help: 'mdi-help-circle-outline',
       settings: 'mdi-tune',
-      jobParameters: 'mdi-cogs',
+      jobParameters: 'mdi-settings',
       ready: 'mdi-autorenew',
       time: 'mdi-clock-outline',
       waterOff: 'mdi-invert-colors-off',

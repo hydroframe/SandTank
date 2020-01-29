@@ -1,11 +1,14 @@
 <div :class="$style.table">
-  <v-switch
-    dense
-    hide-details
-    class="mt-0"
-    :value="soilVisibility"
-    @change="updateSoilVisibility"
-  />
+  <div>
+    <v-switch
+      dense
+      hide-details
+      class="mt-0"
+      :value="soilVisibility"
+      @change="updateSoilVisibility"
+      v-show="showSoilToggle"
+    />
+  </div>
   <div class="text-center" :class="$style.clay">
     <span :class="$style.txtBg">Clay</span>
   </div>
