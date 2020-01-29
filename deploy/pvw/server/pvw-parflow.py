@@ -59,12 +59,14 @@ class _Server(pv_wslink.PVServerProtocol):
 
     basepath = os.getcwd()
     authKey = "wslink-secret"
+    templateName = 'template'
 
     @staticmethod
     def add_arguments(parser):
         parser.add_argument("--virtual-env", default=None, help="Path to virtual environment to use")
         parser.add_argument("--run", default='default', help="Identifier for simulation runs", dest="run")
         parser.add_argument("--basepath", default=os.getcwd(), help="Directory where runs are executed", dest="basepath")
+        parser.add_argument("--template", default='template', help="Template directory name", dest="templateName")
 
 
     @staticmethod
@@ -72,9 +74,10 @@ class _Server(pv_wslink.PVServerProtocol):
         _Server.authKey    = args.authKey
         _Server.sessionId  = args.run
         _Server.basepath   = args.basepath
+        _Server.templateName   = args.templateName
 
     def initialize(self):
-        self.registerVtkWebProtocol(parflow_api.SandTankEngine(os.path.join(_Server.basepath, _Server.sessionId)))
+        self.registerVtkWebProtocol(parflow_api.SandTankEngine(os.path.join(_Server.basepath, _Server.sessionId), _Server.templateName))
 
         # Update authentication key to use
         self.updateSecret(_Server.authKey)

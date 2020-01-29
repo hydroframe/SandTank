@@ -30,6 +30,7 @@ export default {
     config: {
       application: 'sandtank',
       sessionURL: userParams.dev ? 'ws://localhost:1234/ws' : null,
+      name: 'template',
     },
     client: null,
     error: null,
@@ -119,7 +120,7 @@ export default {
 
         // Connect
         clientToConnect
-          .connect(config)
+          .connect(Object.assign({}, config, userParams))
           .then((validClient) => {
             commit('PVW_CLIENT_SET', validClient);
             clientToConnect.endBusy();
@@ -144,6 +145,8 @@ export default {
               .Parflow.getServerState()
               .then((domain) => {
                 commit('SANDTANK_DOMAIN_SET', domain);
+                commit('PARFLOW_RUN_LENGTH_SET', domain.setup.simulationLength);
+
                 domain.setup.indicators.forEach(({ key, value }) => {
                   commit('PARFLOW_K_SET', { [key]: value });
                 });

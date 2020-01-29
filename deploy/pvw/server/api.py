@@ -23,15 +23,16 @@ else:
 # =============================================================================
 
 class SandTankEngine(pv_protocols.ParaViewWebProtocol):
-    def __init__(self, simulationDirectory = '', **kwargs):
+    def __init__(self, simulationDirectory = '', templateName = 'template', **kwargs):
         super(SandTankEngine, self).__init__()
         self.runName = os.path.basename(simulationDirectory)
         self.workdir = simulationDirectory
         self.pfbReader = None
         self.lastProcessedTimestep = -1
         self.lastConfig = None
-        self.templateName = 'template'
+        self.templateName = templateName
         self.domain = None
+        self.refreshRate = 0.5 # in seconds
 
         simple.LoadDistributedPlugin('ParFlow')
         self.reset()
@@ -158,9 +159,9 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                 'time': self.lastProcessedTimestep,
                 'array': self.addAttachment(buffer(saturationArray).tobytes())
             })
-            reactor.callLater(1, lambda: self.pushSaturation())
+            reactor.callLater(self.refreshRate, lambda: self.pushSaturation())
         else:
-            reactor.callLater(0.5, lambda: self.pushSaturation())
+            reactor.callLater(self.refreshRate / 3.0, lambda: self.pushSaturation())
 
     # -------------------------------------------------------------------------
 
@@ -194,4 +195,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         filePath = os.path.join(self.workdir, 'domain.json')
         with open(filePath) as f:
             self.domain = json.load(f)
+
+        self.refreshRate = self.domain['server']['refreshRate']
+
         return self.domain

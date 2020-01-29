@@ -104,7 +104,7 @@ export default {
       for (let i = 0; i < width; i++) {
         for (let j = height; j > 0; j--) {
           if (this.saturation[i + j * width] === 255) {
-            table[i] = j + 0.5;
+            table[i] = j + 1;
             i++;
             j = height;
           }

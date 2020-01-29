@@ -14,7 +14,11 @@
     { "name": "J", "position": [87, 14], "key": "10" },
     { "name": "K", "position": [92, 26], "key": "11" }
   ],
+  "server": {
+    "refreshRate": 1
+  },
   "setup": {
+    "simulationLength": 10,
     "maxHeight": 60,
     "hLeft": 30,
     "hRight": 30,
@@ -24,5 +28,14 @@
       { "key": 3, "value": 0.3 },
       { "key": 4, "value": 0.35 }
     ]
-  }
+  },
+  "riverHeights": [
+    {
+      "pressureCell": [80, 1, 25],
+      "width": [60, 90]
+    }, {
+      "pressureCell": [30, 1, 45],
+      "width": [20, 40]
+    }
+  ]
 }

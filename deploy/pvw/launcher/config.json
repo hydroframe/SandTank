@@ -24,6 +24,7 @@
           "--port", "${port}",
           "--run", "${id}",
           "--basepath", "/pvw/simulations/runs",
+          "--template", "${name}",
           "--authKey", "${secret}"
       ],
       "ready_line" : "Starting factory"
