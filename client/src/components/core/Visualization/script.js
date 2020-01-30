@@ -96,6 +96,11 @@ export default {
       return this.minWellSpacing * this.scale < 20;
     },
   },
+  watch: {
+    domain() {
+      this.$nextTick(this.onResize);
+    },
+  },
   methods: {
     ...mapMutations({
       resetJob: 'PARFLOW_RESET',
@@ -137,12 +142,10 @@ export default {
         window.innerHeight - 250 - this.controlOffset
       );
     }, 200);
+    window.addEventListener('resize', this.onResize);
   },
   mounted() {
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
-      this.onResize();
-    });
+    this.$nextTick(this.onResize);
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize);
