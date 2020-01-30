@@ -63,7 +63,7 @@ export default {
     },
     maxTankHeightStyle() {
       return {
-        maxHeight: `${Math.max(
+        minHeight: `${Math.max(
           this.domain.setup.maxHeight * this.scale,
           this.size[1] * this.scale + this.controlOffset
         )}px`,
@@ -80,10 +80,24 @@ export default {
       const hScale = this.maxHeight / this.size[1];
       return Math.floor(Math.max(1, Math.min(wScale, hScale)));
     },
+    minWellSpacing() {
+      let distance = 1000;
+      for (let i = 1; i < this.domain.wells.length; i++) {
+        const d =
+          this.domain.wells[i].position[0] -
+          this.domain.wells[i - 1].position[0];
+        if (d < distance) {
+          distance = d;
+        }
+      }
+      return distance - 1;
+    },
+    autoHideControls() {
+      return this.minWellSpacing * this.scale < 20;
+    },
   },
   methods: {
     ...mapMutations({
-      setParflowBusy: 'UI_BUSY_PARFLOW_SET',
       resetJob: 'PARFLOW_RESET',
       setJobLength: 'PARFLOW_RUN_LENGTH_SET',
       setLeftPressure: 'PARFLOW_LEFT_PRESSURE_SET',
@@ -118,7 +132,10 @@ export default {
     this.onResize = debounce(() => {
       const { width, height } = this.$el.getBoundingClientRect();
       this.maxWidth = width - 2 * this.sliderWidth - 20;
-      this.maxHeight = Math.max(height, window.innerHeight - 250);
+      this.maxHeight = Math.max(
+        height - this.controlOffset,
+        window.innerHeight - 250 - this.controlOffset
+      );
     }, 200);
   },
   mounted() {

@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setParflowBusy: 'UI_BUSY_PARFLOW_SET',
       setTypeToLake: 'PARFLOW_LAKE_SET',
     }),
     ...mapActions({

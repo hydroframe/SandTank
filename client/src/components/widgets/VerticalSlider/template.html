@@ -4,7 +4,15 @@
   v-on:mousedown="onMouseDown"
   v-on:mouseup="onMouseUp"
   v-on:mousemove="onMouseMove"
+  v-on:mouseenter="onMouseEnter"
 >
   <div :class="$style.water" :style="waterStyle" />
   <div :class="$style.value">{{ height.toFixed(2) }}</div>
+  <v-tooltip
+    :activator="$el"
+    :right="position == 'right'"
+    :left="position == 'left'"
+  >
+    <span>Drag to change water level</span>
+  </v-tooltip>
 </div>

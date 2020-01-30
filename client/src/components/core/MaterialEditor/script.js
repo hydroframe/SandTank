@@ -46,6 +46,7 @@ export default {
       indicatorMask: 'SANDTANK_INDICATOR',
       jobConfig: 'PARFLOW_JOB',
       permeabilityMap: 'PARFLOW_K',
+      mask: 'SANDTANK_MASK',
     }),
     size() {
       if (!this.domain) {

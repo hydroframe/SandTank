@@ -1,6 +1,10 @@
 export default {
   name: 'VerticalSlider',
   props: {
+    position: {
+      type: String,
+      default: 'left',
+    },
     scale: {
       type: Number,
       default: 14,
@@ -28,6 +32,7 @@ export default {
     return {
       height: this.value,
       containerBounds: null,
+      dragging: false,
     };
   },
   watch: {
@@ -54,19 +59,25 @@ export default {
   },
   methods: {
     onMouseDown(e) {
-      this.containerBounds = this.$el.getBoundingClientRect();
+      this.dragging = true;
       this.onMouseMove(e);
     },
     onMouseUp() {
-      this.containerBounds = null;
+      this.dragging = false;
       this.$emit('input', this.height);
     },
     onMouseMove(e) {
-      if (this.containerBounds) {
+      if (this.dragging) {
         const { top, height } = this.containerBounds;
         const eY = e.clientY;
         this.height = (height - (eY - top)) / this.scale;
       }
     },
+    onMouseEnter() {
+      this.containerBounds = this.$el.getBoundingClientRect();
+    },
+  },
+  mounted() {
+    this.containerBounds = this.$el.getBoundingClientRect();
   },
 };

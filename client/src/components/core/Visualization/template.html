@@ -1,20 +1,15 @@
 <v-layout column>
   <v-layout align-end :style="maxTankHeightStyle">
     <v-spacer />
-    <v-tooltip right>
-      <template v-slot:activator="{ on }">
-        <vertical-slider
-          v-on="on"
-          :scale="scale"
-          :domainSize="size"
-          :width="sliderWidth"
-          :maxHeight="domain.setup.maxHeight"
-          :value="jobConfig.hLeft"
-          @input="setLeftPressure"
-        />
-      </template>
-      <span>Drag to change water level</span>
-    </v-tooltip>
+    <vertical-slider
+      :scale="scale"
+      :domainSize="size"
+      :width="sliderWidth"
+      :maxHeight="domain.setup.maxHeight"
+      :value="jobConfig.hLeft"
+      @input="setLeftPressure"
+      position="right"
+    />
     <div :class="$style.container" :style="containerStyle">
       <material-layer
         :class="$style.material"
@@ -57,23 +52,19 @@
           :canPump="canPump(well.key, well.position[0], well.position[1])"
           :value="getWellValue(well.key)"
           @change="updateWell"
+          :autoHide="autoHideControls"
         />
       </v-layout>
     </div>
-    <v-tooltip left>
-      <template v-slot:activator="{ on }">
-        <vertical-slider
-          v-on="on"
-          :scale="scale"
-          :domainSize="size"
-          :width="sliderWidth"
-          :maxHeight="domain.setup.maxHeight"
-          :value="jobConfig.hRight"
-          @input="setRightPressure"
-        />
-      </template>
-      <span>Drag to change water level</span>
-    </v-tooltip>
+    <vertical-slider
+      :scale="scale"
+      :domainSize="size"
+      :width="sliderWidth"
+      :maxHeight="domain.setup.maxHeight"
+      :value="jobConfig.hRight"
+      @input="setRightPressure"
+      position="left"
+    />
     <v-spacer />
   </v-layout>
   <v-layout style="max-height: 50px;" align-center>

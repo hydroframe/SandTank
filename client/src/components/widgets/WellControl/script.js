@@ -29,6 +29,37 @@ export default {
       type: String,
       default: '#03A9F4',
     },
+    autoHide: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  watch: {
+    autoHide(v) {
+      if (!v && !this.isInside) {
+        this.isInside = true;
+      }
+      if (v) {
+        this.isInside = false;
+      }
+    },
+  },
+  data() {
+    return {
+      isInside: !this.autoHide,
+    };
+  },
+  computed: {
+    containerStyle() {
+      return {
+        zIndex: this.isInside ? 10 : 0,
+      };
+    },
+    buttonStyle() {
+      return {
+        opacity: this.isInside ? 1 : 0,
+      };
+    },
   },
   methods: {
     color(currentMode) {
@@ -46,6 +77,12 @@ export default {
         well: id,
         value: mode ? value + delta * mode : 0,
       });
+    },
+    onEnter() {
+      this.isInside = true;
+    },
+    onLeave() {
+      this.isInside = !this.autoHide;
     },
   },
 };

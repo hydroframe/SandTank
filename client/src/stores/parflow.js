@@ -97,9 +97,6 @@ export default {
       // Push configuration
       await dispatch('PVW_CONFIG_UPDATE', job);
 
-      // Show visualization
-      dispatch('UI_VISUALIZATION');
-
       const task = JSON.stringify({ application, runId });
       return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();

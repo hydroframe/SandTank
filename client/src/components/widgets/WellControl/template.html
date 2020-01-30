@@ -1,49 +1,62 @@
-<v-layout column class="pa-4" align-center>
+<v-layout
+  column
+  class="pa-4"
+  align-center
+  v-on:mouseenter="onEnter"
+  v-on:mouseleave="onLeave"
+  :style="containerStyle"
+>
+  <div :style="buttonStyle">
+    <v-tooltip left>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          v-on="on"
+          small
+          icon
+          :outlined="mode !== -1"
+          @click="trigger(-1)"
+          :color="color(-1)"
+        >
+          <v-icon small v-text="`$waterInjection`" />
+        </v-btn>
+      </template>
+      <span>Inject into well {{ name }}</span>
+    </v-tooltip>
+  </div>
+  <div :style="buttonStyle">
+    <v-tooltip left>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          v-on="on"
+          small
+          icon
+          :outlined="mode !== 0"
+          @click="trigger(0)"
+          :color="color(0)"
+        >
+          <v-icon small v-text="`$waterOff`" />
+        </v-btn>
+      </template>
+      <span>Close well {{ name }}</span>
+    </v-tooltip>
+  </div>
+  <div :style="buttonStyle">
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          v-on="on"
+          small
+          icon
+          :outlined="mode !== 1"
+          :disabled="!canPump"
+          @click="trigger(1)"
+          :color="color(1)"
+        >
+          <v-icon small v-text="`$waterExtraction`" />
+        </v-btn>
+      </template>
+      <span>Pump from well {{ name }}</span>
+    </v-tooltip>
+  </div>
   <div :class="$style.flux">{{ value }}</div>
-  <v-tooltip left>
-    <template v-slot:activator="{ on }">
-      <v-btn
-        v-on="on"
-        small
-        icon
-        :outlined="mode !== -1"
-        @click="trigger(-1)"
-        :color="color(-1)"
-      >
-        <v-icon small v-text="`$waterInjection`" />
-      </v-btn>
-    </template>
-    <span>Inject into well {{ name }}</span>
-  </v-tooltip>
-  <v-tooltip left>
-    <template v-slot:activator="{ on }">
-      <v-btn
-        v-on="on"
-        small
-        icon
-        :outlined="mode !== 0"
-        @click="trigger(0)"
-        :color="color(0)"
-      >
-        <v-icon small v-text="`$waterOff`" />
-      </v-btn>
-    </template>
-    <span>Close well {{ name }}</span>
-  </v-tooltip>
-  <v-tooltip bottom>
-    <template v-slot:activator="{ on }">
-      <v-btn
-        v-on="on"
-        small
-        icon
-        :outlined="mode !== 1"
-        :disabled="!canPump"
-        @click="trigger(1)"
-        :color="color(1)"
-      >
-        <v-icon small v-text="`$waterExtraction`" />
-      </v-btn>
-    </template>
-    <span>Pump from well {{ name }}</span>
-  </v-tooltip>
 </v-layout>
