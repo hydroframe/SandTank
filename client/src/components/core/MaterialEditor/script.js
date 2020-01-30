@@ -81,6 +81,11 @@ export default {
       return [];
     },
   },
+  watch: {
+    domain() {
+      this.$nextTick(this.onResize);
+    },
+  },
   methods: {
     ...mapMutations({
       updatePermeabilityMap: 'PARFLOW_K_SET',
@@ -101,12 +106,11 @@ export default {
       this.maxWidth = width;
       this.maxHeight = Math.max(height, window.innerHeight - 250);
     }, 200);
+
+    window.addEventListener('resize', this.onResize);
   },
   mounted() {
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
-      this.onResize();
-    });
+    this.$nextTick(this.onResize);
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize);
