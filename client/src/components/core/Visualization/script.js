@@ -27,10 +27,13 @@ export default {
       type: Number,
       default: 150,
     },
+    showOpacitySliders: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
-      showOpacitySliders: false,
       opacitySoil: 1,
       opacityWater: 0.5,
       opacityWells: 1,
@@ -64,6 +67,10 @@ export default {
     maxTankHeightStyle() {
       return {
         minHeight: `${Math.max(
+          this.domain.setup.maxHeight * this.scale,
+          this.size[1] * this.scale + this.controlOffset
+        )}px`,
+        maxHeight: `${Math.max(
           this.domain.setup.maxHeight * this.scale,
           this.size[1] * this.scale + this.controlOffset
         )}px`,

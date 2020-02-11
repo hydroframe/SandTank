@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       aboutDialog: false,
+      advanced: false,
     };
   },
   computed: {
@@ -49,6 +50,9 @@ export default {
     }),
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
+    toggleAdvanced() {
+      this.advanced = !this.advanced;
     },
   },
   created() {

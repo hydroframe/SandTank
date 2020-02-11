@@ -1,10 +1,60 @@
 <v-app id="inspire">
-  <v-app-bar app dense flat>
+  <v-app-bar app dense flat style="z-index: 100;">
     <v-btn icon @click="toggleTheme">
       <v-icon v-text="`$logo`" color="blue" />
     </v-btn>
     <v-toolbar-title class="pl-0">ParFlow Sandtank</v-toolbar-title>
     <v-spacer />
+    <v-btn outlined color="blue" width="20vw" class="mx-4">
+      <v-icon v-text="`$rain`" class="mr-2" />
+      Rain
+    </v-btn>
+    <v-select
+      v-model="isLake"
+      :items="[{ text: 'Lake', value: 1}, { text: 'River', value: 0}]"
+      dense
+      hide-details
+      class="mx-4"
+      style="max-width: 100px;"
+    />
+    <v-spacer />
+    <v-layout class="mr-4" style="max-width: 54px; text-align: right">
+      <v-icon v-text="`$time`" />
+      <div style="min-width: 30px;">
+        {{ time }}
+      </div>
+    </v-layout>
+    <v-btn
+      outlined
+      @click="runParflow"
+      :disabled="busy || !connected"
+      class="ml-2"
+    >
+      <v-progress-circular
+        v-show="busy"
+        size="20"
+        width="2"
+        indeterminate
+        color="primary"
+        class="mr-2"
+        style="width: 30px;"
+      />
+      <v-icon
+        v-show="!busy"
+        v-text="`$ready`"
+        class="mr-2"
+        style="width: 30px;"
+      />
+      Run
+    </v-btn>
+    <v-btn
+      outlined
+      @click="resetSimulation"
+      :disabled="busy || pvwBusy || !connected"
+      class="ml-2"
+    >
+      Reset
+    </v-btn>
     <v-btn icon small @click="aboutDialog = !aboutDialog" class="ml-3">
       <v-icon v-text="`$help`" />
     </v-btn>
@@ -20,65 +70,13 @@
   </v-app-bar>
   <v-content>
     <v-container class="fill-height" fluid>
-      <v-layout>
-        <v-flex xs9 style="overflow: hidden;">
-          <visualization v-show="connected" />
-        </v-flex>
-        <v-flex xs3 style="overflow: hidden;">
-          <v-layout column>
-            <v-layout align-center class="px-2 pb-1" wrap space-between>
-              <v-select
-                v-model="isLake"
-                :items="[{ text: 'Lake', value: 1}, { text: 'River', value: 0}]"
-                dense
-                hide-details
-                class="mr-4"
-                style="max-width: 100px;"
-              />
-              <v-spacer />
-              <v-layout class="mr-4" style="max-width: 54px; text-align: right">
-                <v-icon v-text="`$time`" />
-                <div style="min-width: 30px;">
-                  {{ time }}
-                </div>
-              </v-layout>
-              <v-layout class="my-2" justify-space-between>
-                <v-btn
-                  outlined
-                  @click="runParflow"
-                  :disabled="busy || !connected"
-                  class="ml-2"
-                >
-                  <v-progress-circular
-                    v-show="busy"
-                    size="20"
-                    width="2"
-                    indeterminate
-                    color="primary"
-                    class="mr-2"
-                    style="width: 30px;"
-                  />
-                  <v-icon
-                    v-show="!busy"
-                    v-text="`$ready`"
-                    class="mr-2"
-                    style="width: 30px;"
-                  />
-                  Run
-                </v-btn>
-                <v-btn
-                  outlined
-                  @click="resetSimulation"
-                  :disabled="busy || pvwBusy || !connected"
-                  class="ml-2"
-                >
-                  Reset
-                </v-btn>
-              </v-layout>
-            </v-layout>
-            <material-editor v-show="connected" />
-          </v-layout>
-        </v-flex>
+      <v-layout column>
+        <visualization v-show="connected" :showOpacitySliders="advanced" />
+        <v-btn @click="toggleAdvanced" absolute left icon>
+          <v-icon v-text="`$settings`" />
+        </v-btn>
+        <material-editor v-show="connected && advanced" />
+        <v-spacer />
       </v-layout>
     </v-container>
   </v-content>
