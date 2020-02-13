@@ -72,10 +72,19 @@
     <v-container class="fill-height" fluid>
       <v-layout column>
         <visualization v-show="connected" :showOpacitySliders="advanced" />
-        <v-btn @click="toggleAdvanced" absolute left icon>
+        <v-btn
+          @click="toggleAdvanced"
+          absolute
+          left
+          icon
+          style="top: 2px; left: 2px;"
+        >
           <v-icon v-text="`$settings`" />
         </v-btn>
-        <material-editor v-show="connected && advanced" />
+        <material-editor
+          v-show="connected && advanced"
+          :forceResize="advanced"
+        />
         <v-spacer />
       </v-layout>
     </v-container>

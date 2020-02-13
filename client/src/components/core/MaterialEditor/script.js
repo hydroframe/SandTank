@@ -14,6 +14,10 @@ export default {
     WellLayer,
   },
   props: {
+    forceResize: {
+      type: Boolean,
+      default: false,
+    },
     palette: {
       type: Array,
       default() {
@@ -84,6 +88,9 @@ export default {
   watch: {
     domain() {
       this.$nextTick(this.onResize);
+    },
+    forceResize() {
+      this.onResize();
     },
   },
   methods: {
