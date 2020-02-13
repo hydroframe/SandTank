@@ -1,15 +1,15 @@
 {
-  "dimensions": [1000, 1, 500],
-  "bounds": [5.0, 995.0, 2.5, 7.5, 5.0, 495.0],
+  "dimensions": [100, 1, 100],
+  "bounds": [0.5, 999.5, 0.25, 0.75, 0.5, 499.5],
   "wells": [],
   "server": {
     "refreshRate": 0.1
   },
   "setup": {
     "simulationLength": 50,
-    "maxHeight": 500,
-    "hLeft": 300,
-    "hRight": 300,
+    "maxHeight": 120,
+    "hLeft": 50,
+    "hRight": 50,
     "indicators": [
       { "key": 1, "value": 0.4 },
       { "key": 2, "value": 0.25 },
@@ -17,13 +17,5 @@
       { "key": 4, "value": 0.35 }
     ]
   },
-  "riverHeights": [
-    {
-      "pressureCell": [80, 1, 25],
-      "width": [60, 90]
-    }, {
-      "pressureCell": [30, 1, 45],
-      "width": [20, 40]
-    }
-  ]
+  "pressures": []
 }

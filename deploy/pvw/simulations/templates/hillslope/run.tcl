@@ -131,7 +131,7 @@ pfset Geom.domain.Upper.Z                 500.0
 # will be set once the indi file in created
 pfset GeomInput.indi_input.InputType      IndicatorField
 pfset GeomInput.indi_input.GeomNames      "s1 s2 s3 s4"
-pfset Geom.indi_input.FileName            indi.pfb
+pfset Geom.indi_input.FileName            SandTank_Indicator.pfb
 
 # s1: gravel, s2: fine sand, s3: coarse sand, s4: clay
 pfset GeomInput.s1.Value                  1
@@ -457,7 +457,7 @@ if {$reset == 1} {
 # Run and Unload the n ParFlow output files
 # -----------------------------------------------------------------------------
 
-pfdist indi.pfb
+pfdist SandTank_Indicator.pfb
 
 pfrun     $runname
 pfundist  $runname
