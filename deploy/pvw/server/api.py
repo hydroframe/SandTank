@@ -45,12 +45,12 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         mkdir -p "/pvw/simulations/runs/$runId"
         cd "/pvw/simulations/runs/$runId"
 
-        cp /pvw/simulations/template/* "/pvw/simulations/runs/$runId/"
+        cp /pvw/simulations/templates/{templateName}/* "/pvw/simulations/runs/$runId/"
         '''
         if os.path.exists(self.workdir):
             shutil.rmtree(self.workdir)
 
-        tplPath = os.path.abspath(os.path.join(self.workdir, '../..', self.templateName))
+        tplPath = os.path.abspath(os.path.join(self.workdir, '../../templates', self.templateName))
         shutil.copytree(tplPath, self.workdir)
         self.lastProcessedTimestep = -1
 

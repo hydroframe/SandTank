@@ -66,7 +66,7 @@ class _Server(pv_wslink.PVServerProtocol):
         parser.add_argument("--virtual-env", default=None, help="Path to virtual environment to use")
         parser.add_argument("--run", default='default', help="Identifier for simulation runs", dest="run")
         parser.add_argument("--basepath", default=os.getcwd(), help="Directory where runs are executed", dest="basepath")
-        parser.add_argument("--template", default='template', help="Template directory name", dest="templateName")
+        parser.add_argument("--template", default='default', help="Template directory name", dest="templateName")
 
 
     @staticmethod
