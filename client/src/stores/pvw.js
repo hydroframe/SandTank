@@ -157,6 +157,8 @@ export default {
                   commit('PARFLOW_K_SET', { [key]: value });
                 });
 
+                dispatch('SANDTANK_RESET');
+
                 // Get solid mask
                 validClient
                   .getRemote()
