@@ -23,11 +23,11 @@ pfset Process.Topology.R    1
 
 set runname    [lindex $argv 0]
 
+source "./config.tcl"
+
 puts "-------------------------------------------"
 puts "Loading configuration for $runname"
 puts "-------------------------------------------"
-source "/pvw/simulations/runs/$runname/config.tcl"
-
 puts "reset:        $reset"
 puts ""
 puts "StartNumber:  $StartNumber"
@@ -263,6 +263,12 @@ pfset Geom.domain.Saturation.N            3.0
 pfset Geom.domain.Saturation.SRes         0.2
 pfset Geom.domain.Saturation.SSat         1.0
 
+#-----------------------------------------------------------------------------
+# Contaminants
+#-----------------------------------------------------------------------------
+#pfset Contaminants.Names      "dye"
+#pfset Contaminants.dye.Degradation.Value   0.0
+
 # -----------------------------------------------------------------------------
 # Wells
 # -----------------------------------------------------------------------------
@@ -436,6 +442,62 @@ pfset Wells.w11.Action                            $well_11_action
 pfset Wells.w11.alltime.Flux.water.Value          $well_11_value
 
 # -----------------------------------------------------------------------------
+# EcoSlim input generation (well.sa)
+# -----------------------------------------------------------------------------
+
+# make a flux file based on the action type of each well
+set fileId [open well.sa w]
+puts $fileId "100 1 50"
+
+# convert from m / h of well pumping or injection to flux 1/t units by dividing by dz
+for { set kk 0 } { $kk < 50 } { incr kk } {
+  for { set jj 0 } { $jj < 1 } { incr jj } {
+    for { set ii 0 } { $ii < 100 } { incr ii } {
+      if { ($kk == 1) && ($ii == 23) } {
+        puts $fileId [expr (1* $well_2_value/1.0)]
+      }  elseif { ($kk == 15) && ($ii == 11) } {
+        puts $fileId [expr (1* $well_1_value/1.0)]
+      } elseif { ($kk == 15) && ($ii == 26) } {
+        puts $fileId [expr (1* $well_3_value/1.0)]
+      } elseif { ($kk == 27) && ($ii == 29) } {
+        puts $fileId [expr (1* $well_4_value/1.0)]
+      } elseif { ($kk == 1) && ($ii == 48) } {
+        puts $fileId [expr (1* $well_5_value/1.0)]
+      } elseif { ($kk == 13) && ($ii == 51) } {
+        puts $fileId [expr (1* $well_6_value/1.0)]
+      } elseif { ($kk == 15) && ($ii == 54) } {
+        puts $fileId [expr (1* $well_7_value/1.0)]
+      } elseif { ($kk == 1) && ($ii == 57) } {
+        puts $fileId [expr (1* $well_8_value/1.0)]
+      } elseif { ($kk == 1) && ($ii == 82) } {
+        puts $fileId [expr (1* $well_9_value/1.0)]
+      } elseif { ($kk == 14) && ($ii == 87) } {
+        puts $fileId [expr (1* $well_10_value/1.0)]
+      } elseif { ($kk == 26) && ($ii == 92) } {
+        puts $fileId [expr (1* $well_11_value/1.0)]
+      } else {
+        # zero flux non well locations
+        puts $fileId "0.0"
+      }
+    }
+  }
+}
+
+close $fileId
+
+set wellflux         [pfload -sa well.sa]
+pfsetgrid {100 1 50} {0.0 0.0 0.0} {1.0 1.0 1.0} $wellflux
+pfsave $wellflux -pfb well_forcing.pfb
+
+# make this the from to for the run
+# copy the well_forcing file to the run name file over these timesteps
+
+for { set itime $StartNumber } { $itime <= $RunLength } { incr itime } {
+  set pump_name [format "./$runname.out.EvapTrans.%05d.pfb" $itime]
+  file copy -force well_forcing.pfb $pump_name
+}
+
+# -----------------------------------------------------------------------------
 # Time Cycles
 # -----------------------------------------------------------------------------
 
@@ -550,6 +612,8 @@ pfset Solver.WritePfbMannings                     True
 pfset Solver.WritePfbSlopes                       True
 pfset Solver.PrintMask                            True
 
+pfset Solver.PrintVelocities                      True
+
 # -----------------------------------------------------------------------------
 # Initial conditions: water pressure
 # -----------------------------------------------------------------------------
@@ -561,13 +625,56 @@ if {$reset == 1} {
   pfset Geom.domain.ICPressure.RefGeom            domain
   pfset Geom.domain.ICPressure.RefPatch           z-lower
 } else {
-  set fname_ic [format "/pvw/simulations/runs/$runname/$runname.out.press.%05d.pfb" $StartNumber]
+  set fname_ic [format "./$runname.out.press.%05d.pfb" $StartNumber]
   puts "Initial Conditions: $fname_ic"
   pfset ICPressure.Type                           PFBFile
   pfset ICPressure.GeomNames                      domain
   pfset Geom.domain.ICPressure.FileName           $fname_ic
   pfdist $fname_ic
 }
+
+# -----------------------------------------------------------------------------
+# EcoSlim input generation (slimin.txt)
+# -----------------------------------------------------------------------------
+
+puts "Making EcoSLIM input file with $runname"
+
+set fileID [open slimin.txt w]
+puts $fileID "SLIM_SandTank_test   !Automatically Generated EcoSLIM input file"
+puts $fileID "\"./$runname\""
+puts $fileID "\"\""
+puts $fileID "100    !nx"
+puts $fileID "1      !ny"
+puts $fileID "50     !nz"
+if {$reset == 1} {
+  puts $fileID "0   !no particles per cell at start of simulation"
+} else {
+  puts $fileID "-1   !read particle restart file"
+}
+puts $fileID "500000        !np Total"
+puts $fileID "1.0           !dx"
+puts $fileID "1.0           !dy, dz follows"
+puts $fileID "1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0"
+puts $fileID "1.0           ! ParFlow DT"
+puts $fileID "1             ! Parflow t1: ParFlow file number to start from (initial condition is pft1-1)"
+puts $fileID "$RunLength    ! Parflow t2: ParFlow file number to stop at"
+puts $fileID "0             ! EcoSLIM output start counter 0=pft1"
+puts $fileID "0.0           ! Particle start time counter (for recording particle insert times)"
+puts $fileID "1             ! Time Sequence Repeat"
+puts $fileID "0             ! ipwrite frequency, controls an ASCII, .3D particle file not recommended due to poor performance"
+puts $fileID "1             ! ibinpntswrite frequency, controls VTK, binary output of particle locations and attributes"
+puts $fileID "0             !  etwrite frequency, controls ASCII ET output"
+puts $fileID "1             ! icwrite frequency,controls VTK, binary grid based output where particle masses, concentrations"
+puts $fileID "1.0d0         ! velocity multiplier 1.0=forward, -1.0=backward"
+puts $fileID "True          ! CLM Evap Trans"
+puts $fileID "False         ! CLM Variables Read logical"
+puts $fileID "10            ! number of particles per Evap Trans IC"
+puts $fileID "1000.0        ! density H2O"
+puts $fileID "0.0001        ! Molecular Diffusivity"
+puts $fileID "0.25d0        ! fraction of Dx/Vx for numerical stability"
+puts $fileID "0             ! Number of indicators provided. If this value is great than 0 an indicator file must be included"
+puts $fileID "\"\"          ! Name of the indictor file to use set to '' if not using an indicator file"
+close $fileID
 
 # -----------------------------------------------------------------------------
 # Run and Unload the n ParFlow output files
@@ -579,5 +686,3 @@ pfrun     $runname
 pfundist  $runname
 
 puts "$runname is done"
-
-# -----------------------------------------------------------------------------

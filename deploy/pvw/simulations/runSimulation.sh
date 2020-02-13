@@ -11,6 +11,8 @@ runId=$1
 echo "Staring $runId"
 
 # -----------------------------------------------------------------------------
+# directories temporarily swapped for testing
+# -----------------------------------------------------------------------------
 
 mkdir -p "/pvw/simulations/runs/$runId"
 cd "/pvw/simulations/runs/$runId"
@@ -18,7 +20,18 @@ cd "/pvw/simulations/runs/$runId"
 # -----------------------------------------------------------------------------
 
 tclsh run.tcl $runId
-echo "Run Complete"
+echo "ParFlow Run Complete"
 
+# -----------------------------------------------------------------------------
+# Run EcoSLIM for particle tracking, this directory needs to be changed
+# -----------------------------------------------------------------------------
+
+# export OMP_NUM_THREADS=2
+# /Users/reed/EcoDev/EcoSLIM/EcoSLIM.exe
+# echo "EcoSLIM Run Complete"
+
+# -----------------------------------------------------------------------------
 # Need to sleep in order to detect completion
+# -----------------------------------------------------------------------------
+
 sleep 1

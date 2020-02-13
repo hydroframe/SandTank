@@ -88,12 +88,9 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             f.write('\n# Update Wells\n')
             for key in self.lastConfig['wells']:
                 value = self.lastConfig['wells'][key]
-                action = 'Extraction'
-                if value < 0:
-                    action = 'Injection'
-                    value *= -1.0
+                action = 'Extraction' if value < 0 else 'Injection'
                 f.write('set well_%s_action     %s\n' % (key, action))
-                f.write('set well_%s_value      %s\n' % (key, value))
+                f.write('set well_%s_value      %s\n' % (key, abs(value)))
 
 
     # -------------------------------------------------------------------------
