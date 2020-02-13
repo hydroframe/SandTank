@@ -29,13 +29,70 @@
       { "key": 4, "value": 0.35 }
     ]
   },
-  "riverHeights": [
+  "pressures": [
     {
-      "pressureCell": [80, 1, 25],
-      "width": [60, 90]
-    }, {
-      "pressureCell": [30, 1, 45],
-      "width": [20, 40]
+      "name": "Landfill",
+      "pressureCell": [39, 0, 40],
+      "iRange": [37, 40]
+    },
+    {
+      "name": "River",
+      "pressureCell": [71, 0, 22],
+      "iRange": [59, 80]
+    },
+    {
+      "name": "A",
+      "pressureCell": [11, 0, 15],
+      "iRange": [11, 11]
+    },
+    {
+      "name": "B",
+      "pressureCell": [23, 0, 1],
+      "iRange": [23, 23]
+    },
+    {
+      "name": "C",
+      "pressureCell": [26, 0, 15],
+      "iRange": [26, 26]
+    },
+    {
+      "name": "D",
+      "pressureCell": [29, 0, 27],
+      "iRange": [29, 29]
+    },
+    {
+      "name": "E",
+      "pressureCell": [48, 0, 1],
+      "iRange": [48, 48]
+    },
+    {
+      "name": "F",
+      "pressureCell": [51, 0, 13],
+      "iRange": [51, 51]
+    },
+    {
+      "name": "G",
+      "pressureCell": [54, 0, 15],
+      "iRange": [54, 54]
+    },
+    {
+      "name": "H",
+      "pressureCell": [57, 0, 1],
+      "iRange": [57, 57]
+    },
+    {
+      "name": "I",
+      "pressureCell": [82, 0, 1],
+      "iRange": [82, 82]
+    },{
+      "name": "J",
+      "pressureCell": [87, 0, 14],
+      "iRange": [87, 87]
+    },
+    {
+      "name": "K",
+      "pressureCell": [92, 0, 26],
+      "iRange": [92, 92]
     }
   ]
 }

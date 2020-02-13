@@ -139,6 +139,12 @@ export default {
                 dispatch('SANDTANK_INDICATOR_UPDATE', indicator);
               });
 
+            validClient
+              .getRemote()
+              .Parflow.subscribeToPressures(([pressures]) => {
+                dispatch('SANDTANK_PRESSURES_UPDATE', pressures);
+              });
+
             // Initialize server
             validClient
               .getRemote()

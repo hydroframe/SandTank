@@ -11,6 +11,12 @@
       position="right"
     />
     <div :class="$style.container" :style="containerStyle">
+      <still-water
+        :class="$style.stillWater"
+        :size="size"
+        :scale="scale"
+        :pressures="pressures"
+      />
       <material-layer
         :class="$style.material"
         v-for="item in domain.setup.indicators"
@@ -37,6 +43,7 @@
         :size="size"
         :scale="scale"
         :wells="domain.wells"
+        :pressures="pressures"
         :opacity="opacityWells"
         color="#444"
       />

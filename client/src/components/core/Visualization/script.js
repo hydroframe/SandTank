@@ -5,6 +5,7 @@ import SaturationLayer from 'parflow-web/src/components/widgets/SaturationLayer'
 import VerticalSlider from 'parflow-web/src/components/widgets/VerticalSlider';
 import WellControl from 'parflow-web/src/components/widgets/WellControl';
 import WellLayer from 'parflow-web/src/components/widgets/WellLayer';
+import StillWater from 'parflow-web/src/components/widgets/StillWater';
 import { fromPermeabilityToType } from 'parflow-web/src/utils/Permeability';
 
 import { debounce } from 'vtk.js/Sources/macro';
@@ -17,6 +18,7 @@ export default {
     VerticalSlider,
     WellControl,
     WellLayer,
+    StillWater,
   },
   props: {
     sliderWidth: {
@@ -51,6 +53,7 @@ export default {
       permeabilityMap: 'PARFLOW_K',
       wellsMap: 'PARFLOW_WELLS',
       mask: 'SANDTANK_MASK',
+      pressures: 'SANDTANK_PRESSURES',
     }),
     size() {
       if (!this.domain) {

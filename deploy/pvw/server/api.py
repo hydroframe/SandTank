@@ -125,16 +125,46 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             }
         )
 
-        # Schedule saturation exchange...
-        self.pushSaturation()
+        # Schedule file processing...
+        self.processNextFile()
 
     # -------------------------------------------------------------------------
 
-    def pushSaturation(self):
-        nextFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
-        if os.path.exists(nextFile):
+    def processNextFile(self):
+        nextSaturationFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
+        nextPressureFile = os.path.join(self.workdir, '%s.out.press.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
+        if os.path.exists(nextSaturationFile):
+            self.pushSaturation(nextSaturationFile)
+            self.pushPressureHead(nextPressureFile)
             self.lastProcessedTimestep += 1
-            self.pfbReader.FileNames=[nextFile]
+            reactor.callLater(self.refreshRate, lambda: self.processNextFile())
+        else:
+            reactor.callLater(self.refreshRate / 3.0, lambda: self.processNextFile())
+
+    # -------------------------------------------------------------------------
+
+    def pushPressureHead(self, pressureFile):
+        if os.path.exists(pressureFile):
+            pressures = {}
+            self.pfbReader.FileNames=[pressureFile]
+            self.pfbReader.UpdatePipeline()
+            imageData = self.pfbReader.GetClientSideObject().GetOutput().GetBlock(0)
+            array = imageData.GetCellData().GetArray(0)
+
+            dims = self.domain['dimensions']
+            for press in self.domain['pressures']:
+                key = press['name']
+                i, j, k = press['pressureCell']
+                value = array.GetValue(i + j * dims[0] + k * dims[0] * dims[1])
+                pressures[key] = value
+
+            self.publish('parflow.sandtank.pressures', pressures)
+
+    # -------------------------------------------------------------------------
+
+    def pushSaturation(self, saturationFile):
+        if os.path.exists(saturationFile):
+            self.pfbReader.FileNames=[saturationFile]
             self.pfbReader.UpdatePipeline()
             imageData = self.pfbReader.GetClientSideObject().GetOutput().GetBlock(0)
             array = imageData.GetCellData().GetArray(0)
@@ -151,14 +181,11 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                     saturationArray.SetValue(i, 0)
                 else:
                     saturationArray.SetValue(i, int(value * 255))
-            print('push %s' % nextFile)
+            print('push %s' % saturationFile)
             self.publish('parflow.sandtank.saturation', {
                 'time': self.lastProcessedTimestep,
                 'array': self.addAttachment(buffer(saturationArray).tobytes())
             })
-            reactor.callLater(self.refreshRate, lambda: self.pushSaturation())
-        else:
-            reactor.callLater(self.refreshRate / 3.0, lambda: self.pushSaturation())
 
     # -------------------------------------------------------------------------
 

@@ -11,6 +11,8 @@ export default function createMethods(session) {
       session.subscribe('parflow.sandtank.saturation', callback),
     subscribeToIndicator: (callback) =>
       session.subscribe('parflow.sandtank.indicator', callback),
+    subscribeToPressures: (callback) =>
+      session.subscribe('parflow.sandtank.pressures', callback),
     unsubscribe: (subscription) => session.unsubscribe(subscription),
   };
 }

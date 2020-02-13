@@ -1,0 +1,16 @@
+<svg
+  :width="width * scale"
+  :height="height * scale + offset"
+  :style="{ opacity }"
+>
+  <rect
+    v-for="press, idx in pressures"
+    :key="`press-rect-${idx}`"
+    :x="press.x * scale"
+    :y="offset + height * scale - (press.y + press.height)* scale"
+    :width="press.width * scale"
+    :height="press.height * scale"
+    :fill="water"
+    v-if="press.width"
+  />
+</svg>

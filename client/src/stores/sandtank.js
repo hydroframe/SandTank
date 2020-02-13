@@ -15,6 +15,7 @@ export default {
     solidArray: null,
     solidScaling: 1,
     time: 0,
+    pressures: {},
     domain: {
       dimensions: [100, 1, 50],
       wells: [{ name: 'w1', position: [11, 15] }],
@@ -46,6 +47,27 @@ export default {
         array: state.solidArray,
       };
     },
+    SANDTANK_PRESSURES(state) {
+      if (!state.domain.pressures) {
+        return [];
+      }
+
+      const pressureMap = {};
+      state.domain.pressures.forEach(({ name, iRange, pressureCell }) => {
+        pressureMap[name] = {
+          x: iRange[0],
+          width: iRange[1] - iRange[0],
+          y: pressureCell[2],
+        };
+      });
+      console.log(JSON.stringify(state.pressures, null, 2));
+      const newFormat = Object.keys(state.pressures).map((k) =>
+        Object.assign({}, pressureMap[k], { height: state.pressures[k] })
+      );
+      console.log(JSON.stringify(newFormat, null, 2));
+
+      return newFormat.filter(({ height }) => height > 0);
+    },
   },
   mutations: {
     SANDTANK_DOMAIN_SET(state, value) {
@@ -63,6 +85,9 @@ export default {
       blobToArrayBuffer(array).then((arrayBuffer) => {
         state.saturationArray = new Uint8Array(arrayBuffer);
       });
+    },
+    SANDTANK_PRESSURES_UPDATE({ state }, pressures) {
+      state.pressures = pressures;
     },
     SANDTANK_MASK_UPDATE({ state }, { scale, array }) {
       state.solidScaling = scale;

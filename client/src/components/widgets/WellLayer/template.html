@@ -23,4 +23,16 @@
     :stroke="color"
     :stroke-width="scale / 2"
   />
+
+  <line
+    v-for="press, idx in pressures"
+    :key="`press-${idx}`"
+    :x1="press.x * scale"
+    :x2="press.x * scale"
+    :y1="offset + height * scale - (press.y + 0.65) * scale"
+    :y2="offset + height * scale - (press.y + press.height) * scale"
+    :stroke="water"
+    :stroke-width="scale / 4"
+    v-if="press.width === 0"
+  />
 </svg>

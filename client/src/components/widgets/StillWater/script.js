@@ -1,5 +1,5 @@
 export default {
-  name: 'WellLayer',
+  name: 'StillWater',
   props: {
     size: {
       type: Array,
@@ -11,12 +11,6 @@ export default {
       type: Number,
       default: 600,
     },
-    wells: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
     pressures: {
       type: Array,
       default() {
@@ -26,10 +20,6 @@ export default {
     opacity: {
       type: Number,
       default: 1,
-    },
-    color: {
-      type: String,
-      default: '#333',
     },
     water: {
       type: String,
