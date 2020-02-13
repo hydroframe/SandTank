@@ -21,6 +21,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      help: 'SANDTANK_HELP',
       busy: 'PARFLOW_BUSY',
       connected: 'PVW_CONNECTED',
       pvwBusy: 'PVW_BUSY',
@@ -53,6 +54,9 @@ export default {
     },
     toggleAdvanced() {
       this.advanced = !this.advanced;
+    },
+    openHelp() {
+      window.open(this.help, '_blank');
     },
   },
   created() {

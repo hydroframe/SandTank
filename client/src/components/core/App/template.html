@@ -56,7 +56,7 @@
       Reset
     </v-btn>
     <v-btn icon small @click="aboutDialog = !aboutDialog" class="ml-3">
-      <v-icon v-text="`$help`" />
+      <v-icon v-text="`$about`" />
     </v-btn>
 
     <v-progress-linear
@@ -81,6 +81,17 @@
         >
           <v-icon v-text="`$settings`" />
         </v-btn>
+        <v-btn
+          v-if="help"
+          @click="openHelp"
+          absolute
+          left
+          icon
+          style="top: 2px; left: 42px;"
+        >
+          <v-icon v-text="`$help`" />
+        </v-btn>
+
         <material-editor
           v-show="connected && advanced"
           :forceResize="advanced"

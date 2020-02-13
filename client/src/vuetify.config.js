@@ -26,7 +26,8 @@ export default {
     iconfont: 'mdi',
     values: {
       logo: 'mdi-water',
-      help: 'mdi-help-circle-outline',
+      about: 'mdi-help-circle-outline',
+      help: 'mdi-lifebuoy',
       settings: 'mdi-tune',
       jobParameters: 'mdi-settings',
       ready: 'mdi-autorenew',

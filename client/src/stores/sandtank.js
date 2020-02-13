@@ -25,6 +25,9 @@ export default {
     },
   },
   getters: {
+    SANDTANK_HELP(state) {
+      return state.domain && state.domain.help;
+    },
     SANDTANK_DOMAIN(state) {
       return state.domain;
     },
