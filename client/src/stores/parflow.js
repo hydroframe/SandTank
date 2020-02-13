@@ -70,14 +70,16 @@ export default {
     },
     PARFLOW_LAKE_SET(state, value) {
       state.isLake = value ? 1 : 0;
-      state.runReset = 1;
+      // Do not auto-reset
+      // state.runReset = 1;
     },
     PARFLOW_WELL_SET(state, { well, value }) {
       state.wells = Object.assign({}, state.wells, { [well]: value });
     },
     PARFLOW_K_SET(state, value) {
       state.k = Object.assign({}, state.k, value);
-      state.runReset = 1;
+      // Do not auto-reset
+      // state.runReset = 1;
     },
   },
   actions: {
