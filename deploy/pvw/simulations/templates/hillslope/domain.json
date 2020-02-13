@@ -13,8 +13,7 @@
     "indicators": [
       { "key": 1, "value": 0.4 },
       { "key": 2, "value": 0.25 },
-      { "key": 3, "value": 0.3 },
-      { "key": 4, "value": 0.35 }
+      { "key": 3, "value": 0.3 }
     ]
   },
   "pressures": []
