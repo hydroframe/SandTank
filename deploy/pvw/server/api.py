@@ -28,7 +28,9 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.runName = os.path.basename(simulationDirectory)
         self.workdir = simulationDirectory
         self.pfbReader = None
+        self.vtkReader = None
         self.lastProcessedTimestep = -1
+        self.lastEcoSLIMTimestep = -1
         self.lastConfig = None
         self.templateName = templateName
         self.domain = None
@@ -53,6 +55,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         tplPath = os.path.abspath(os.path.join(self.workdir, '../../templates', self.templateName))
         shutil.copytree(tplPath, self.workdir)
         self.lastProcessedTimestep = -1
+        self.lastEcoSLIMTimestep = -1
 
 
     # -------------------------------------------------------------------------
@@ -65,6 +68,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         startNumber = self.getLastTimeStep()
         if self.lastProcessedTimestep > startNumber:
             self.lastProcessedTimestep = startNumber
+            self.lastEcoSLIMTimestep = startNumber
 
         with open(filePath, 'w') as f:
             # Global
@@ -131,12 +135,24 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
     # -------------------------------------------------------------------------
 
     def processNextFile(self):
+        gotFile = False
         nextSaturationFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
         nextPressureFile = os.path.join(self.workdir, '%s.out.press.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
+        nextConcentrationFile = os.path.join(self.workdir, 'SLIM_SandTank_test_cgrid.%s.vtk' % str(self.lastEcoSLIMTimestep + 1).zfill(8))
+
+        if os.path.exists(nextConcentrationFile):
+            print('concentration size: ', os.stat(nextConcentrationFile).st_size)
+            self.pushConcentration(nextConcentrationFile)
+            self.lastEcoSLIMTimestep +=1
+            gotFile = True
+
         if os.path.exists(nextSaturationFile):
             self.pushSaturation(nextSaturationFile)
             self.pushPressureHead(nextPressureFile)
             self.lastProcessedTimestep += 1
+            gotFile = True
+
+        if gotFile:
             reactor.callLater(self.refreshRate, lambda: self.processNextFile())
         else:
             reactor.callLater(self.refreshRate / 3.0, lambda: self.processNextFile())
@@ -186,6 +202,32 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                 'time': self.lastProcessedTimestep,
                 'array': self.addAttachment(buffer(saturationArray).tobytes())
             })
+
+    # -------------------------------------------------------------------------
+
+    def pushConcentration(self, ecoSlimFile):
+        if os.path.exists(ecoSlimFile):
+            if self.vtkReader:
+                self.vtkReader.FileNames = [ecoSlimFile]
+            else:
+                self.vtkReader = simple.LegacyVTKReader(FileNames=[ecoSlimFile])
+
+            self.vtkReader.UpdatePipeline()
+            imageData = self.vtkReader.GetClientSideObject().GetOutput()
+
+            if imageData:
+                array = imageData.GetCellData().GetArray('Concentration')
+                size = array.GetNumberOfTuples()
+                dataRange = array.GetRange(0)
+
+                print('push %s' % ecoSlimFile)
+                self.publish('parflow.sandtank.concentration', {
+                    'time': self.lastEcoSLIMTimestep,
+                    'range': dataRange,
+                    'array': self.addAttachment(buffer(array).tobytes())
+                })
+            elif self.lastEcoSLIMTimestep > -1:
+                self.lastEcoSLIMTimestep -= 1
 
     # -------------------------------------------------------------------------
 

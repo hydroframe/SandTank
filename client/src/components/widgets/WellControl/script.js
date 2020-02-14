@@ -70,7 +70,7 @@ export default {
     },
     trigger(mode) {
       const { id, delta, value, canPump } = this;
-      if (mode > 0 && !canPump) {
+      if (mode < 0 && !canPump && value <= 0) {
         return;
       }
       this.$emit('change', {

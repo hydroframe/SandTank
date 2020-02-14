@@ -16,6 +16,8 @@ export default {
     solidScaling: 1,
     time: 0,
     pressures: {},
+    concentrationArray: null,
+    concentrationDataRange: [0, 1],
     domain: {
       dimensions: [100, 1, 50],
       wells: [{ name: 'w1', position: [11, 15] }],
@@ -36,6 +38,12 @@ export default {
     },
     SANDTANK_SATURATION(state) {
       return state.saturationArray;
+    },
+    SANDTANK_CONCENTRATION_RANGE(state) {
+      return state.concentrationDataRange;
+    },
+    SANDTANK_CONCENTRATION_ARRAY(state) {
+      return state.concentrationArray;
     },
     SANDTANK_TIME(state) {
       return state.time;
@@ -85,6 +93,12 @@ export default {
       state.time = time;
       blobToArrayBuffer(array).then((arrayBuffer) => {
         state.saturationArray = new Uint8Array(arrayBuffer);
+      });
+    },
+    SANDTANK_CONCENTRATION_UPDATE({ state }, { array, range }) {
+      state.concentrationDataRange = range;
+      blobToArrayBuffer(array).then((arrayBuffer) => {
+        state.concentrationArray = new Float32Array(arrayBuffer);
       });
     },
     SANDTANK_PRESSURES_UPDATE({ state }, pressures) {

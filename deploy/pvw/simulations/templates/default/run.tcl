@@ -663,7 +663,7 @@ puts $fileID "0.0           ! Particle start time counter (for recording particl
 puts $fileID "1             ! Time Sequence Repeat"
 puts $fileID "0             ! ipwrite frequency, controls an ASCII, .3D particle file not recommended due to poor performance"
 puts $fileID "1             ! ibinpntswrite frequency, controls VTK, binary output of particle locations and attributes"
-puts $fileID "0             !  etwrite frequency, controls ASCII ET output"
+puts $fileID "0             ! etwrite frequency, controls ASCII ET output"
 puts $fileID "1             ! icwrite frequency,controls VTK, binary grid based output where particle masses, concentrations"
 puts $fileID "1.0d0         ! velocity multiplier 1.0=forward, -1.0=backward"
 puts $fileID "True          ! CLM Evap Trans"

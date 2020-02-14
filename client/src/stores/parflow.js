@@ -74,6 +74,7 @@ export default {
       // state.runReset = 1;
     },
     PARFLOW_WELL_SET(state, { well, value }) {
+      console.log('PARFLOW_WELL_SET', well, value);
       state.wells = Object.assign({}, state.wells, { [well]: value });
     },
     PARFLOW_K_SET(state, value) {

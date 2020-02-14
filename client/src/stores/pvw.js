@@ -145,6 +145,12 @@ export default {
                 dispatch('SANDTANK_PRESSURES_UPDATE', pressures);
               });
 
+            validClient
+              .getRemote()
+              .Parflow.subscribeToConcentration(([concentration]) => {
+                dispatch('SANDTANK_CONCENTRATION_UPDATE', concentration);
+              });
+
             // Initialize server
             validClient
               .getRemote()

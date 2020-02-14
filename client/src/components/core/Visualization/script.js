@@ -1,24 +1,26 @@
 import { mapGetters, mapMutations } from 'vuex';
 
 import MaterialLayer from 'parflow-web/src/components/widgets/MaterialLayer';
+import PolluantLayer from 'parflow-web/src/components/widgets/PolluantLayer';
 import SaturationLayer from 'parflow-web/src/components/widgets/SaturationLayer';
+import StillWater from 'parflow-web/src/components/widgets/StillWater';
 import VerticalSlider from 'parflow-web/src/components/widgets/VerticalSlider';
 import WellControl from 'parflow-web/src/components/widgets/WellControl';
 import WellLayer from 'parflow-web/src/components/widgets/WellLayer';
-import StillWater from 'parflow-web/src/components/widgets/StillWater';
-import { fromPermeabilityToType } from 'parflow-web/src/utils/Permeability';
 
+import { fromPermeabilityToType } from 'parflow-web/src/utils/Permeability';
 import { debounce } from 'vtk.js/Sources/macro';
 
 export default {
   name: 'Visualization',
   components: {
     MaterialLayer,
+    PolluantLayer,
     SaturationLayer,
+    StillWater,
     VerticalSlider,
     WellControl,
     WellLayer,
-    StillWater,
   },
   props: {
     sliderWidth: {
@@ -36,6 +38,8 @@ export default {
   },
   data() {
     return {
+      opacityPolluant: 1,
+      opacityStillWater: 1,
       opacitySoil: 1,
       opacityWater: 0.5,
       opacityWells: 1,
@@ -54,6 +58,8 @@ export default {
       wellsMap: 'PARFLOW_WELLS',
       mask: 'SANDTANK_MASK',
       pressures: 'SANDTANK_PRESSURES',
+      concentrationRange: 'SANDTANK_CONCENTRATION_RANGE',
+      concentration: 'SANDTANK_CONCENTRATION_ARRAY',
     }),
     size() {
       if (!this.domain) {
@@ -136,7 +142,7 @@ export default {
           return true;
         }
       }
-      if (this.wellsMap[well] > 0) {
+      if (this.wellsMap[well] < 0) {
         this.updateWell({ well, value: 0 });
       }
 
