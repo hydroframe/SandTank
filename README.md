@@ -11,6 +11,13 @@ cd ./docker/development
 ./build.sh
 ```
 
+### Docker Runtime
+
+```
+cd ./docker/runtime
+./build.sh
+```
+
 ### Docker Web
 
 ```
