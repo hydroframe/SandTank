@@ -453,28 +453,72 @@ puts $fileId "100 1 50"
 for { set kk 0 } { $kk < 50 } { incr kk } {
   for { set jj 0 } { $jj < 1 } { incr jj } {
     for { set ii 0 } { $ii < 100 } { incr ii } {
-      if { ($kk == 1) && ($ii == 23) && ( $well_2_action == "Injection" )} {
-        puts $fileId [expr (1* $well_2_value/1.0)]
-      }  elseif { ($kk == 15) && ($ii == 11) && ( $well_1_action == "Injection" )} {
-        puts $fileId [expr (1* $well_1_value/1.0)]
-      } elseif { ($kk == 15) && ($ii == 26) && ( $well_3_action == "Injection" )} {
-        puts $fileId [expr (1* $well_3_value/1.0)]
-      } elseif { ($kk == 27) && ($ii == 29) && ( $well_4_action == "Injection" )} {
-        puts $fileId [expr (1* $well_4_value/1.0)]
-      } elseif { ($kk == 1) && ($ii == 48) && ( $well_5_action == "Injection" )} {
-        puts $fileId [expr (1* $well_5_value/1.0)]
-      } elseif { ($kk == 13) && ($ii == 51) && ( $well_6_action == "Injection" )} {
-        puts $fileId [expr (1* $well_6_value/1.0)]
-      } elseif { ($kk == 15) && ($ii == 54) && ( $well_7_action == "Injection" )} {
-        puts $fileId [expr (1* $well_7_value/1.0)]
-      } elseif { ($kk == 1) && ($ii == 57) && ( $well_8_action == "Injection" )} {
-        puts $fileId [expr (1* $well_8_value/1.0)]
-      } elseif { ($kk == 1) && ($ii == 82) && ( $well_9_action == "Injection" )} {
-        puts $fileId [expr (1* $well_9_value/1.0)]
-      } elseif { ($kk == 14) && ($ii == 87) && ( $well_10_action == "Injection" )} {
-        puts $fileId [expr (1* $well_10_value/1.0)]
-      } elseif { ($kk == 26) && ($ii == 92) && ( $well_11_action == "Injection" )} {
-        puts $fileId [expr (1* $well_11_value/1.0)]
+      if { ($kk == 1) && ($ii == 23) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_2_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_2_value)]
+        }
+      }  elseif { ($kk == 15) && ($ii == 11) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_1_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_1_value)]
+        }
+      } elseif { ($kk == 15) && ($ii == 26) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_3_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_3_value)]
+        }
+      } elseif { ($kk == 27) && ($ii == 29) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_4_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_4_value)]
+        }
+      } elseif { ($kk == 1) && ($ii == 48) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_5_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_5_value)]
+        }
+      } elseif { ($kk == 13) && ($ii == 51) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_6_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_6_value)]
+        }
+      } elseif { ($kk == 15) && ($ii == 54) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_7_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_7_value)]
+        }
+      } elseif { ($kk == 1) && ($ii == 57) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_8_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_8_value)]
+        }
+      } elseif { ($kk == 1) && ($ii == 82) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_9_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_9_value)]
+        }
+      } elseif { ($kk == 14) && ($ii == 87) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_10_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_10_value)]
+        }
+      } elseif { ($kk == 26) && ($ii == 92) } {
+        if { $well_2_action == "Injection" } {
+          puts $fileId $well_11_value
+        } else {
+          puts $fileId [expr (-1.0 * $well_11_value)]
+        }
       } else {
         # zero flux non well locations
         puts $fileId "0.0"
@@ -492,7 +536,7 @@ pfsave $wellflux -pfb well_forcing.pfb
 # make this the from to for the run
 # copy the well_forcing file to the run name file over these timesteps
 
-for { set itime $StartNumber } { $itime <= $RunLength } { incr itime } {
+for { set itime $StartNumber } { $itime <= [expr ($StartNumber + $RunLength ) ] } { incr itime } {
   set pump_name [format "./$runname.out.evaptrans.%05d.pfb" $itime]
   file copy -force well_forcing.pfb $pump_name
 }
@@ -656,8 +700,8 @@ puts $fileID "1.0           !dx"
 puts $fileID "1.0           !dy, dz follows"
 puts $fileID "1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0"
 puts $fileID "1.0           ! ParFlow DT"
-puts $fileID "1             ! Parflow t1: ParFlow file number to start from (initial condition is pft1-1)"
-puts $fileID "$RunLength    ! Parflow t2: ParFlow file number to stop at"
+puts $fileID "[expr ($StartNumber + 1) ]    ! Parflow t1: ParFlow file number to start from (initial condition is pft1-1)"
+puts $fileID "[expr ($StartNumber + $RunLength ) ]    ! Parflow t2: ParFlow file number to stop at"
 puts $fileID "0             ! EcoSLIM output start counter 0=pft1"
 puts $fileID "0.0           ! Particle start time counter (for recording particle insert times)"
 puts $fileID "1             ! Time Sequence Repeat"
