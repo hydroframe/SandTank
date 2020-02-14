@@ -63,11 +63,9 @@ export default {
           y: pressureCell[2],
         };
       });
-      console.log(JSON.stringify(state.pressures, null, 2));
       const newFormat = Object.keys(state.pressures).map((k) =>
         Object.assign({}, pressureMap[k], { height: state.pressures[k] })
       );
-      console.log(JSON.stringify(newFormat, null, 2));
 
       return newFormat.filter(({ height }) => height > 0);
     },

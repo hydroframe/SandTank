@@ -30,7 +30,7 @@ export default {
     config: {
       application: 'sandtank',
       sessionURL: userParams.dev ? 'ws://localhost:1234/ws' : null,
-      name: 'template',
+      name: 'default',
     },
     client: null,
     error: null,

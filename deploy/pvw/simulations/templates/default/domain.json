@@ -34,7 +34,7 @@
     {
       "name": "Landfill",
       "pressureCell": [39, 0, 40],
-      "iRange": [37, 40]
+      "iRange": [32, 45]
     },
     {
       "name": "River",

@@ -26,12 +26,18 @@ echo "ParFlow Run Complete"
 # Run EcoSLIM for particle tracking, this directory needs to be changed
 # -----------------------------------------------------------------------------
 
-# export OMP_NUM_THREADS=2
-# /Users/reed/EcoDev/EcoSLIM/EcoSLIM.exe
-# echo "EcoSLIM Run Complete"
+export OMP_NUM_THREADS=2
+
+FILE=./slimin.txt
+if [[ -f "$FILE" ]]; then
+  echo "Staring EcoSLIM"
+  /opt/ecoslim/EcoSLIM.exe
+  echo "EcoSLIM Run Complete"
+fi
 
 # -----------------------------------------------------------------------------
 # Need to sleep in order to detect completion
 # -----------------------------------------------------------------------------
 
+echo "Complete All"
 sleep 1
