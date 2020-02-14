@@ -1,7 +1,7 @@
 import { mapGetters, mapMutations } from 'vuex';
 
 import MaterialLayer from 'parflow-web/src/components/widgets/MaterialLayer';
-import PolluantLayer from 'parflow-web/src/components/widgets/PolluantLayer';
+import PollutantLayer from 'parflow-web/src/components/widgets/PollutantLayer';
 import SaturationLayer from 'parflow-web/src/components/widgets/SaturationLayer';
 import StillWater from 'parflow-web/src/components/widgets/StillWater';
 import VerticalSlider from 'parflow-web/src/components/widgets/VerticalSlider';
@@ -15,7 +15,7 @@ export default {
   name: 'Visualization',
   components: {
     MaterialLayer,
-    PolluantLayer,
+    PollutantLayer,
     SaturationLayer,
     StillWater,
     VerticalSlider,
@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      opacityPolluant: 1,
+      opacityPollutant: 1,
       opacityStillWater: 1,
       opacitySoil: 1,
       opacityWater: 0.5,

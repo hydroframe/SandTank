@@ -39,13 +39,13 @@
         :style="{ opacity: fastWaterOpacity }"
         :mask="mask"
       />
-      <polluant-layer
-        :class="$style.polluant"
+      <pollutant-layer
+        :class="$style.pollutant"
         :scale="scale"
         :size="size"
         :concentration="concentration"
         :maxConcentration="concentrationRange[1]"
-        :style="{ opacity: opacityPolluant }"
+        :style="{ opacity: opacityPollutant }"
       />
       <well-layer
         :class="$style.wells"
@@ -128,8 +128,8 @@
     />
     <v-slider
       class="mx-4"
-      label="Polluant"
-      v-model="opacityPolluant"
+      label="Pollutant"
+      v-model="opacityPollutant"
       min="0"
       step="0.01"
       max="1"

@@ -1,5 +1,5 @@
 export default {
-  name: 'PolluantLayer',
+  name: 'PollutantLayer',
   props: {
     scale: {
       type: Number,
