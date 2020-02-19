@@ -139,18 +139,24 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         nextSaturationFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
         nextPressureFile = os.path.join(self.workdir, '%s.out.press.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
         nextConcentrationFile = os.path.join(self.workdir, 'SLIM_SandTank_test_cgrid.%s.vtk' % str(self.lastEcoSLIMTimestep + 1).zfill(8))
+        nextNextConcentrationFile = os.path.join(self.workdir, 'SLIM_SandTank_test_cgrid.%s.vtk' % str(self.lastEcoSLIMTimestep + 2).zfill(8))
 
-        if os.path.exists(nextConcentrationFile):
-            print('concentration size: ', os.stat(nextConcentrationFile).st_size)
-            self.pushConcentration(nextConcentrationFile)
-            self.lastEcoSLIMTimestep +=1
-            gotFile = True
+        if os.path.exists(nextNextConcentrationFile):
+            try:
+                self.pushConcentration(nextConcentrationFile)
+                self.lastEcoSLIMTimestep += 1
+                gotFile = True
+            except:
+                print('Error in concentration file: %s' % self.lastEcoSLIMTimestep)
 
         if os.path.exists(nextSaturationFile):
-            self.pushSaturation(nextSaturationFile)
-            self.pushPressureHead(nextPressureFile)
-            self.lastProcessedTimestep += 1
-            gotFile = True
+            try:
+                self.pushSaturation(nextSaturationFile)
+                self.pushPressureHead(nextPressureFile)
+                self.lastProcessedTimestep += 1
+                gotFile = True
+            except:
+                print('Error in saturation/pressure file %s' % self.lastProcessedTimestep)
 
         if gotFile:
             reactor.callLater(self.refreshRate, lambda: self.processNextFile())
