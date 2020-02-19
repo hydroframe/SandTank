@@ -55,9 +55,20 @@
     >
       Reset
     </v-btn>
-    <v-btn icon small @click="aboutDialog = !aboutDialog" class="ml-3">
-      <v-icon v-text="`$about`" />
-    </v-btn>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          v-on="on"
+          icon
+          small
+          @click="aboutDialog = !aboutDialog"
+          class="ml-3"
+        >
+          <v-icon v-text="`$about`" />
+        </v-btn>
+      </template>
+      <span>{{ informations }}</span>
+    </v-tooltip>
 
     <v-progress-linear
       :active="pvwBusy"

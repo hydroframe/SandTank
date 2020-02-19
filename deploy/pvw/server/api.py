@@ -137,6 +137,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
     def processNextFile(self):
         gotFile = False
         nextSaturationFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
+        nextNextSaturationFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 2).zfill(5)))
         nextPressureFile = os.path.join(self.workdir, '%s.out.press.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
         nextConcentrationFile = os.path.join(self.workdir, 'SLIM_SandTank_test_cgrid.%s.vtk' % str(self.lastEcoSLIMTimestep + 1).zfill(8))
         nextNextConcentrationFile = os.path.join(self.workdir, 'SLIM_SandTank_test_cgrid.%s.vtk' % str(self.lastEcoSLIMTimestep + 2).zfill(8))
@@ -149,10 +150,10 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             except:
                 print('Error in concentration file: %s' % self.lastEcoSLIMTimestep)
 
-        if os.path.exists(nextSaturationFile):
+        if os.path.exists(nextNextSaturationFile):
             try:
                 self.pushSaturation(nextSaturationFile)
-                self.pushPressureHead(nextPressureFile)
+                self.pushPressureData(nextPressureFile)
                 self.lastProcessedTimestep += 1
                 gotFile = True
             except:
@@ -165,7 +166,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
 
     # -------------------------------------------------------------------------
 
-    def pushPressureHead(self, pressureFile):
+    def pushPressureData(self, pressureFile):
         if os.path.exists(pressureFile):
             pressures = {}
             self.pfbReader.FileNames=[pressureFile]
@@ -173,14 +174,40 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             imageData = self.pfbReader.GetClientSideObject().GetOutput().GetBlock(0)
             array = imageData.GetCellData().GetArray(0)
 
+            # Extract pressures
             dims = self.domain['dimensions']
             for press in self.domain['pressures']:
                 key = press['name']
                 i, j, k = press['pressureCell']
                 value = array.GetValue(i + j * dims[0] + k * dims[0] * dims[1])
                 pressures[key] = value
-
             self.publish('parflow.sandtank.pressures', pressures)
+
+            # Extract flows
+            flows = {}
+            for flow in self.domain['flows']:
+                key = flow['name']
+                ratio = flow['ratio']
+                totalFlow = 0.0
+                for cellId in flow['cells']:
+                    p = array.GetValue(cellId)
+                    if p > 0.0:
+                        totalFlow += ratio*(p**(5.0/3.0))
+                flows[key] = totalFlow
+            self.publish('parflow.sandtank.flows', flows)
+
+            # Extract storage
+            storages = {}
+            for storage in self.domain['storages']:
+                key = storage['name']
+                ratio = storage['ratio']
+                totalStorage = 0.0
+                for cellId in storage['cells']:
+                    p = array.GetValue(cellId)
+                    if p > 0.0:
+                        totalStorage += ratio*p
+                storages[key] = totalStorage
+            self.publish('parflow.sandtank.storages', storages)
 
     # -------------------------------------------------------------------------
 

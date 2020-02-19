@@ -15,6 +15,8 @@ export default {
     solidArray: null,
     solidScaling: 1,
     time: 0,
+    flows: {},
+    storages: {},
     pressures: {},
     concentrationArray: null,
     concentrationDataRange: [0, 1],
@@ -77,6 +79,12 @@ export default {
 
       return newFormat.filter(({ height }) => height > 0);
     },
+    SANDTANK_FLOW_MAP(state) {
+      return state.flows;
+    },
+    SANDTANK_STORAGE_MAP(state) {
+      return state.storages;
+    },
   },
   mutations: {
     SANDTANK_DOMAIN_SET(state, value) {
@@ -103,6 +111,12 @@ export default {
     },
     SANDTANK_PRESSURES_UPDATE({ state }, pressures) {
       state.pressures = pressures;
+    },
+    SANDTANK_FLOWS_UPDATE({ state }, flows) {
+      state.flows = flows;
+    },
+    SANDTANK_STORAGES_UPDATE({ state }, storages) {
+      state.storages = storages;
     },
     SANDTANK_MASK_UPDATE({ state }, { scale, array }) {
       state.solidScaling = scale;

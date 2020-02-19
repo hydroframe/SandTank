@@ -26,10 +26,31 @@ export default {
       connected: 'PVW_CONNECTED',
       pvwBusy: 'PVW_BUSY',
       parflowExecutionCount: 'PARFLOW_EXEC_COUNT',
+      flowMap: 'SANDTANK_FLOW_MAP',
+      storageMap: 'SANDTANK_STORAGE_MAP',
+      domain: 'SANDTANK_DOMAIN',
       //
       time: 'SANDTANK_TIME',
       config: 'PARFLOW_JOB',
     }),
+    storageUnits() {
+      const units = {};
+      if (this.domain && this.domain.storages) {
+        this.domain.storages.forEach(({ name, unit }) => {
+          units[name] = unit;
+        });
+      }
+      return units;
+    },
+    flowUnits() {
+      const units = {};
+      if (this.domain && this.domain.flows) {
+        this.domain.flows.forEach(({ name, unit }) => {
+          units[name] = unit;
+        });
+      }
+      return units;
+    },
     isLake: {
       get() {
         return this.config.isLake;
@@ -37,6 +58,14 @@ export default {
       set(v) {
         this.setTypeToLake(Number(v));
       },
+    },
+    informations() {
+      if (this.isLake) {
+        return `Lake storage ${this.storageMap.lake.toFixed(4)} ${
+          this.storageUnits.lake
+        }`;
+      }
+      return `River flow ${this.flowMap.river} ${this.flowUnits.river}`;
     },
   },
   methods: {

@@ -147,6 +147,16 @@ export default {
 
             validClient
               .getRemote()
+              .Parflow.subscribeToStorages(([storages]) => {
+                dispatch('SANDTANK_STORAGES_UPDATE', storages);
+              });
+
+            validClient.getRemote().Parflow.subscribeToFlows(([flows]) => {
+              dispatch('SANDTANK_FLOWS_UPDATE', flows);
+            });
+
+            validClient
+              .getRemote()
               .Parflow.subscribeToConcentration(([concentration]) => {
                 dispatch('SANDTANK_CONCENTRATION_UPDATE', concentration);
               });
