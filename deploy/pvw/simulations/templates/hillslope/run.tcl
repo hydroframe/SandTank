@@ -41,7 +41,7 @@ puts ""
 puts "k_1:         $k_1"
 puts "k_2:         $k_2"
 puts "k_3:         $k_3"
-puts "k_4:         $k_4"
+#puts "k_4:         $k_4"
 puts ""
 puts "well_1_action:        $well_1_action"
 puts "well_1_value:         $well_1_value"
@@ -86,13 +86,13 @@ pfset ComputationalGrid.Lower.X           0.0
 pfset ComputationalGrid.Lower.Y           0.0
 pfset ComputationalGrid.Lower.Z           0.0
 
-pfset ComputationalGrid.DX                10.0
-pfset ComputationalGrid.DY                10.0
-pfset ComputationalGrid.DZ                5.0
+pfset ComputationalGrid.DX                1.0
+pfset ComputationalGrid.DY                1.0
+pfset ComputationalGrid.DZ                1.0
 
 pfset ComputationalGrid.NX                100
 pfset ComputationalGrid.NY                1
-pfset ComputationalGrid.NZ                100
+pfset ComputationalGrid.NZ                50
 
 # -----------------------------------------------------------------------------
 # Domain Geometry Input
@@ -108,7 +108,7 @@ pfset GeomInput.Names                     "solidinput indi_input"
 
 pfset GeomInput.solidinput.InputType      SolidFile
 pfset GeomInput.solidinput.GeomNames      domain
-pfset GeomInput.solidinput.FileName       hillslope_dx10_dy10.pfsol
+pfset GeomInput.solidinput.FileName       SandTank.pfsol
 
 pfset Geom.domain.Patches                 "z-upper z-lower x-lower x-upper y-lower y-upper"
 
@@ -120,9 +120,9 @@ pfset Geom.domain.Lower.X                 0.0
 pfset Geom.domain.Lower.Y                 0.0
 pfset Geom.domain.Lower.Z                 0.0
 
-pfset Geom.domain.Upper.X                 1000.0
-pfset Geom.domain.Upper.Y                 10.0
-pfset Geom.domain.Upper.Z                 500.0
+pfset Geom.domain.Upper.X                 100.0
+pfset Geom.domain.Upper.Y                 1.0
+pfset Geom.domain.Upper.Z                 50.0
 
 # -----------------------------------------------------------------------------
 # Indicator Geometry Input
@@ -130,20 +130,20 @@ pfset Geom.domain.Upper.Z                 500.0
 
 # will be set once the indi file in created
 pfset GeomInput.indi_input.InputType      IndicatorField
-pfset GeomInput.indi_input.GeomNames      "s1 s2 s3 s4"
+pfset GeomInput.indi_input.GeomNames      "s1 s2 s3"
 pfset Geom.indi_input.FileName            SandTank_Indicator.pfb
 
 # s1: gravel, s2: fine sand, s3: coarse sand, s4: clay
 pfset GeomInput.s1.Value                  1
 pfset GeomInput.s2.Value                  2
 pfset GeomInput.s3.Value                  3
-pfset GeomInput.s4.Value                  4
+#pfset GeomInput.s4.Value                  4
 
 # -----------------------------------------------------------------------------
 # Permeability (values in cm/s)
 # -----------------------------------------------------------------------------
 
-pfset Geom.Perm.Names                     "s1 s2 s3 s4"
+pfset Geom.Perm.Names                     "s1 s2 s3"
 
 pfset Geom.s1.Perm.Type                   Constant
 pfset Geom.s1.Perm.Value                  1.0
@@ -154,8 +154,8 @@ pfset Geom.s2.Perm.Value                  0.2
 pfset Geom.s3.Perm.Type                   Constant
 pfset Geom.s3.Perm.Value                  0.6
 
-pfset Geom.s4.Perm.Type                   Constant
-pfset Geom.s4.Perm.Value                  0.05
+#pfset Geom.s4.Perm.Type                   Constant
+#pfset Geom.s4.Perm.Value                  0.05
 
 pfset Perm.TensorType                     TensorByGeom
 pfset Geom.Perm.TensorByGeom.Names        "domain"
@@ -211,7 +211,7 @@ pfset TimeStep.Value                      1.0
 # Porosity
 # -----------------------------------------------------------------------------
 
-pfset Geom.Porosity.GeomNames             "domain s1 s2 s3 s4"
+pfset Geom.Porosity.GeomNames             "domain s1 s2 s3"
 
 pfset Geom.domain.Porosity.Type           Constant
 pfset Geom.domain.Porosity.Value          0.4
@@ -225,8 +225,8 @@ pfset Geom.s2.Porosity.Value              $k_2
 pfset Geom.s3.Porosity.Type               Constant
 pfset Geom.s3.Porosity.Value              $k_3
 
-pfset Geom.s4.Porosity.Type               Constant
-pfset Geom.s4.Porosity.Value              $k_4
+#pfset Geom.s4.Porosity.Type               Constant
+#pfset Geom.s4.Porosity.Value              $k_4
 
 # -----------------------------------------------------------------------------
 # Domain
@@ -275,10 +275,10 @@ pfset Wells.Names                         "w1 w2 w3"
 
 pfset Wells.w1.InputType                          Vertical
 pfset Wells.w1.Type                               Flux
-pfset Wells.w1.X                                  125.0
-pfset Wells.w1.Y                                  5.0
-pfset Wells.w1.ZUpper                             159.0
-pfset Wells.w1.ZLower                             151.0
+pfset Wells.w1.X                                  12.5
+pfset Wells.w1.Y                                  0.5
+pfset Wells.w1.ZUpper                             15.9
+pfset Wells.w1.ZLower                             15.1
 pfset Wells.w1.Cycle                              constant
 pfset Wells.w1.alltime.Saturation.water.Value     1.0
 pfset Wells.w1.Method                             Standard
@@ -290,10 +290,10 @@ pfset Wells.w1.alltime.Flux.water.Value           $well_1_value
 
 pfset Wells.w2.InputType                          Vertical
 pfset Wells.w2.Type                               Flux
-pfset Wells.w2.X                                  605.0
-pfset Wells.w2.Y                                  5.0
-pfset Wells.w2.ZUpper                             249.0
-pfset Wells.w2.ZLower                             241.0
+pfset Wells.w2.X                                  60.5
+pfset Wells.w2.Y                                  0.5
+pfset Wells.w2.ZUpper                             25.9
+pfset Wells.w2.ZLower                             25.1
 pfset Wells.w2.Cycle                              constant
 pfset Wells.w2.alltime.Saturation.water.Value     1.0
 pfset Wells.w2.Method                             Standard
@@ -305,10 +305,10 @@ pfset Wells.w2.alltime.Flux.water.Value           $well_2_value
 
 pfset Wells.w3.InputType                          Vertical
 pfset Wells.w3.Type                               Flux
-pfset Wells.w3.X                                  905.0
-pfset Wells.w3.Y                                  5.0
-pfset Wells.w3.ZUpper                             159.0
-pfset Wells.w3.ZLower                             151.0
+pfset Wells.w3.X                                  90.5
+pfset Wells.w3.Y                                  0.5
+pfset Wells.w3.ZUpper                             15.9
+pfset Wells.w3.ZLower                             15.1
 pfset Wells.w3.Cycle                              constant
 pfset Wells.w3.alltime.Saturation.water.Value     1.0
 pfset Wells.w3.Method                             Standard
@@ -441,7 +441,7 @@ pfset Solver.PrintMask                            True
 if {$reset == 1} {
   pfset ICPressure.Type                           HydroStaticPatch
   pfset ICPressure.GeomNames                      domain
-  pfset Geom.domain.ICPressure.Value              300.0
+  pfset Geom.domain.ICPressure.Value              30.0
   pfset Geom.domain.ICPressure.RefGeom            domain
   pfset Geom.domain.ICPressure.RefPatch           z-lower
 } else {

@@ -1,15 +1,15 @@
 {
-  "dimensions": [100, 1, 100],
-  "bounds": [0.5, 999.5, 0.25, 0.75, 0.5, 499.5],
+  "dimensions": [100, 1, 50],
+  "bounds": [0.5, 99.5, 0.25, 0.75, 0.5, 49.5],
   "wells": [],
   "server": {
     "refreshRate": 0.1
   },
   "setup": {
-    "simulationLength": 50,
-    "maxHeight": 120,
-    "hLeft": 50,
-    "hRight": 50,
+    "simulationLength": 10,
+    "maxHeight": 60,
+    "hLeft": 30,
+    "hRight": 30,
     "indicators": [
       { "key": 1, "value": 0.4 },
       { "key": 2, "value": 0.25 },
