@@ -46,6 +46,7 @@
         :concentration="concentration"
         :maxConcentration="concentrationRange[1]"
         :style="{ opacity: opacityPollutant }"
+        color="#ff0000"
       />
       <well-layer
         :class="$style.wells"
@@ -69,6 +70,7 @@
           :value="getWellValue(well.key)"
           @change="updateWell"
           :autoHide="autoHideControls"
+          poluantColor="#ff0000"
         />
       </v-layout>
     </div>

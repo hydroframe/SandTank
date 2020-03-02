@@ -36,7 +36,7 @@
   <div :style="buttonStyle">
     <v-tooltip left>
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" small icon @click="trigger(+1)" color="green">
+        <v-btn v-on="on" small icon @click="trigger(+1)" :color="poluantColor">
           <v-icon small v-text="`$waterInjection`" />
         </v-btn>
       </template>

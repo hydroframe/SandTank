@@ -29,6 +29,10 @@ export default {
       type: String,
       default: '#03A9F4',
     },
+    poluantColor: {
+      type: String,
+      default: '#1DE9B6',
+    },
     autoHide: {
       type: Boolean,
       default: false,
