@@ -25,11 +25,15 @@ tar cvfz sandtank-app.tgz ./pvw
 
 ```
 cd ./
+
+export APP=$PWD/deploy/pvw
+export HOST=localhost:9000
+
 docker run --rm                   \
   -e PROTOCOL="ws"                 \
   -p 0.0.0.0:9000:80                \
-  -e SERVER_NAME="localhost:9000"    \
-  -v "$PWD/deploy/pvw:/pvw"           \
+  -e SERVER_NAME="${HOST}"           \
+  -v "${APP}:/pvw"                    \
   -it hydroframe/sandtank:web-service
 ```
 
@@ -45,11 +49,14 @@ mkdir -p /opt/sandtank
 cd /opt/sandtank
 tar xvfz /.../sandtank-app.tgz
 
-docker run --rm                            \
-  -e PROTOCOL="wss"                         \
-  -p 0.0.0.0:9100:80                         \
-  -e SERVER_NAME="pvw.kitware.com/sandtank"   \
-  -v "/opt/sandtank/pvw:/pvw"                  \
+export APP=/opt/sandtank/pvw
+export HOST=localhost:9100
+
+docker run --rm                 \
+  -e PROTOCOL="ws"               \
+  -p 0.0.0.0:9100:80              \
+  -e SERVER_NAME="${HOST}"         \
+  -v "${APP}:/pvw"                  \
   -d hydroframe/sandtank:web-service
 ```
 
