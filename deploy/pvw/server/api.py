@@ -324,3 +324,10 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.refreshRate = self.domain['server']['refreshRate']
 
         return self.domain
+
+    # -------------------------------------------------------------------------
+
+    @exportRpc("parflow.sandtank.exit")
+    def onExit(self):
+        if os.path.exists(self.workdir):
+            shutil.rmtree(self.workdir)

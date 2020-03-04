@@ -221,5 +221,11 @@ export default {
         .Parflow.updateConfiguration(config)
         .catch(console.error);
     },
+    PVW_EXIT({ state }) {
+      return state.client
+        .getRemote()
+        .Parflow.onExit()
+        .catch(console.error);
+    },
   },
 };

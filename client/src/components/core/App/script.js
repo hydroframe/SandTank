@@ -77,6 +77,7 @@ export default {
       pvwDisconnect: 'PVW_DISCONNECT',
       runParflow: 'PARFLOW_RUN',
       resetSimulation: 'SANDTANK_RESET',
+      onExit: 'PVW_EXIT',
     }),
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
@@ -90,8 +91,10 @@ export default {
   },
   created() {
     this.pvwConnect();
+    window.addEventListener('beforeunload', this.onExit);
   },
   beforeDestroy() {
+    this.onExit();
     this.pvwDisconnect();
   },
 };

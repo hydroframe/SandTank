@@ -20,5 +20,6 @@ export default function createMethods(session) {
     subscribeToConcentration: (callback) =>
       session.subscribe('parflow.sandtank.concentration', callback),
     unsubscribe: (subscription) => session.unsubscribe(subscription),
+    onExit: () => session.call('parflow.sandtank.exit', []),
   };
 }
