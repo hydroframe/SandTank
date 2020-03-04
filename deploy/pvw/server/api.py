@@ -32,6 +32,8 @@ def updateFileSecurity(directoryPath):
                 os.chown(os.path.join(root, f), uid, gid)
             for f in files:
                 os.chown(os.path.join(root, f), uid, gid)
+
+        os.chown(directoryPath, uid, gid)
     except Exception as e:
         print(str(e))
         print("updateFileSecurity failed for %s" % directoryPath)
