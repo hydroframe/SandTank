@@ -1,4 +1,30 @@
+# -----------------------------------------------------------------------------
+# Build options (* = default)
+# -----------------------------------------------------------------------------
+#
+#  BASE_IMAGE
+#    *  ubuntu:18.04
+#
+#  DEV_IMAGE
+#    *  sandtank-dev
+#
+#  PYTHON_VERSION
+#    *  2
+#       3
+#
+#  BUILD_TYPE
+#    *  Release
+#
+#  PARFLOW_COMMIT
+#    *  9c0b0f54acd6fbef2902c3d52a6bc82c285b335b
+#
+# -----------------------------------------------------------------------------
+
 ARG BASE_IMAGE=ubuntu:18.04
+ARG DEV_IMAGE=sandtank-dev
+
+FROM ${DEV_IMAGE} AS devimage
+
 FROM ${BASE_IMAGE}
 
 ARG PYTHON_VERSION=2
@@ -8,9 +34,12 @@ ENV SYSTEM_PYTHON_2_PIP pip
 ENV SYSTEM_PYTHON_3_PIP pip3
 ENV SYSTEM_PYTHON_PIP "SYSTEM_PYTHON_${PYTHON_VERSION}_PIP"
 
+# -----------------------------------------------------------------------------
 # The following environment variables help with the Python 2 vs 3 option while
 # we still support both of them.  In order for this approach to work, we need
 # the RUN command to use bash instead of sh for variable indirection.
+# -----------------------------------------------------------------------------
+
 SHELL ["/bin/bash", "-c"]
 
 # -----------------------------------------------------------------------------
@@ -47,6 +76,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Create a non-root user
 RUN groupadd ubuntu && \
     useradd -g ubuntu -d /home/ubuntu ubuntu && \
+    usermod -u 4444 ubuntu && \
+    groupmod -g 4444 ubuntu && \
     mkhomedir_helper ubuntu && \
     mkdir -p /opt/paraview && chown -R ubuntu:ubuntu /opt/paraview && \
     mkdir -p /opt/hypre && chown -R ubuntu:ubuntu /opt/hypre && \
@@ -55,10 +86,10 @@ RUN groupadd ubuntu && \
 
 USER ubuntu
 
-COPY --from=parflow-dev:latest  /opt/paraview  /opt/paraview
-COPY --from=parflow-dev:latest  /opt/hypre     /opt/hypre
-COPY --from=parflow-dev:latest  /opt/parflow   /opt/parflow
-COPY --from=parflow-dev:latest  /opt/ecoslim   /opt/ecoslim
+COPY --from=devimage  /opt/paraview  /opt/paraview
+COPY --from=devimage  /opt/hypre     /opt/hypre
+COPY --from=devimage  /opt/parflow   /opt/parflow
+COPY --from=devimage  /opt/ecoslim   /opt/ecoslim
 
 ENV PARFLOW_DIR      /opt/parflow
 ENV LD_LIBRARY_PATH  /opt/parflow/lib/

@@ -1,1 +1,1 @@
-docker build -t parflow .
+docker build -t sandtank-runtime .

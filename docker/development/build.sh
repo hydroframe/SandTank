@@ -1,1 +1,1 @@
-docker build -t parflow-dev .
+docker build -t sandtank-dev .

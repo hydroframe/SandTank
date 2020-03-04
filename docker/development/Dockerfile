@@ -1,29 +1,22 @@
+# -----------------------------------------------------------------------------
+# Build options (* = default)
+# -----------------------------------------------------------------------------
 #
-# To build this image and run it with a shell, first change into the directory
-# where this Dockerfile lives, then:
+#  BASE_IMAGE
+#    *  ubuntu:18.04
 #
-# sudo docker build -t parflow .
+#  PYTHON_VERSION
+#    *  2
+#       3
 #
-# Run the image with bash to look around:
+#  BUILD_TYPE
+#    *  Release
 #
-# sudo docker run -ti parflow bash
+#  PARFLOW_COMMIT
+#    *  9c0b0f54acd6fbef2902c3d52a6bc82c285b335b
 #
+# -----------------------------------------------------------------------------
 
-#
-# Build options
-#
-#   BASE_IMAGE
-#
-#     ubuntu:18.04
-#
-#   PYTHON_VERSION
-#
-#     2
-#     3
-#
-#     (default is "2")
-#
-#
 ARG BASE_IMAGE=ubuntu:18.04
 FROM ${BASE_IMAGE}
 

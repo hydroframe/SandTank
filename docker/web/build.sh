@@ -1,1 +1,1 @@
-docker build --build-arg BASE_IMAGE=parflow -t pvw-parflow .
+docker build -t pvw-sandtank-runtime .

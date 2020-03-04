@@ -11,19 +11,21 @@ runId=$1
 echo "Staring $runId"
 
 # -----------------------------------------------------------------------------
-# directories temporarily swapped for testing
+# Go to run directory
 # -----------------------------------------------------------------------------
 
 mkdir -p "/pvw/simulations/runs/$runId"
 cd "/pvw/simulations/runs/$runId"
 
 # -----------------------------------------------------------------------------
+# Run ParFlow
+# -----------------------------------------------------------------------------
 
 tclsh run.tcl $runId
 echo "ParFlow Run Complete"
 
 # -----------------------------------------------------------------------------
-# Run EcoSLIM for particle tracking, this directory needs to be changed
+# Run EcoSLIM for particle tracking
 # -----------------------------------------------------------------------------
 
 export OMP_NUM_THREADS=2

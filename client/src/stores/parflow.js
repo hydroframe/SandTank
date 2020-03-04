@@ -125,7 +125,7 @@ export default {
         if (userParams.dev) {
           xhr.open('POST', 'http://localhost:9000/paraview/', true);
         } else {
-          xhr.open('POST', '/paraview/', true);
+          xhr.open('POST', window.SANDTANK_SESSION_MANAGER_URL, true);
         }
 
         xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');

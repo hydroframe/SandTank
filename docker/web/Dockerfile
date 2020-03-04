@@ -1,19 +1,13 @@
+# -----------------------------------------------------------------------------
+# Build options (* = default)
+# -----------------------------------------------------------------------------
+#
+#  BASE_IMAGE
+#    *  sandtank-runtime
+#
+# -----------------------------------------------------------------------------
 
-# To build this image, first change into the directory where this Dockerfile
-# lives, then:
-#
-# sudo docker build -t pvw-v5.6.0-egl .
-#
-# Or, to specify a different base paraview image:
-#
-# sudo docker build --build-arg BASE_IMAGE=pv-v5.6.0-osmesa -t pvw-v5.6.0-osmesa .
-#
-# To run the container and inspect it using the shell:
-#
-# sudo docker run --runtime=nvidia -P --entrypoint /bin/bash -ti pvw-v5.6.0-egl
-#
-
-ARG BASE_IMAGE=kitware/paraviewweb:pv-5.6.0-egl
+ARG BASE_IMAGE=sandtank-runtime
 FROM ${BASE_IMAGE}
 
 USER root
@@ -55,7 +49,8 @@ RUN a2enmod vhost_alias && \
     a2enmod rewrite && \
     a2enmod headers && \
     a2dissite 000-default.conf && \
-    a2ensite 001-pvw
+    a2ensite 001-pvw && \
+    a2dismod autoindex -f
 
 # Open port 80 to the world outside the container
 EXPOSE 80

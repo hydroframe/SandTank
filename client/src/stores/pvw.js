@@ -31,6 +31,7 @@ export default {
       application: 'sandtank',
       sessionURL: userParams.dev ? 'ws://localhost:1234/ws' : null,
       name: 'default',
+      sessionManagerURL: window.SANDTANK_SESSION_MANAGER_URL,
     },
     client: null,
     error: null,

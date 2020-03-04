@@ -14,6 +14,10 @@ import shortcuts from 'parflow-web/src/shortcuts';
 import vuetifyConfig from 'parflow-web/src/vuetify.config.js';
 import createStore from 'parflow-web/src/stores';
 
+if (!window.SANDTANK_SESSION_MANAGER_URL) {
+  window.SANDTANK_SESSION_MANAGER_URL = '/paraview/';
+}
+
 // ----------------------------------------------------------------------------
 
 Vue.config.productionTip = false;

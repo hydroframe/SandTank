@@ -6,4 +6,5 @@ module.exports = {
     // Add project name as alias
     config.resolve.alias.set('parflow-web', __dirname);
   },
+  publicPath: './',
 };

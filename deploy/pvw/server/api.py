@@ -12,11 +12,31 @@ from vtkmodules.vtkCommonDataModel import vtkImageData
 # import Twisted reactor for later callback
 from twisted.internet import reactor
 
-
 if sys.version_info >= (2,7):
     buffer = memoryview
 else:
     buffer = buffer
+
+# =============================================================================
+# Helper method
+# =============================================================================
+
+def updateFileSecurity(directoryPath):
+    try:
+        # Need to make sure that the non-priviledge user on host is 4444:4444
+        uid = 4444
+        gid = 4444
+
+        for root, dirs, files in os.walk(directoryPath):
+            for f in dirs:
+                os.chown(os.path.join(root, f), uid, gid)
+            for f in files:
+                os.chown(os.path.join(root, f), uid, gid)
+    except Exception as e:
+        print(str(e))
+        print("updateFileSecurity failed for %s" % directoryPath)
+
+
 
 # =============================================================================
 # SandTankEngine protocol
@@ -57,6 +77,8 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.lastProcessedTimestep = -1
         self.lastEcoSLIMTimestep = -1
 
+        updateFileSecurity(self.workdir)
+
 
     # -------------------------------------------------------------------------
 
@@ -95,6 +117,8 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                 action = 'Extraction' if value < 0 else 'Injection'
                 f.write('set well_%s_action     %s\n' % (key, action))
                 f.write('set well_%s_value      %s\n' % (key, abs(value)))
+
+        updateFileSecurity(self.workdir)
 
 
     # -------------------------------------------------------------------------
