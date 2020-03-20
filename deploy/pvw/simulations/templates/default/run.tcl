@@ -217,16 +217,16 @@ pfset Geom.domain.Porosity.Type           Constant
 pfset Geom.domain.Porosity.Value          0.4
 
 pfset Geom.s1.Porosity.Type               Constant
-pfset Geom.s1.Porosity.Value              0.3
+pfset Geom.s1.Porosity.Value              0.4
 
 pfset Geom.s2.Porosity.Type               Constant
-pfset Geom.s2.Porosity.Value              0.3
+pfset Geom.s2.Porosity.Value              0.25
 
 pfset Geom.s3.Porosity.Type               Constant
 pfset Geom.s3.Porosity.Value              0.3
 
 pfset Geom.s4.Porosity.Type               Constant
-pfset Geom.s4.Porosity.Value              0.3
+pfset Geom.s4.Porosity.Value              0.35
 
 # -----------------------------------------------------------------------------
 # Domain
