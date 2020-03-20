@@ -1,7 +1,7 @@
 <v-card>
   <v-card-title>
     <a href="https://www.hydroframe.org/">HydroFrame</a>
-    <div class="pl-2">Sand Tank outreach tool</div>
+    <div class="pl-2">Sand Tank Educational Model</div>
     <v-spacer />
     <v-btn icon v-on:click="$emit('close')">
       <v-icon v-text="`$close`" />
@@ -10,10 +10,29 @@
   <hr />
   <v-card-text>
     <p class="body-1 pt-4">
+      The ParFlow Sandtank model is a free tool that allows users to
+      interactively simulate and visualize groundwater movement through a
+      virtual slice of the subsurface. The  app is designed to teach hydrogeology
+      concepts. Users can adjust groundwater levels, change subsurface
+      properties, pump groundwater, add pollutants and watch the system respond
+      in real time.
+    </p>
+    <p class="body-1 pt-4">
+      The ParFlow SandTank can be used as a stand-alone tool or as a supplement
+      to existing lessons that use physical sand tank models. Refer to the
+      <a href="https://www.hydroframe.org/sand-tank-user-manual">User Manual</a>
+      and <a href="https://www.hydroframe.org/lesson-plans">Lesson Plan Video</a>
+      For more information and check out the
+       <a href="https://www.hydroframe.org/groundwater-education-tools">HydroFrame Education</a>
+       page for additional groundwater education resources.
+    </p>
+    <p class="body-1 pt-4">
       <a href="https://github.com/hydroframe/SandTank">ParFlow Sandtank</a>
-      is an open-source web application developed by
+      is an open-source web application designed by the
+      <a href="https://www.hydroframe.org/"">HydroFrame Team</a> and developed by
       <a href="https://www.kitware.com/">Kitware</a>
-      for educational purpose. It is using
+      to support increase accessibility and usability of hydrology tools for
+      research and teaching. It uses
       <a href="https://parflow.org/">ParFlow</a> for its simulation backend and
       <a href="https://www.paraview.org">ParaView</a> for the data loading and
       processing. The communication infrastructure rely on the

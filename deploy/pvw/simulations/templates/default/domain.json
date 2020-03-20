@@ -1,5 +1,5 @@
 {
-  "help": "https://github.com/hydroframe/SandTank",
+  "help": "https://www.hydroframe.org/sand-tank-user-manual",
   "dimensions": [100, 1, 50],
   "bounds": [0.5, 99.5, 0.25, 0.75, 0.5, 49.5],
   "wells": [
