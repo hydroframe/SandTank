@@ -15,7 +15,7 @@ export default {
     },
     delta: {
       type: Number,
-      default: 5,
+      default: 1,
     },
     value: {
       type: Number,
