@@ -20,7 +20,7 @@
   },
   "setup": {
     "simulationLength": 10,
-    "maxHeight": 60,
+    "maxHeight": 50,
     "hLeft": 30,
     "hRight": 30,
     "indicators": [
