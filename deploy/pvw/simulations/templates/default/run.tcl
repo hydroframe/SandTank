@@ -146,16 +146,16 @@ pfset GeomInput.s4.Value                  4
 pfset Geom.Perm.Names                     "s1 s2 s3 s4"
 
 pfset Geom.s1.Perm.Type                   Constant
-pfset Geom.s1.Perm.Value                  1.0
+pfset Geom.s1.Perm.Value                  $k_1
 
 pfset Geom.s2.Perm.Type                   Constant
-pfset Geom.s2.Perm.Value                  0.2
+pfset Geom.s2.Perm.Value                  $k_2
 
 pfset Geom.s3.Perm.Type                   Constant
-pfset Geom.s3.Perm.Value                  0.6
+pfset Geom.s3.Perm.Value                  $k_3
 
 pfset Geom.s4.Perm.Type                   Constant
-pfset Geom.s4.Perm.Value                  0.05
+pfset Geom.s4.Perm.Value                  $k_4
 
 pfset Perm.TensorType                     TensorByGeom
 pfset Geom.Perm.TensorByGeom.Names        "domain"
@@ -217,16 +217,16 @@ pfset Geom.domain.Porosity.Type           Constant
 pfset Geom.domain.Porosity.Value          0.4
 
 pfset Geom.s1.Porosity.Type               Constant
-pfset Geom.s1.Porosity.Value              $k_1
+pfset Geom.s1.Porosity.Value              0.3
 
 pfset Geom.s2.Porosity.Type               Constant
-pfset Geom.s2.Porosity.Value              $k_2
+pfset Geom.s2.Porosity.Value              0.3
 
 pfset Geom.s3.Porosity.Type               Constant
-pfset Geom.s3.Porosity.Value              $k_3
+pfset Geom.s3.Porosity.Value              0.3
 
 pfset Geom.s4.Porosity.Type               Constant
-pfset Geom.s4.Porosity.Value              $k_4
+pfset Geom.s4.Porosity.Value              0.3
 
 # -----------------------------------------------------------------------------
 # Domain
@@ -712,9 +712,9 @@ puts $fileID "1             ! icwrite frequency,controls VTK, binary grid based 
 puts $fileID "1.0d0         ! velocity multiplier 1.0=forward, -1.0=backward"
 puts $fileID "True          ! CLM Evap Trans"
 puts $fileID "False         ! CLM Variables Read logical"
-puts $fileID "10            ! number of particles per Evap Trans IC"
+puts $fileID "50            ! number of particles per Evap Trans IC"
 puts $fileID "1000.0        ! density H2O"
-puts $fileID "0.0001        ! Molecular Diffusivity"
+puts $fileID "0.00000001        ! Molecular Diffusivity"
 puts $fileID "0.25d0        ! fraction of Dx/Vx for numerical stability"
 puts $fileID "0             ! Number of indicators provided. If this value is great than 0 an indicator file must be included"
 puts $fileID "\"\"            ! Name of the indictor file to use set to '' if not using an indicator file"
