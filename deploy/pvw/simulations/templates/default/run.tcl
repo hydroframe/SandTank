@@ -460,61 +460,61 @@ for { set kk 0 } { $kk < 50 } { incr kk } {
           puts $fileId [expr (-1.0 * $well_2_value)]
         }
       }  elseif { ($kk == 15) && ($ii == 11) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_1_action == "Injection" } {
           puts $fileId $well_1_value
         } else {
           puts $fileId [expr (-1.0 * $well_1_value)]
         }
       } elseif { ($kk == 15) && ($ii == 26) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_3_action == "Injection" } {
           puts $fileId $well_3_value
         } else {
           puts $fileId [expr (-1.0 * $well_3_value)]
         }
       } elseif { ($kk == 27) && ($ii == 29) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_4_action == "Injection" } {
           puts $fileId $well_4_value
         } else {
           puts $fileId [expr (-1.0 * $well_4_value)]
         }
       } elseif { ($kk == 1) && ($ii == 48) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_5_action == "Injection" } {
           puts $fileId $well_5_value
         } else {
           puts $fileId [expr (-1.0 * $well_5_value)]
         }
       } elseif { ($kk == 13) && ($ii == 51) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_6_action == "Injection" } {
           puts $fileId $well_6_value
         } else {
           puts $fileId [expr (-1.0 * $well_6_value)]
         }
       } elseif { ($kk == 15) && ($ii == 54) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_7_action == "Injection" } {
           puts $fileId $well_7_value
         } else {
           puts $fileId [expr (-1.0 * $well_7_value)]
         }
       } elseif { ($kk == 1) && ($ii == 57) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_8_action == "Injection" } {
           puts $fileId $well_8_value
         } else {
           puts $fileId [expr (-1.0 * $well_8_value)]
         }
       } elseif { ($kk == 1) && ($ii == 82) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_9_action == "Injection" } {
           puts $fileId $well_9_value
         } else {
           puts $fileId [expr (-1.0 * $well_9_value)]
         }
       } elseif { ($kk == 14) && ($ii == 87) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_10_action == "Injection" } {
           puts $fileId $well_10_value
         } else {
           puts $fileId [expr (-1.0 * $well_10_value)]
         }
       } elseif { ($kk == 26) && ($ii == 92) } {
-        if { $well_2_action == "Injection" } {
+        if { $well_11_action == "Injection" } {
           puts $fileId $well_11_value
         } else {
           puts $fileId [expr (-1.0 * $well_11_value)]
