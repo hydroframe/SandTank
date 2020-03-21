@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      opacityPollutant: 1,
+      opacityPollutant: 0.6,
       opacityStillWater: 1,
       opacitySoil: 1,
       opacityWater: 0.5,

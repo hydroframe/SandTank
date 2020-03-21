@@ -1,3 +1,11 @@
+function addAlphaOffset(alpha, alphaOffset) {
+  if (alpha > 0) {
+    const v = alpha + alphaOffset;
+    return v > 255 ? 255 : v;
+  }
+  return 0;
+}
+
 export default {
   name: 'PollutantLayer',
   props: {
@@ -66,6 +74,10 @@ export default {
         height * this.scale
       );
 
+      const relativeOpacity = this.opacity < 0.5 ? this.opacity * 2 : 1;
+      const alphaOffset =
+        this.opacity > 0.5 ? (this.opacity - 0.5) * 2 * 255 : 0;
+
       for (let j = 0; j < height; j++) {
         for (let i = 0; i < width; i++) {
           const alpha =
@@ -75,7 +87,8 @@ export default {
           for (let dy = 0; dy < this.scale; dy++) {
             for (let dx = 0; dx < this.scale; dx++) {
               const dOffset = 4 * (dx + dy * width * this.scale);
-              bgImage.data[offset + dOffset + 3] = alpha * this.opacity;
+              bgImage.data[offset + dOffset + 3] =
+                addAlphaOffset(alpha, alphaOffset) * relativeOpacity;
             }
           }
         }
