@@ -4,7 +4,7 @@ This application aims to provide a standalone solution for simulating a specific
 
 ## Build the web client
 
-```
+```sh
 cd ./client
 npm install
 npm run build
@@ -16,14 +16,14 @@ Once the client as been built, the only required part for running the service is
 
 The following set of commands can be used to capture the application.
 
-```
+```sh
 cd ./deploy
 tar cvfz sandtank-app.tgz ./pvw
 ```
 
 ## Run Web application with docker inside repository
 
-```
+```sh
 cd ./
 
 export APP=$PWD/deploy/pvw
@@ -41,10 +41,9 @@ Open your browser to `http://localhost:9000/`
 
 Use `Ctrl+C` to stop the container.
 
-
 ## Run Web service using the application bundle
 
-```
+```sh
 mkdir -p /opt/sandtank
 cd /opt/sandtank
 tar xvfz /.../sandtank-app.tgz
@@ -61,4 +60,3 @@ docker run --rm                 \
 ```
 
 Open your browser to `http://localhost:9100/`
-
