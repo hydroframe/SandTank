@@ -61,6 +61,12 @@ export default {
       concentrationRange: 'SANDTANK_CONCENTRATION_RANGE',
       concentration: 'SANDTANK_CONCENTRATION_ARRAY',
     }),
+    wellIncrement() {
+      return (
+        (this.domain && this.domain.setup && this.domain.setup.wellIncrement) ||
+        1
+      );
+    },
     size() {
       if (!this.domain) {
         return [10, 10];

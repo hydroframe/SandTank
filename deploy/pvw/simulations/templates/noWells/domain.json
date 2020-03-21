@@ -6,6 +6,7 @@
     "refreshRate": 0.1
   },
   "setup": {
+    "wellIncrement": 1,
     "simulationLength": 50,
     "maxHeight": 60,
     "hLeft": 30,
