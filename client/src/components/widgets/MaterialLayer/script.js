@@ -84,7 +84,7 @@ export default {
       const [width, height] = this.size;
       const ctx = this.$el.getContext('2d');
 
-      // Fill canas with color
+      // Fill canvas with color
       if (this.color) {
         ctx.fillStyle = this.color;
         ctx.fillRect(0, 0, width * this.scale, height * this.scale);
@@ -154,5 +154,9 @@ export default {
   },
   mounted() {
     this.draw();
+    const drawClosure = () => this.draw();
+    Object.values(TEXTURES).forEach((img) => {
+      img.onload = drawClosure;
+    });
   },
 };
