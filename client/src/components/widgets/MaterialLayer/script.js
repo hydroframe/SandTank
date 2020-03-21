@@ -93,6 +93,12 @@ export default {
       // Fill canvas with texture
       if (this.texture) {
         const texture = TEXTURES[this.texture];
+        if (!texture.complete && this.listeningOn !== this.texture) {
+          this.listeningOn = this.texture;
+          texture.addEventListener('load', () => {
+            this.$nextTick(this.draw);
+          });
+        }
         const textureWidth = texture.width;
         const textureHeight = texture.height;
 
@@ -154,9 +160,5 @@ export default {
   },
   mounted() {
     this.draw();
-    const drawClosure = () => this.draw();
-    Object.values(TEXTURES).forEach((img) => {
-      img.onload = drawClosure;
-    });
   },
 };
