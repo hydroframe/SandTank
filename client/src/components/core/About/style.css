@@ -11,3 +11,14 @@
 .list {
   margin-left: 20px;
 }
+
+.logoLine {
+  background: white;
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
+.logo {
+  height: 35px;
+  margin: 10px 20px;
+}
