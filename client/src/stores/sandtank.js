@@ -105,9 +105,13 @@ export default {
     },
     SANDTANK_CONCENTRATION_UPDATE({ state }, { array, range }) {
       state.concentrationDataRange = range;
-      blobToArrayBuffer(array).then((arrayBuffer) => {
-        state.concentrationArray = new Float32Array(arrayBuffer);
-      });
+      if (array) {
+        blobToArrayBuffer(array).then((arrayBuffer) => {
+          state.concentrationArray = new Float32Array(arrayBuffer);
+        });
+      } else {
+        state.concentrationArray = null;
+      }
     },
     SANDTANK_PRESSURES_UPDATE({ state }, pressures) {
       state.pressures = pressures;

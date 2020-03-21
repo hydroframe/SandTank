@@ -6,6 +6,7 @@ import paraview
 from paraview import simple, servermanager
 from paraview.web import protocols as pv_protocols
 
+import vtk
 from vtkmodules.vtkCommonCore import vtkUnsignedCharArray
 from vtkmodules.vtkCommonDataModel import vtkImageData
 
@@ -23,7 +24,7 @@ else:
 
 def updateFileSecurity(directoryPath):
     try:
-        # Need to make sure that the non-priviledge user on host is 4444:4444
+        # Need to make sure that the non-privilege user on host is 4444:4444
         uid = 4444
         gid = 4444
 
@@ -80,6 +81,13 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.lastEcoSLIMTimestep = -1
 
         updateFileSecurity(self.workdir)
+
+        # Reset any concentration
+        self.publish('parflow.sandtank.concentration', {
+            'time': 0,
+            'range': [0,0],
+            'array': None,
+        })
 
 
     # -------------------------------------------------------------------------
@@ -256,7 +264,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                     saturationArray.SetValue(i, 0)
                 else:
                     saturationArray.SetValue(i, int(value * 255))
-            print('push %s' % saturationFile)
+            print('push saturation: %s' % saturationFile)
             self.publish('parflow.sandtank.saturation', {
                 'time': self.lastProcessedTimestep,
                 'array': self.addAttachment(buffer(saturationArray).tobytes())
@@ -267,19 +275,19 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
     def pushConcentration(self, ecoSlimFile):
         if os.path.exists(ecoSlimFile):
             if self.vtkReader:
-                self.vtkReader.FileNames = [ecoSlimFile]
+                self.vtkReader.SetFileName(ecoSlimFile)
             else:
-                self.vtkReader = simple.LegacyVTKReader(FileNames=[ecoSlimFile])
+                self.vtkReader = vtk.vtkDataSetReader()
+                self.vtkReader.SetFileName(ecoSlimFile)
 
-            self.vtkReader.UpdatePipeline()
-            imageData = self.vtkReader.GetClientSideObject().GetOutput()
+            self.vtkReader.Update()
+            imageData = self.vtkReader.GetOutput()
 
             if imageData:
                 array = imageData.GetCellData().GetArray('Concentration')
-                size = array.GetNumberOfTuples()
                 dataRange = array.GetRange(0)
 
-                print('push %s' % ecoSlimFile)
+                print('push concentration: %s' % ecoSlimFile)
                 self.publish('parflow.sandtank.concentration', {
                     'time': self.lastEcoSLIMTimestep,
                     'range': dataRange,
