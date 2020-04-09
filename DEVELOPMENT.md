@@ -10,11 +10,22 @@ ____
 1. [ Manage docker image as a file archive](#managearchive)
 1. [ Development setup](#devsetup)
 1. [ Templates](#templates)
-1. [ Modification Tips](#modificaton)
+1. [ Variables for Customization](#customization)
 
 ____
 <a name="sustainability"></a>
 ## 1. Sustainability Plan
+This repo is developed in collaboration between the Colorado School of Mines, University of Arizona and KitWare.
+
+### GitHub and DockerHub workflow
+
+### Documentation
+- New templates should be added to the list in the main ReadMe folder
+- Variable additions or customization options should be documented in this manual in the [ Templates](#templates) or [ Variables for Customization](#customization) sections.
+
+### Testing
+
+### Deployment
 
 ____
 <a name="builddocker"></a>
@@ -177,9 +188,9 @@ This section describes the steps for creating a new template by copying and modi
  - Check indicator values
  - Update parameter values to match your indicator file
 
-1. Edit the `Domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `Domain.json` file are outlined in the [ Modification Tips](#modificaton).
+1. Edit the `Domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `Domain.json` file are outlined in the [ Variables for Customization](#customization).
 
-1. Once the new inputs are placed in the new template directory and edits are complete, you can rebuild and test:
+1. Once the new inputs are placed in the new template directory and edits are complete, you can rebuild and test (assuming you have already followed the [ Docker Build Instructions](#builddocker) ):
 
   ```sh
   cd  ./client
@@ -206,5 +217,32 @@ This section describes the steps for creating a new template by copying and modi
 1. When you have completed your template follow the GitHub procedures in the [ Sustainability Plan](#sustainability) to submit a pull request for your new template and add  the name of your NewTemplate with a description on the main ReadMe Page.
 
 ____
-<a name="modification"></a>
-## 7. Modification Tips
+<a name="customization"></a>
+## 7. Variables for Customization
+This section summarizes the variables in the JSON file and provides pointers to other controls in the repo that can be used to customize the SandTank options and visualization.
+
+## Explanation of the variables in the JSON file
+- **Dimensions**: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio.
+- **Bounds**: lower and upper bounds in each direction by taking a ‘half-step’ in. For example if there are 100 cells in the x direction (each 1 unit in length) the x bounds would be 0.5 and 99.5. In the case of y which only has one cell, the bounds will be placed a quarter step in at 0.25 and 0.75 if dy is 1.
+- **Wells**: defines the well name, assigns a key, and specifies the location (x cell and z cell) where water is extracted or injected
+- **Refresh Rate**: This is the speed at which the parflow outputs are visualized
+- **Simulation Length**: Number of timesteps taken for each time the “Run” button is clicked
+- **Max Height**, **hLeft**, and **hRight**: The maximum height of the left and right constant head boundaries by number of cells. hLeft and hRight determine the default starting constant head boundary heights
+- **Indicators**: set keys for each index in the indicator file
+- **Pressures** (visualization extents for landfill, river, and wells): define location for pressure files to be read and the extents for the visualization of water in the wells and in potential bodies of water (landfill, lake, river)
+- **Flow and Storage Calculations** List of cellids to be used in the storage or flow calculations (the river bottom or lake bottom)
+
+## Other notes on customization
+ - The background materials and the jpegs used as textures can be altered and modified here:
+https://github.com/hydroframe/SandTank/tree/master/client/src/assets
+
+- The color of the Inject arrow for the wells can be controlled here:
+https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/Visualization/template.html#L73
+
+- The color of the pollutant inside water can be controlled here:
+https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/Visualization/template.html#L49
+
+- Options for colors that can be used can be found here: https://v15.vuetifyjs.com/en/framework/colors
+
+- The content of the About page can be changed here:
+https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/About/template.html
