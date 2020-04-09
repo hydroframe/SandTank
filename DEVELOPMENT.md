@@ -173,7 +173,7 @@ This section describes the steps for creating a new template by copying and modi
   cp -r ./default ./NewTemplate
   ```
 
-1. Replace the following files with the inputs you would like for your new template
+2. Replace the following files with the inputs you would like for your new template
   - `SandTank.pfsol`
   - `SandTank_Indicator.pfb`
   - `SandTank.vtk`
@@ -181,16 +181,16 @@ This section describes the steps for creating a new template by copying and modi
 
  *Note: The rest of the files can be given different names as long as this is reflected in the *tcl* script but the VTK file must be named `SandTank.vtk` regardless of the template that is being created.*
 
-1. Modify the `run.tcl` script for your domain. Additional changes may be needed depending on the template you are trying to build but for starters, make sure to check/update the following:
+3. Modify the `run.tcl` script for your domain. Additional changes may be needed depending on the template you are trying to build but for starters, make sure to check/update the following:
  - Check that all input files names are updated to reflect new files from the previous step
  - Update domain dimensions to match your inputs (*Note: For visualization purposes on the web it is best to stick with a total ratio of 2:1 for all templates at this point, also see the note above that for now the dx, dy and dz, should be equal*)
  - Correct well placements
  - Check indicator values
  - Update parameter values to match your indicator file
 
-1. Edit the `Domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `Domain.json` file are outlined in the [ Variables for Customization](#customization).
+4. Edit the `Domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `Domain.json` file are outlined in the [ Variables for Customization](#customization).
 
-1. Once the new inputs are placed in the new template directory and edits are complete, you can rebuild and test (assuming you have already followed the [ Docker Build Instructions](#builddocker) ):
+5. Once the new inputs are placed in the new template directory and edits are complete, you can rebuild and test (assuming you have already followed the [ Docker Build Instructions](#builddocker) ):
 
   ```sh
   cd  ./client
@@ -214,7 +214,7 @@ This section describes the steps for creating a new template by copying and modi
 
   Use `Ctrl+C` to stop the container.
 
-1. When you have completed your template follow the GitHub procedures in the [ Sustainability Plan](#sustainability) to submit a pull request for your new template and add  the name of your NewTemplate with a description on the main ReadMe Page.
+5. When you have completed your template follow the GitHub procedures in the [ Sustainability Plan](#sustainability) to submit a pull request for your new template and add  the name of your NewTemplate with a description on the main ReadMe Page.
 
 ____
 <a name="customization"></a>
