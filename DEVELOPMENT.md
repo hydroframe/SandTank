@@ -4,15 +4,21 @@ This application aims to provide a standalone solution for simulating a specific
 
 ____
 ## Table of Contents:
+1. [ Sustainability Plan](#sustainability)
 1. [ Building docker images](#builddocker)
 1. [ Publish docker images to HydroFrame](#publishdocker)
 1. [ Manage docker image as a file archive](#managearchive)
 1. [ Development setup](#devsetup)
 1. [ Templates](#templates)
+1. [ Modification Tips](#modificaton)
+
+____
+<a name="sustainability"></a>
+## 1. Sustainability Plan
 
 ____
 <a name="builddocker"></a>
-## 1. Building docker images
+## 2. Building docker images
 The following steps build the docker application. If you would like to run it you should follow the instructions to *Build the Web Client* and *Run Web Application* that are included in the main *ReadMe* after you have completed these steps.  Alternatively you can also follow the instructions for running the [ development setup ](#devsetup).
 
 ### Docker Development
@@ -44,7 +50,7 @@ cd ./docker/web
 
 ____
 <a name="publishdocker"></a>
-## 2. Publish docker images to HydroFrame
+## 3. Publish docker images to HydroFrame
 Updated sand tank versions should be published to the HydroFrame docker-hub and tagged.
 
 Before anything you need to login into docker-hub by running the following command lines:
@@ -77,7 +83,7 @@ docker push hydroframe/sandtank:web-service
 
 ____
 <a name="managearchive"></a>
-## 3. Manage docker image as a file archive
+## 4. Manage docker image as a file archive
 
 If network is not available it can be convenient to capture a local docker image so you can share it to someone else through a thumb-drive or any other media.
 
@@ -95,7 +101,7 @@ docker load < sandtank-web-service.tar.gz
 
 ____
 <a name="devsetup"></a>
-## 4. Development setup
+## 5. Development setup
 To speed up web development, we need to run 3 process independently like described below
 
 ### Web server
@@ -133,7 +139,7 @@ open http://localhost:8080/?dev
 
 ____
 <a name="templates"></a>
-## 5. Templates
+## 6. Templates
 The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. http://localhost:9000/?name=noWells
 
 The existing templates can be found at `./deploy/pvw/simulations/templates`. Each template has its own directory that must contain the following:
@@ -164,14 +170,14 @@ This section describes the steps for creating a new template by copying and modi
 
  *Note: The rest of the files can be given different names as long as this is reflected in the *tcl* script but the VTK file must be named `SandTank.vtk` regardless of the template that is being created.*
 
-1. Modify the `run.tcl` script for your domain. Additional changes may be needed depending on the template you are tyring to build but for starters, make sure to check/update the following:
+1. Modify the `run.tcl` script for your domain. Additional changes may be needed depending on the template you are trying to build but for starters, make sure to check/update the following:
  - Check that all input files names are updated to reflect new files from the previous step
  - Update domain dimensions to match your inputs (*Note: For visualization purposes on the web it is best to stick with a total ratio of 2:1 for all templates at this point, also see the note above that for now the dx, dy and dz, should be equal*)
  - Correct well placements
  - Check indicator values
  - Update parameter values to match your indicator file
 
-1. Edit the `Domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `Domain.json` file are outlined in the modification section.
+1. Edit the `Domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `Domain.json` file are outlined in the [ Modification Tips](#modificaton).
 
 1. Once the new inputs are placed in the new template directory and edits are complete, you can rebuild and test:
 
@@ -197,4 +203,8 @@ This section describes the steps for creating a new template by copying and modi
 
   Use `Ctrl+C` to stop the container.
 
-1. When you have completed your template follow the (GitHub) procedures below to submit a pull reqeuest for your new template and add  the name of your NewTemplate with a description on the main ReadMe Page. 
+1. When you have completed your template follow the GitHub procedures in the [ Sustainability Plan](#sustainability) to submit a pull request for your new template and add  the name of your NewTemplate with a description on the main ReadMe Page.
+
+____
+<a name="modification"></a>
+## 7. Modification Tips
