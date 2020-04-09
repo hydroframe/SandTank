@@ -14,7 +14,7 @@ npm run build
 
 Once the client as been built, the only required part for running the service is the content of the deploy directory which can be archived and shared for deploying such service in another location.
 
-The following set of commands can be used to capture the application.
+The following set of commands can be uÂsed to capture the application.
 
 ```sh
 cd ./deploy
@@ -60,3 +60,9 @@ docker run --rm                 \
 ```
 
 Open your browser to `http://localhost:9100/`
+
+## Templates
+The base Sandtank model will open by default with the procedures outlined above. To use a different template modify the URL to open your browser to `http://localhost:9100/?name=“TemplateName”`. The following templates are available:
+1.  **default** : This is the default sand tank model.
+2.  **hillslope**: This template incorporates topography to include two hillslopes with a river in the middle. 
+3.  **nowells**: The dafault sand tank with all wells removed. This template was only just for testing purposes.  
