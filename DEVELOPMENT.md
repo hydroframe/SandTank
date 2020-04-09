@@ -2,7 +2,16 @@
 
 This application aims to provide a standalone solution for simulating a specific Sand tank setup using ParFlow and an interactive Web UI for adjusting the various parameters that can be adjusted by the user.
 
-## Building docker images
+____
+## Table of Contents:
+1. [ Building docker images](#builddocker)
+1. [ Publish docker images to HydroFrame](#publishdocker)
+1. [ Manage docker image as a file archive](#managearchive)
+1. [ Development setup](#devsetup)
+
+____
+<a name="builddocker"></a>
+## 1. Building docker images
 
 ### Docker Development
 
@@ -31,7 +40,9 @@ cd ./docker/web
 ./build.sh
 ```
 
-## Publish docker images to hydroframe
+____
+<a name="publishdocker"></a>
+## 2. Publish docker images to HydroFrame
 
 Before anything you need to login into docker-hub by running the following command lines:
 
@@ -61,7 +72,9 @@ docker tag pvw-sandtank-runtime hydroframe/sandtank:web-service
 docker push hydroframe/sandtank:web-service
 ```
 
-## Manage docker image as a file archive
+____
+<a name="managearchive"></a>
+## 3. Manage docker image as a file archive
 
 If network is not available it can be convenient to capture a local docker image so you can share it to someone else through a thumb-drive or any other media.
 
@@ -77,8 +90,9 @@ Then once the user want to import that image to its local running docker, the fo
 docker load < sandtank-web-service.tar.gz
 ```
 
-## Development setup
-
+____
+<a name="devsetup"></a>
+## 4. Development setup
 To speed up web development, we need to run 3 process independently like described below
 
 ### Web server
