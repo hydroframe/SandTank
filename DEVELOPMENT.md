@@ -209,7 +209,7 @@ This section describes the steps for creating a new template by copying and modi
     -v "${APP}:/pvw"                    \
     -it hydroframe/sandtank:web-service
 
-    ```
+  ```
   Open your browser to `http://localhost:9000/?name=“NewTemplate”`
 
   Use `Ctrl+C` to stop the container.
