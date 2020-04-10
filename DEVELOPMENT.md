@@ -29,12 +29,13 @@ ____
 <a name="docker"></a>
 ## 2. Docker Runtime
 
-ParaFlow Sandtank rely on a docker image to serve the web application along with the infrastructure to run the simulation codes and visualization server. This allow a streamline execution and deployment of such the application.
+The ParaFlow Sandtank relies on a docker image to serve the web application along with the infrastructure to run the simulation codes and visualization server. This provides a streamlined execution and deployment of the application.
 
-This section below mainly focus on how a maintainer can rebuild each component that compose that end-product docker image.
-For the following set of users they can safely skip that section and simply use the public image available under the name `hydroframe/sandtank:web-service` on DockerHub.
+The sections below mainly focus on how a maintainer can rebuild each component that compose that end-product docker image.
 
-Users that can safely skip the Docker section:
+The following set of users can safely skip this section and simply use the publicly available image under the name `hydroframe/sandtank:web-service` on DockerHub.
+
+Users that can safely skip the Docker Build section:
 - User that want to create/edit a *template*
 - User that want to develop the *Web application (client)*
 - User that want to develop the *ParaViewWeb server side API (server)*
@@ -43,9 +44,9 @@ Users that can safely skip the Docker section:
 
 The following steps build the docker application. If you would like to run it you should follow the instructions to *Build the Web Client* and *Run Web Application* that are included in the main *README* after you have completed these steps.  Alternatively you can also follow the instructions for running the [ development setup ](#devsetup).
 
-In general those steps are not needed for the users as the end-product image is publicly  Therefore if your goal is just to develop new *templates* or even make some *Web tweaks* you can achieve them without requireing the build steps below. 
+In general the steps below are not needed for the users as the end-product image is publicly available. Therefore if your goal is just to develop new *templates* or even make some *Web tweaks* you can achieve them without the build steps below.
 
-Those steps are mainly given as reference when a new version of ParFlow or any other code is required after editing the DockerFile definitions.
+These steps are mainly given as reference for when a new version of ParFlow or any other code is required after editing the DockerFile definitions.
 
 #### Docker Development
 
@@ -58,7 +59,7 @@ cd ./docker/development
 
 #### Docker Runtime
 
-This will create a local docker image named `sandtank-runtime` which only copy the end products from `sandtank-dev` into a more light-weight image meant to just run the application.
+This will create a local docker image named `sandtank-runtime` which will only copy the end products from `sandtank-dev` into a more light-weight image meant to just run the application.
 
 ```sh
 cd ./docker/runtime
@@ -67,7 +68,7 @@ cd ./docker/runtime
 
 #### Docker Web
 
-This will create a local docker image named `pvw-sandtank-runtime` that extend `sandtank-runtime` with the ParaViewWeb infrastructure for managing web server and process manager.
+This will create a local docker image named `pvw-sandtank-runtime` that extends `sandtank-runtime` with the ParaViewWeb infrastructure for managing web server and process manager.
 
 ```sh
 cd ./docker/web
@@ -126,7 +127,7 @@ ____
 ## 3. Development setup
 This section provide some background on how to isolate each part of the Web development and enable fast turn around in the application development and validation for either the client or server of the web application.
 
-Therefore to achieve full control on the *client side*, *server side* and *simulation code*, we need to run 3 process independently like described below
+To achieve full control on the *client side*, *server side* and *simulation code*, we need to run 3 process independently as described below
 
 ### Web server
 
@@ -139,11 +140,11 @@ npm run serve
 
 ### ParaView process
 
-That following command will start the ParaViewWeb process which aims to drive the visualization and configure the simulation run. This is typically executing the python code inside `./server/*.py` while storing the simulation results inside `$PWD/simulations/runs/devrun/*`. Each time you are editing a Python file, you should restart the process and reload your web-page.
+That following command will start the ParaViewWeb process which drives the visualization and configures the simulation run. This is typically executing the python code inside `./server/*.py` while storing the simulation results inside `$PWD/simulations/runs/devrun/*`. Each time you are editing a Python file, you should restart the process and reload your web-page.
 
-Using such path could also be convinient when developing a *template* as the outputs of the run will always be in the same directory which could then be easily monitored.
+This workflow could also be convenient when developing a *template* as the outputs of the run will always be in the same directory which could then be easily monitored.
 
-In that part we assume to have a downloaded version of ParaView on which we just use its *pvpython* executable for running our ParaViewWeb application.
+In that part we assume you have a downloaded version of ParaView on which we just use its *pvpython* executable for running our ParaViewWeb application.
 
 ```sh
 cd deploy/pvw
@@ -152,7 +153,7 @@ cd deploy/pvw
 
 ### Launcher for Parflow
 
-That following command will start the docker image which will provide the ParFlow execution infrastructure.
+The following command will start the docker image which will provide the ParFlow execution infrastructure.
 To debug *templates* and *simulation executions*, you should look into the `$PWD/deploy/pvw/launcher/logs/*` directories for the execution logs.
 
 ```sh
@@ -174,7 +175,7 @@ The default template is the Sandtank model; however, the inputs listed below can
 The existing templates can be found at `./deploy/pvw/simulations/templates`. Each template has its own directory that must contain the following:
 - A `run.tcl` script for ParFlow to use to read the simulation
 - An indicator ParFlow binary file named `SandTank_Indicator.pfb`
-- If a pf solid file is used in the `run.tcl` script, its vtk version should also be provided and named `SandTank.vtk`. 
+- If a pf solid file is used in the `run.tcl` script, its vtk version should also be provided and named `SandTank.vtk`.
 - A `domain.json` file to provide hints for the Web application by exposing in a more convinient manner what has been set inside the `run.tcl` script.
 - An initial pressure ParFlow binary file named `InitialPress.pfb`
 
@@ -200,7 +201,7 @@ This section describes the steps for creating a new template by copying and modi
 
  *Note: The rest of the files can be given different names as long as this is reflected in the *tcl* script but the VTK file must be named `SandTank.vtk` regardless of the template that is being created.*
 
-3. Modify the `run.tcl` script for your domain. Additional changes may be needed depending on the template you are trying to build but for starters, make sure to check/update the following:
+3. Modify the `run.tcl` script for your domain. Additional changes may be needed depending on the template you are trying to build, but for starters, make sure to check/update the following:
  - Check that all input files names are updated to reflect new files from the previous step
  - Update domain dimensions to match your inputs (*Note: For visualization purposes on the web it is best to stick with a total ratio of 2:1 for all templates at this point, also see the note above that for now the dx, dy and dz, should be equal*)
  - Correct well placements
@@ -209,16 +210,14 @@ This section describes the steps for creating a new template by copying and modi
 
 4. Edit the `domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `domain.json` file are outlined in the [ Variables for Customization](#customization).
 
-5. Once the new inputs are placed in the new template directory and edits are complete, you can simply re-run the docker image:
-
-But for the very first time, you will need to build the web-client.
+5. Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image.   However, the firs time you do this you will need to build the web-client.
 
   ```sh
   cd  ./client
   npm install
   npm run build
   ```
-  
+
 Then every other time you will be able to run the following.
 
   ```
