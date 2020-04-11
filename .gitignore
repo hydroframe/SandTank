@@ -1,4 +1,4 @@
 .DS_Store
 sample/work
-deploy/pvw/www
 *.pyc
+*.map
