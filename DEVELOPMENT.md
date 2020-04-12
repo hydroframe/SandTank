@@ -210,15 +210,7 @@ This section describes the steps for creating a new template by copying and modi
 
 4. Edit the `domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `domain.json` file are outlined in the [ Variables for Customization](#customization).
 
-5. Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image.   However, the firs time you do this you will need to build the web-client.
-
-  ```sh
-  cd  ./client
-  npm install
-  npm run build
-  ```
-
-Then every other time you will be able to run the following.
+5. Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image. 
 
   ```
   cd ./
