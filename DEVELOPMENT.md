@@ -33,7 +33,7 @@ The ParaFlow Sandtank relies on a docker image to serve the web application alon
 
 The sections below mainly focus on how a maintainer can rebuild each component that compose that end-product docker image.
 
-The following set of users can safely skip this section and simply use the publicly available image under the name `hydroframe/sandtank:web-service` on DockerHub.
+The following set of users can safely skip this section and simply use the publicly available image under the name `hydroframe/sandtank:web-service` on DockerHub. The workflow for this level of development is provided in the template section.
 
 Users that can safely skip the Docker Build section:
 - User that want to create/edit a *template*
@@ -184,7 +184,7 @@ The existing templates can be found at `./deploy/pvw/simulations/templates`. Eac
 **Note**: when creating the necessary inputs for a template, the dx, dy, dx ratio must be 1 to 1 to 1 in order for the inputs to be properly visualized in the web application.
 
 ## Steps for creating a new template
-This section describes the steps for creating a new template by copying and modifying an existing template. In the new template directory you will need to replace the model input files and make the necessary edits to the `run.tcl` script and `domain.json` file. Refer to the list in the previous sections for the inputs you will need before you get started.
+This section describes the steps for creating a new template by copying and modifying an existing template. In the new template directory you will need to replace the model input files and make the necessary edits to the `run.tcl` script and `domain.json` file. Refer to the list in the previous sections for the inputs you will need before you get started. Note that for this workflow you do not need to build the docker you can simply, clone the repo modify the template and launch the docker following the instructions below.
 
 
 1. Create your new template directory
@@ -210,7 +210,7 @@ This section describes the steps for creating a new template by copying and modi
 
 4. Edit the `domain.json` file so that it matches the new `run.tcl` script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the `domain.json` file are outlined in the [ Variables for Customization](#customization).
 
-5. Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image. 
+5. Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image.
 
   ```
   cd ./
