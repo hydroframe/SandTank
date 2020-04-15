@@ -1,0 +1,27 @@
+{
+  "name": "sandtank",
+  "version": "0.1.0",
+  "description": "Interactively simulate and visualize groundwater movement",
+  "dependencies": {
+    "commitizen": "^4.0.4"
+  },
+  "devDependencies": {
+    "kw-doc": "^1.3.0"
+  },
+  "scripts": {
+    "commit": "git cz",
+    "doc": "kw-doc -c ./documentation/config.js",
+    "doc:publish": "kw-doc -c ./documentation/config.js -mp",
+    "doc:www": "kw-doc -c ./documentation/config.js -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hydroframe/SandTank.git"
+  },
+  "author": "HydroFrame",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/hydroframe/SandTank/issues"
+  },
+  "homepage": "https://github.com/hydroframe/SandTank#readme"
+}

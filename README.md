@@ -2,6 +2,8 @@
 
 This application aims to provide a standalone solution for simulating a specific Sand tank setup using ParFlow and an interactive Web UI for adjusting the various parameters that can be adjusted by the user.
 
+See the [full documentation here](https://hydroframe.github.io/SandTank/).
+
 ## Build the web client
 
 ```sh
@@ -31,7 +33,7 @@ export HOST=localhost:9000
 
 docker run --rm                   \
   -e PROTOCOL="ws"                 \
-  -p 0.0.0.0:9000:80                \
+  -p 9000:80                        \
   -e SERVER_NAME="${HOST}"           \
   -v "${APP}:/pvw"                    \
   -it hydroframe/sandtank:web-service
@@ -53,7 +55,7 @@ export HOST=localhost:9100
 
 docker run --rm                 \
   -e PROTOCOL="ws"               \
-  -p 0.0.0.0:9100:80              \
+  -p 9100:80                      \
   -e SERVER_NAME="${HOST}"         \
   -v "${APP}:/pvw"                  \
   -d hydroframe/sandtank:web-service
