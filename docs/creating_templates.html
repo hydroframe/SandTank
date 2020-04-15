@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>Creating Templates | SandTank</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://hydroframe.github.io/SandTank/docs/creating_templates.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://hydroframe.github.io/SandTank/docs/creating_templates.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/SandTank/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/SandTank/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/SandTank/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/SandTank/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/SandTank/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/SandTank/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/SandTank/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/SandTank/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/SandTank/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/SandTank/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/SandTank/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/SandTank/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/SandTank/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/SandTank/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/SandTank/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/SandTank/atom.xml" title="SandTank">
+  <!-- Open Graph -->
+  <meta name="description" content="The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. h">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Creating Templates">
+<meta property="og:url" content="https://hydroframe.github.io/SandTank/docs/creating_templates.html">
+<meta property="og:site_name" content="SandTank">
+<meta property="og:description" content="The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. h">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-04-15T20:04:50.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Creating Templates">
+<meta name="twitter:description" content="The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. h">
+  <!-- Google Analytics -->
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/SandTank/" id="logo">SandTank</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/SandTank/docs/" class="main-nav-link">Documentation</a><a href="https://pvw.kitware.com/sandtank/" class="main-nav-link">Application</a><a href="/SandTank/gallery/" class="main-nav-link">Gallery</a><a href="/SandTank/about/" class="main-nav-link">About</a>
+      <a href="https://github.com/hydroframe/SandTank" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Creating Templates</h1>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p>The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. <a href="http://localhost:9000/?name=noWells" target="_blank" rel="noopener">http://localhost:9000/?name=noWells</a></p>
+<p>The existing templates can be found at <code>./deploy/pvw/simulations/templates</code>. Each template has its own directory that must contain the following:</p>
+<ul>
+<li>A <code>run.tcl</code> script for ParFlow to use to read the simulation</li>
+<li>An indicator ParFlow binary file named <code>SandTank_Indicator.pfb</code></li>
+<li>If a pf solid file is used in the <code>run.tcl</code> script, its vtk version should also be provided and named <code>SandTank.vtk</code>.</li>
+<li>A <code>domain.json</code> file to provide hints for the Web application by exposing in a more convinient manner what has been set inside the <code>run.tcl</code> script.</li>
+<li>An initial pressure ParFlow binary file named <code>InitialPress.pfb</code></li>
+</ul>
+<p><strong>Caution:</strong> Regardless of the template being used the application is looking for specific file name within the template directory. Make sure you follow the naming convention.</p>
+<p><strong>Note</strong>: when creating the necessary inputs for a template, the dx, dy, dx ratio must be 1 to 1 to 1 in order for the inputs to be properly visualized in the web application.</p>
+<h2 id="Steps-for-creating-a-new-template" class="article-heading"><a href="#Steps-for-creating-a-new-template" class="headerlink" title="Steps for creating a new template"></a>Steps for creating a new template<a class="article-anchor" href="#Steps-for-creating-a-new-template" aria-hidden="true"></a></h2><p>This section describes the steps for creating a new template by copying and modifying an existing template. In the new template directory you will need to replace the model input files and make the necessary edits to the <code>run.tcl</code> script and <code>domain.json</code> file. Refer to the list in the previous sections for the inputs you will need before you get started. Note that for this workflow you do not need to build the docker you can simply, clone the repo modify the template and launch the docker following the instructions below.</p>
+<ol>
+<li><p>Create your new template directory</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>  ./deploy/pvw/simulations/templates/</span><br><span class="line">cp -r ./default ./NewTemplate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Replace the following files with the inputs you would like for your new template</p>
+<ul>
+<li><code>SandTank.pfsol</code></li>
+<li><code>SandTank_Indicator.pfb</code></li>
+<li><code>SandTank.vtk</code></li>
+<li><code>InitialPress.pfb</code></li>
+</ul>
+<p><em>Note: The rest of the files can be given different names as long as this is reflected in the </em>tcl<em> script but the VTK file must be named <code>SandTank.vtk</code> regardless of the template that is being created.</em></p>
+</li>
+<li><p>Modify the <code>run.tcl</code> script for your domain. Additional changes may be needed depending on the template you are trying to build, but for starters, make sure to check/update the following:</p>
+<ul>
+<li>Check that all input files names are updated to reflect new files from the previous step</li>
+<li>Update domain dimensions to match your inputs (<em>Note: For visualization purposes on the web it is best to stick with a total ratio of 2:1 for all templates at this point, also see the note above that for now the dx, dy and dz, should be equal</em>)</li>
+<li>Correct well placements</li>
+<li>Check indicator values</li>
+<li>Update parameter values to match your indicator file</li>
+</ul>
+</li>
+<li><p>Edit the <code>domain.json</code> file so that it matches the new <code>run.tcl</code> script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the <code>domain.json</code> file are outlined in the <a href="customization.html"> Variables for Customization</a>.</p>
+</li>
+<li><p>Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd ./</span><br><span class="line"></span><br><span class="line">export APP=$PWD/deploy/pvw</span><br><span class="line">export HOST=localhost:9000</span><br><span class="line"></span><br><span class="line">docker run --rm                   \</span><br><span class="line">  -e PROTOCOL=&quot;ws&quot;                 \</span><br><span class="line">  -p 0.0.0.0:9000:80                \</span><br><span class="line">  -e SERVER_NAME=&quot;$&#123;HOST&#125;&quot;           \</span><br><span class="line">  -v &quot;$&#123;APP&#125;:/pvw&quot;                    \</span><br><span class="line">  -it hydroframe/sandtank:web-service</span><br></pre></td></tr></table></figure>
+<p>Open your browser to <code>http://localhost:9000/?name=“NewTemplate”</code></p>
+<p>Use <code>Ctrl+C</code> to stop the container.</p>
+</li>
+<li><p>When you have completed your template follow the GitHub procedures in the <a href="sustainability.html"> Sustainability Plan</a> to submit a pull request for your new template and add  the name of your NewTemplate with a description on the main ReadMe Page.</p>
+</li>
+</ol>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2020-04-15T20:04:50.403Z" itemprop="dateModified">Last updated: 2020-04-15</time>
+                <a href="current_templates.html" class="article-footer-prev" title="Current"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="sustainability.html" class="article-footer-next" title="Sustainability"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps-for-creating-a-new-template"><span class="toc-text">Steps for creating a new template</span></a></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Deployment</strong><a href="docker_runtime.html" class="sidebar-link">Runtime</a><a href="development_setup.html" class="sidebar-link">Setup</a><strong class="sidebar-title">Templates</strong><a href="current_templates.html" class="sidebar-link">Current</a><a href="creating_templates.html" class="sidebar-link current">Create</a><strong class="sidebar-title">Miscellaneous</strong><a href="sustainability.html" class="sidebar-link">Sustainability</a><a href="customization.html" class="sidebar-link">Customization</a><a href="troubleshooting.html" class="sidebar-link">Troubleshooting</a><a href="contributing.html" class="sidebar-link">Contributing</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://www.hydroframe.org" target="_blank">HydroFrame</a>
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/hydroframe/SandTank" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/SandTank/docs/" class="mobile-nav-link">Documentation</a><a href="https://pvw.kitware.com/sandtank/" class="mobile-nav-link">Application</a><a href="/SandTank/gallery/" class="mobile-nav-link">Gallery</a><a href="/SandTank/about/" class="mobile-nav-link">About</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/hydroframe/SandTank" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Deployment</strong><a href="docker_runtime.html" class="mobile-nav-link">Runtime</a><a href="development_setup.html" class="mobile-nav-link">Setup</a><strong class="mobile-nav-title">Templates</strong><a href="current_templates.html" class="mobile-nav-link">Current</a><a href="creating_templates.html" class="mobile-nav-link current">Create</a><strong class="mobile-nav-title">Miscellaneous</strong><a href="sustainability.html" class="mobile-nav-link">Sustainability</a><a href="customization.html" class="mobile-nav-link">Customization</a><a href="troubleshooting.html" class="mobile-nav-link">Troubleshooting</a><a href="contributing.html" class="mobile-nav-link">Contributing</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/creating_templates.html">
+      
+        <option value="en" selected>English</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/SandTank/js/lang_select.js"></script>
+<script src="/SandTank/js/toc.js"></script>
+<script src="/SandTank/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+
+</body>
+</html>
