@@ -2,114 +2,107 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/current_templates.html</loc>
-    
-    <lastmod>2020-04-15T20:10:12.126Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://hydroframe.github.io/SandTank/docs/sustainability.html</loc>
     
-    <lastmod>2020-04-15T20:04:50.407Z</lastmod>
+    <lastmod>2020-04-16T15:39:43.834Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/creating_templates.html</loc>
+    <loc>https://hydroframe.github.io/SandTank/docs/hydro_templates.html</loc>
     
-    <lastmod>2020-04-15T20:04:50.403Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/docker_runtime.html</loc>
-    
-    <lastmod>2020-04-15T20:03:07.902Z</lastmod>
+    <lastmod>2020-04-16T15:37:31.015Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/customization.html</loc>
+    <loc>https://hydroframe.github.io/SandTank/docs/docker.html</loc>
     
-    <lastmod>2020-04-15T19:43:46.743Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/development_setup.html</loc>
-    
-    <lastmod>2020-04-15T19:40:40.099Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/json_variables.html</loc>
-    
-    <lastmod>2020-04-15T19:39:58.234Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/other_customization_notes.html</loc>
-    
-    <lastmod>2020-04-15T19:39:58.234Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/deploy.html</loc>
-    
-    <lastmod>2020-04-15T19:24:42.022Z</lastmod>
+    <lastmod>2020-04-16T15:36:09.823Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/index.html</loc>
     
-    <lastmod>2020-04-15T19:19:32.873Z</lastmod>
+    <lastmod>2020-04-16T15:33:37.453Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hydroframe.github.io/SandTank/gallery/index.html</loc>
+    <loc>https://hydroframe.github.io/SandTank/docs/hillslope_template.html</loc>
     
-    <lastmod>2020-04-15T19:19:32.869Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/troubleshooting.html</loc>
-    
-    <lastmod>2020-04-15T19:19:32.869Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/contributing.html</loc>
-    
-    <lastmod>2020-04-15T19:19:32.865Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/about/index.html</loc>
-    
-    <lastmod>2020-04-15T19:19:32.865Z</lastmod>
+    <lastmod>2020-04-16T15:33:37.449Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/docs/index.html</loc>
     
-    <lastmod>2020-04-15T19:19:32.865Z</lastmod>
+    <lastmod>2020-04-16T15:33:37.449Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/video.html</loc>
+    
+    <lastmod>2020-04-16T15:33:37.449Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/web_application.html</loc>
+    
+    <lastmod>2020-04-16T15:33:37.449Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/gallery/index.html</loc>
+    
+    <lastmod>2020-04-16T15:33:37.449Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/troubleshooting.html</loc>
+    
+    <lastmod>2020-04-16T15:33:37.449Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/about/index.html</loc>
+    
+    <lastmod>2020-04-16T15:33:37.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/default_template.html</loc>
+    
+    <lastmod>2020-04-16T15:33:37.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/contributing.html</loc>
+    
+    <lastmod>2020-04-16T15:33:37.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/domain_json.html</loc>
+    
+    <lastmod>2020-04-16T15:33:37.445Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/2016/04/28/kw-doc/</loc>
     
-    <lastmod>2020-04-15T19:19:32.857Z</lastmod>
+    <lastmod>2020-04-16T15:33:37.441Z</lastmod>
     
   </url>
   

@@ -2,15 +2,15 @@
 <html lang="en">
 <head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>Explanation of the variables in the JSON file | SandTank</title>
+  <title>domain.json | SandTank</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://hydroframe.github.io/SandTank/docs/json_variables.html">
+  <link rel="canonical" href="https://hydroframe.github.io/SandTank/docs/domain_json.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="https://hydroframe.github.io/SandTank/docs/json_variables.html">
+      <link rel="alternative" hreflang="en" href="https://hydroframe.github.io/SandTank/docs/domain_json.html">
     
   
   <!-- Icon -->
@@ -39,17 +39,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/SandTank/atom.xml" title="SandTank">
   <!-- Open Graph -->
-  <meta name="description" content="Dimensions: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio. Bounds: lower and upper bounds in each direction by taking">
+  <meta name="description" content="Explanation of the variables in the JSON file Dimensions: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio. Bounds: lower">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Explanation of the variables in the JSON file">
-<meta property="og:url" content="https://hydroframe.github.io/SandTank/docs/json_variables.html">
+<meta property="og:title" content="domain.json">
+<meta property="og:url" content="https://hydroframe.github.io/SandTank/docs/domain_json.html">
 <meta property="og:site_name" content="SandTank">
-<meta property="og:description" content="Dimensions: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio. Bounds: lower and upper bounds in each direction by taking">
+<meta property="og:description" content="Explanation of the variables in the JSON file Dimensions: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio. Bounds: lower">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-15T19:39:58.234Z">
+<meta property="og:updated_time" content="2020-04-16T15:33:37.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Explanation of the variables in the JSON file">
-<meta name="twitter:description" content="Dimensions: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio. Bounds: lower and upper bounds in each direction by taking">
+<meta name="twitter:title" content="domain.json">
+<meta name="twitter:description" content="Explanation of the variables in the JSON file Dimensions: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio. Bounds: lower">
   <!-- Google Analytics -->
   
 </head>
@@ -62,7 +62,7 @@
       <a href="/SandTank/" id="logo">SandTank</a>
     </h1>
     <nav id="main-nav">
-      <a href="/SandTank/docs/" class="main-nav-link">Documentation</a><a href="https://pvw.kitware.com/sandtank/" class="main-nav-link">Application</a><a href="/SandTank/gallery/" class="main-nav-link">Gallery</a><a href="/SandTank/about/" class="main-nav-link">About</a>
+      <a href="/SandTank/docs/" class="main-nav-link">Documentation</a><a href="/SandTank/gallery/" class="main-nav-link">Gallery</a><a href="/SandTank/about/" class="main-nav-link">About</a><a href="https://pvw.kitware.com/sandtank/" class="main-nav-link">Application</a>
       <a href="https://github.com/hydroframe/SandTank" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
       <div id="search-input-wrap">
         <div id="search-input-icon">
@@ -87,10 +87,10 @@
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">Explanation of the variables in the JSON file</h1>
+                <h1 class="article-title" itemprop="name">domain.json</h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <ul>
+                <h2 id="Explanation-of-the-variables-in-the-JSON-file" class="article-heading"><a href="#Explanation-of-the-variables-in-the-JSON-file" class="headerlink" title="Explanation of the variables in the JSON file"></a>Explanation of the variables in the JSON file<a class="article-anchor" href="#Explanation-of-the-variables-in-the-JSON-file" aria-hidden="true"></a></h2><ul>
 <li><strong>Dimensions</strong>: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio.</li>
 <li><strong>Bounds</strong>: lower and upper bounds in each direction by taking a ‘half-step’ in. For example if there are 100 cells in the x direction (each 1 unit in length) the x bounds would be 0.5 and 99.5. In the case of y which only has one cell, the bounds will be placed a quarter step in at 0.25 and 0.75 if dy is 1.</li>
 <li><strong>Wells</strong>: defines the well name, assigns a key, and specifies the location (x cell and z cell) where water is extracted or injected. The keys are used when generating the configuration file for the run.tcl script.</li>
@@ -101,11 +101,24 @@
 <li><strong>Pressures</strong> (visualization extents for landfill, river, and wells): define location for pressure files to be read and the extents for the visualization of water in the wells and in potential bodies of water (landfill, lake, river)</li>
 <li><strong>Flow and Storage Calculations</strong> List of cellids to be used in the storage or flow calculations (the river bottom or lake bottom)</li>
 </ul>
+<h2 id="Other-Notes-on-Customization" class="article-heading"><a href="#Other-Notes-on-Customization" class="headerlink" title="Other Notes on Customization"></a>Other Notes on Customization<a class="article-anchor" href="#Other-Notes-on-Customization" aria-hidden="true"></a></h2><ul>
+<li>The background materials and the jpegs used as textures can be altered and modified here:<br><a href="https://github.com/hydroframe/SandTank/tree/master/client/src/assets" target="_blank" rel="noopener">https://github.com/hydroframe/SandTank/tree/master/client/src/assets</a></li>
+</ul>
+<ul>
+<li><p>The color of the Inject arrow for the wells can be controlled here:<br><a href="https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/Visualization/template.html#L73" target="_blank" rel="noopener">https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/Visualization/template.html#L73</a></p>
+</li>
+<li><p>The color of the pollutant inside water can be controlled here:<br><a href="https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/Visualization/template.html#L49" target="_blank" rel="noopener">https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/Visualization/template.html#L49</a></p>
+</li>
+<li><p>Options for colors that can be used can be found here: <a href="https://v15.vuetifyjs.com/en/framework/colors" target="_blank" rel="noopener">https://v15.vuetifyjs.com/en/framework/colors</a></p>
+</li>
+<li><p>The content of the About page can be changed here:<br><a href="https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/About/template.html" target="_blank" rel="noopener">https://github.com/hydroframe/SandTank/blob/master/client/src/components/core/About/template.html</a></p>
+</li>
+</ul>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2020-04-15T19:39:58.234Z" itemprop="dateModified">Last updated: 2020-04-15</time>
-                <a href="index.html" class="article-footer-next" title="Overview"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+                <time class="article-footer-updated" datetime="2020-04-16T15:33:37.445Z" itemprop="dateModified">Last updated: 2020-04-16</time>
+                <a href="hydro_templates.html" class="article-footer-prev" title="Hydro Templates"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="default_template.html" class="article-footer-next" title="Default"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
             </div>
@@ -113,14 +126,14 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Explanation-of-the-variables-in-the-JSON-file"><span class="toc-text">Explanation of the variables in the JSON file</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-Notes-on-Customization"><span class="toc-text">Other Notes on Customization</span></a></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Deployment</strong><a href="docker_runtime.html" class="sidebar-link">Runtime</a><a href="development_setup.html" class="sidebar-link">Setup</a><strong class="sidebar-title">Templates</strong><a href="current_templates.html" class="sidebar-link">Current</a><a href="creating_templates.html" class="sidebar-link">Create</a><strong class="sidebar-title">Miscellaneous</strong><a href="sustainability.html" class="sidebar-link">Sustainability</a><a href="customization.html" class="sidebar-link">Customization</a><a href="troubleshooting.html" class="sidebar-link">Troubleshooting</a><a href="contributing.html" class="sidebar-link">Contributing</a></div>
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Overview</a><a href="video.html" class="sidebar-link">Video</a><strong class="sidebar-title">Development</strong><a href="docker.html" class="sidebar-link">Docker</a><a href="web_application.html" class="sidebar-link">Web Application</a><a href="hydro_templates.html" class="sidebar-link">Hydro Templates</a><a href="domain_json.html" class="sidebar-link current">domain.json</a><strong class="sidebar-title">Templates</strong><a href="default_template.html" class="sidebar-link">Default</a><a href="hillslope_template.html" class="sidebar-link">Hillslope</a><strong class="sidebar-title">Community</strong><a href="sustainability.html" class="sidebar-link">Sustainability</a><a href="troubleshooting.html" class="sidebar-link">Troubleshooting</a><a href="contributing.html" class="sidebar-link">Contributing</a></div>
 </aside>
     </div>
   </div>
@@ -142,18 +155,18 @@
   <nav id="mobile-nav">
   <div id="mobile-nav-inner">
     <ul id="mobile-nav-list">
-      <a href="/SandTank/docs/" class="mobile-nav-link">Documentation</a><a href="https://pvw.kitware.com/sandtank/" class="mobile-nav-link">Application</a><a href="/SandTank/gallery/" class="mobile-nav-link">Gallery</a><a href="/SandTank/about/" class="mobile-nav-link">About</a>
+      <a href="/SandTank/docs/" class="mobile-nav-link">Documentation</a><a href="/SandTank/gallery/" class="mobile-nav-link">Gallery</a><a href="/SandTank/about/" class="mobile-nav-link">About</a><a href="https://pvw.kitware.com/sandtank/" class="mobile-nav-link">Application</a>
       <li class="mobile-nav-item">
         <a href="https://github.com/hydroframe/SandTank" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Deployment</strong><a href="docker_runtime.html" class="mobile-nav-link">Runtime</a><a href="development_setup.html" class="mobile-nav-link">Setup</a><strong class="mobile-nav-title">Templates</strong><a href="current_templates.html" class="mobile-nav-link">Current</a><a href="creating_templates.html" class="mobile-nav-link">Create</a><strong class="mobile-nav-title">Miscellaneous</strong><a href="sustainability.html" class="mobile-nav-link">Sustainability</a><a href="customization.html" class="mobile-nav-link">Customization</a><a href="troubleshooting.html" class="mobile-nav-link">Troubleshooting</a><a href="contributing.html" class="mobile-nav-link">Contributing</a>
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Overview</a><a href="video.html" class="mobile-nav-link">Video</a><strong class="mobile-nav-title">Development</strong><a href="docker.html" class="mobile-nav-link">Docker</a><a href="web_application.html" class="mobile-nav-link">Web Application</a><a href="hydro_templates.html" class="mobile-nav-link">Hydro Templates</a><a href="domain_json.html" class="mobile-nav-link current">domain.json</a><strong class="mobile-nav-title">Templates</strong><a href="default_template.html" class="mobile-nav-link">Default</a><a href="hillslope_template.html" class="mobile-nav-link">Hillslope</a><strong class="mobile-nav-title">Community</strong><a href="sustainability.html" class="mobile-nav-link">Sustainability</a><a href="troubleshooting.html" class="mobile-nav-link">Troubleshooting</a><a href="contributing.html" class="mobile-nav-link">Contributing</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
     <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
-    <select id="mobile-lang-select" data-canonical="docs/json_variables.html">
+    <select id="mobile-lang-select" data-canonical="docs/domain_json.html">
       
         <option value="en" selected>English</option>
       

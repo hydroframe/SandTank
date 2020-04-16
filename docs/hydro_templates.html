@@ -2,15 +2,15 @@
 <html lang="en">
 <head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>Creating Templates | SandTank</title>
+  <title>Hydro Templates | SandTank</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://hydroframe.github.io/SandTank/docs/creating_templates.html">
+  <link rel="canonical" href="https://hydroframe.github.io/SandTank/docs/hydro_templates.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="https://hydroframe.github.io/SandTank/docs/creating_templates.html">
+      <link rel="alternative" hreflang="en" href="https://hydroframe.github.io/SandTank/docs/hydro_templates.html">
     
   
   <!-- Icon -->
@@ -41,14 +41,14 @@
   <!-- Open Graph -->
   <meta name="description" content="The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. h">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Creating Templates">
-<meta property="og:url" content="https://hydroframe.github.io/SandTank/docs/creating_templates.html">
+<meta property="og:title" content="Hydro Templates">
+<meta property="og:url" content="https://hydroframe.github.io/SandTank/docs/hydro_templates.html">
 <meta property="og:site_name" content="SandTank">
 <meta property="og:description" content="The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. h">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-15T20:04:50.403Z">
+<meta property="og:updated_time" content="2020-04-16T15:37:31.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Creating Templates">
+<meta name="twitter:title" content="Hydro Templates">
 <meta name="twitter:description" content="The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. h">
   <!-- Google Analytics -->
   
@@ -62,7 +62,7 @@
       <a href="/SandTank/" id="logo">SandTank</a>
     </h1>
     <nav id="main-nav">
-      <a href="/SandTank/docs/" class="main-nav-link">Documentation</a><a href="https://pvw.kitware.com/sandtank/" class="main-nav-link">Application</a><a href="/SandTank/gallery/" class="main-nav-link">Gallery</a><a href="/SandTank/about/" class="main-nav-link">About</a>
+      <a href="/SandTank/docs/" class="main-nav-link">Documentation</a><a href="/SandTank/gallery/" class="main-nav-link">Gallery</a><a href="/SandTank/about/" class="main-nav-link">About</a><a href="https://pvw.kitware.com/sandtank/" class="main-nav-link">Application</a>
       <a href="https://github.com/hydroframe/SandTank" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
       <div id="search-input-wrap">
         <div id="search-input-icon">
@@ -87,7 +87,7 @@
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">Creating Templates</h1>
+                <h1 class="article-title" itemprop="name">Hydro Templates</h1>
               </header>
               <div class="article-content" itemprop="articleBody">
                 <p>The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. <a href="http://localhost:9000/?name=noWells" target="_blank" rel="noopener">http://localhost:9000/?name=noWells</a></p>
@@ -124,7 +124,7 @@
 <li>Update parameter values to match your indicator file</li>
 </ul>
 </li>
-<li><p>Edit the <code>domain.json</code> file so that it matches the new <code>run.tcl</code> script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the <code>domain.json</code> file are outlined in the <a href="customization.html"> Variables for Customization</a>.</p>
+<li><p>Edit the <code>domain.json</code> file so that it matches the new <code>run.tcl</code> script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the <code>domain.json</code> file are outlined in the <a href="domain_json.html"> domain.json </a>.</p>
 </li>
 <li><p>Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image.</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd ./</span><br><span class="line"></span><br><span class="line">export APP=$PWD/deploy/pvw</span><br><span class="line">export HOST=localhost:9000</span><br><span class="line"></span><br><span class="line">docker run --rm                   \</span><br><span class="line">  -e PROTOCOL=&quot;ws&quot;                 \</span><br><span class="line">  -p 0.0.0.0:9000:80                \</span><br><span class="line">  -e SERVER_NAME=&quot;$&#123;HOST&#125;&quot;           \</span><br><span class="line">  -v &quot;$&#123;APP&#125;:/pvw&quot;                    \</span><br><span class="line">  -it hydroframe/sandtank:web-service</span><br></pre></td></tr></table></figure>
@@ -137,8 +137,8 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2020-04-15T20:04:50.403Z" itemprop="dateModified">Last updated: 2020-04-15</time>
-                <a href="current_templates.html" class="article-footer-prev" title="Current"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="sustainability.html" class="article-footer-next" title="Sustainability"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+                <time class="article-footer-updated" datetime="2020-04-16T15:37:31.015Z" itemprop="dateModified">Last updated: 2020-04-16</time>
+                <a href="web_application.html" class="article-footer-prev" title="Web Application"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="domain_json.html" class="article-footer-next" title="domain.json"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
             </div>
@@ -153,7 +153,7 @@
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Deployment</strong><a href="docker_runtime.html" class="sidebar-link">Runtime</a><a href="development_setup.html" class="sidebar-link">Setup</a><strong class="sidebar-title">Templates</strong><a href="current_templates.html" class="sidebar-link">Current</a><a href="creating_templates.html" class="sidebar-link current">Create</a><strong class="sidebar-title">Miscellaneous</strong><a href="sustainability.html" class="sidebar-link">Sustainability</a><a href="customization.html" class="sidebar-link">Customization</a><a href="troubleshooting.html" class="sidebar-link">Troubleshooting</a><a href="contributing.html" class="sidebar-link">Contributing</a></div>
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Overview</a><a href="video.html" class="sidebar-link">Video</a><strong class="sidebar-title">Development</strong><a href="docker.html" class="sidebar-link">Docker</a><a href="web_application.html" class="sidebar-link">Web Application</a><a href="hydro_templates.html" class="sidebar-link current">Hydro Templates</a><a href="domain_json.html" class="sidebar-link">domain.json</a><strong class="sidebar-title">Templates</strong><a href="default_template.html" class="sidebar-link">Default</a><a href="hillslope_template.html" class="sidebar-link">Hillslope</a><strong class="sidebar-title">Community</strong><a href="sustainability.html" class="sidebar-link">Sustainability</a><a href="troubleshooting.html" class="sidebar-link">Troubleshooting</a><a href="contributing.html" class="sidebar-link">Contributing</a></div>
 </aside>
     </div>
   </div>
@@ -175,18 +175,18 @@
   <nav id="mobile-nav">
   <div id="mobile-nav-inner">
     <ul id="mobile-nav-list">
-      <a href="/SandTank/docs/" class="mobile-nav-link">Documentation</a><a href="https://pvw.kitware.com/sandtank/" class="mobile-nav-link">Application</a><a href="/SandTank/gallery/" class="mobile-nav-link">Gallery</a><a href="/SandTank/about/" class="mobile-nav-link">About</a>
+      <a href="/SandTank/docs/" class="mobile-nav-link">Documentation</a><a href="/SandTank/gallery/" class="mobile-nav-link">Gallery</a><a href="/SandTank/about/" class="mobile-nav-link">About</a><a href="https://pvw.kitware.com/sandtank/" class="mobile-nav-link">Application</a>
       <li class="mobile-nav-item">
         <a href="https://github.com/hydroframe/SandTank" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Deployment</strong><a href="docker_runtime.html" class="mobile-nav-link">Runtime</a><a href="development_setup.html" class="mobile-nav-link">Setup</a><strong class="mobile-nav-title">Templates</strong><a href="current_templates.html" class="mobile-nav-link">Current</a><a href="creating_templates.html" class="mobile-nav-link current">Create</a><strong class="mobile-nav-title">Miscellaneous</strong><a href="sustainability.html" class="mobile-nav-link">Sustainability</a><a href="customization.html" class="mobile-nav-link">Customization</a><a href="troubleshooting.html" class="mobile-nav-link">Troubleshooting</a><a href="contributing.html" class="mobile-nav-link">Contributing</a>
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Overview</a><a href="video.html" class="mobile-nav-link">Video</a><strong class="mobile-nav-title">Development</strong><a href="docker.html" class="mobile-nav-link">Docker</a><a href="web_application.html" class="mobile-nav-link">Web Application</a><a href="hydro_templates.html" class="mobile-nav-link current">Hydro Templates</a><a href="domain_json.html" class="mobile-nav-link">domain.json</a><strong class="mobile-nav-title">Templates</strong><a href="default_template.html" class="mobile-nav-link">Default</a><a href="hillslope_template.html" class="mobile-nav-link">Hillslope</a><strong class="mobile-nav-title">Community</strong><a href="sustainability.html" class="mobile-nav-link">Sustainability</a><a href="troubleshooting.html" class="mobile-nav-link">Troubleshooting</a><a href="contributing.html" class="mobile-nav-link">Contributing</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
     <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
-    <select id="mobile-lang-select" data-canonical="docs/creating_templates.html">
+    <select id="mobile-lang-select" data-canonical="docs/hydro_templates.html">
       
         <option value="en" selected>English</option>
       
