@@ -39,17 +39,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/SandTank/atom.xml" title="SandTank">
   <!-- Open Graph -->
-  <meta name="description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. Before You StartFor contributing to the client, please follow the coding style:  Follow Airb">
+  <meta name="description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. Workflow Fork hydroframe/SandTank. Clone the repository to your computer.  $ git clone https">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Contributing">
 <meta property="og:url" content="https://hydroframe.github.io/SandTank/docs/contributing.html">
 <meta property="og:site_name" content="SandTank">
-<meta property="og:description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. Before You StartFor contributing to the client, please follow the coding style:  Follow Airb">
+<meta property="og:description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. Workflow Fork hydroframe/SandTank. Clone the repository to your computer.  $ git clone https">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-16T15:33:37.445Z">
+<meta property="og:updated_time" content="2020-04-16T21:19:58.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Contributing">
-<meta name="twitter:description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. Before You StartFor contributing to the client, please follow the coding style:  Follow Airb">
+<meta name="twitter:description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. Workflow Fork hydroframe/SandTank. Clone the repository to your computer.  $ git clone https">
   <!-- Google Analytics -->
   
 </head>
@@ -91,24 +91,18 @@
               </header>
               <div class="article-content" itemprop="articleBody">
                 <p>We welcome your contributions to the development of SandTank. This document will help you with the process.</p>
-<h2 id="Before-You-Start" class="article-heading"><a href="#Before-You-Start" class="headerlink" title="Before You Start"></a>Before You Start<a class="article-anchor" href="#Before-You-Start" aria-hidden="true"></a></h2><p>For contributing to the client, please follow the coding style:</p>
-<ul>
-<li>Follow <a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">Airbnb JavaScript Style Guide</a>.</li>
-<li>Use soft-tabs with a two space indent.</li>
-<li>Don’t put commas first.</li>
-</ul>
 <h2 id="Workflow" class="article-heading"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow<a class="article-anchor" href="#Workflow" aria-hidden="true"></a></h2><ol>
 <li>Fork <a href="https://github.com/hydroframe/SandTank" target="_blank" rel="noopener">hydroframe/SandTank</a>.</li>
-<li><p>Clone the repository to your computer and install dependencies.</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone https://github.com/&lt;username&gt;/SandTank.git</span><br><span class="line">$ cd SandTank/client</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<li><p>Clone the repository to your computer.</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone https://github.com/&lt;username&gt;/SandTank.git</span><br><span class="line">$ cd SandTank</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Create a feature branch.</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout -b new_feature</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Start hacking.</p>
 </li>
-<li><p>Use Commitizen for commit message</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm run commit</span><br></pre></td></tr></table></figure>
+<li><p>Commit changes</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git commit</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Push the branch:</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git push origin new_feature</span><br></pre></td></tr></table></figure>
@@ -116,18 +110,38 @@
 <li><p>Create a pull request and describe the change.</p>
 </li>
 </ol>
-<h2 id="Notice" class="article-heading"><a href="#Notice" class="headerlink" title="Notice"></a>Notice<a class="article-anchor" href="#Notice" aria-hidden="true"></a></h2><ul>
-<li>Don’t modify the version number in <code>package.json</code>. It is modified automatically.</li>
-<li><p>Your pull request will only get merged when tests have passed. Don’t forget to run tests before submission.</p>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm test</span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="Contributing-to-the-Client" class="article-heading"><a href="#Contributing-to-the-Client" class="headerlink" title="Contributing to the Client"></a>Contributing to the Client<a class="article-anchor" href="#Contributing-to-the-Client" aria-hidden="true"></a></h2><p>To contribute to the client:</p>
+<ol>
+<li>Follow the <a href="https://hydroframe.github.io/SandTank/docs/web_application.html">instructions to run the web application</a>.</li>
+<li>Modify the code in <code>./client</code>.</li>
+<li>Follow steps 5-7 in <a href="#Workflow">the workflow</a>.</li>
+</ol>
+<h4 id="Coding-Style" class="article-heading"><a href="#Coding-Style" class="headerlink" title="Coding Style"></a>Coding Style<a class="article-anchor" href="#Coding-Style" aria-hidden="true"></a></h4><ul>
+<li>When contributing to the client, follow the <a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">Airbnb JavaScript Style Guide</a>.</li>
+<li>Use soft-tabs with a two space indent.</li>
+<li>Don’t put commas first.</li>
 </ul>
-<h2 id="Updating-Documentation" class="article-heading"><a href="#Updating-Documentation" class="headerlink" title="Updating Documentation"></a>Updating Documentation<a class="article-anchor" href="#Updating-Documentation" aria-hidden="true"></a></h2><p>The SandTank documentation is part of the code repository.</p>
-<h2 id="Reporting-Issues" class="article-heading"><a href="#Reporting-Issues" class="headerlink" title="Reporting Issues"></a>Reporting Issues<a class="article-anchor" href="#Reporting-Issues" aria-hidden="true"></a></h2><p>If you encounter any problems with SandTank, please check on <a href="https://github.com/hydroframe/SandTank/issues" target="_blank" rel="noopener">GitHub</a> first then ask your question in any communication channel.</p>
+<h4 id="Notice" class="article-heading"><a href="#Notice" class="headerlink" title="Notice"></a>Notice<a class="article-anchor" href="#Notice" aria-hidden="true"></a></h4><ul>
+<li>Don’t modify the version numbers in <code>package.json</code>. They are modified automatically.</li>
+</ul>
+<h2 id="Updating-the-Documentation" class="article-heading"><a href="#Updating-the-Documentation" class="headerlink" title="Updating the Documentation"></a>Updating the Documentation<a class="article-anchor" href="#Updating-the-Documentation" aria-hidden="true"></a></h2><p>After modifying the source code, it is often necessary to update the documentation. To build the documentation, follow these steps:</p>
+<ol>
+<li><p>Enter the top level directory of the <a href="https://github.com/hydroframe/SandTank" target="_blank" rel="noopener">SandTank repository</a> and install dependencies.</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd ./SandTank</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Run a local copy of the documentation at <code>http://localhost:4000/SandTank</code>.</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm run doc:www</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Modify the documentation code inside <code>./documentation</code>. Re-build the documentation to view updates at <code>http://localhost:4000/SandTank</code>.</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm run doc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Follow steps 5-7 in <a href="#Workflow">the workflow</a>. Once the code is merged, the online documentation will be updated automatically.</p>
+</li>
+</ol>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2020-04-16T15:33:37.445Z" itemprop="dateModified">Last updated: 2020-04-16</time>
+                <time class="article-footer-updated" datetime="2020-04-16T21:19:58.327Z" itemprop="dateModified">Last updated: 2020-04-16</time>
                 <a href="troubleshooting.html" class="article-footer-prev" title="Troubleshooting"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               
@@ -136,7 +150,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Before-You-Start"><span class="toc-text">Before You Start</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow"><span class="toc-text">Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Notice"><span class="toc-text">Notice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Updating-Documentation"><span class="toc-text">Updating Documentation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reporting-Issues"><span class="toc-text">Reporting Issues</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow"><span class="toc-text">Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Contributing-to-the-Client"><span class="toc-text">Contributing to the Client</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Coding-Style"><span class="toc-text">Coding Style</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Notice"><span class="toc-text">Notice</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Updating-the-Documentation"><span class="toc-text">Updating the Documentation</span></a></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
