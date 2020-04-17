@@ -46,7 +46,7 @@
 <meta property="og:site_name" content="SandTank">
 <meta property="og:description" content="We welcome your contributions to the documentation of SandTank. This document will help you with the process. Workflow Ensure npm and git are installed. Fork hydroframe/SandTank. Clone the repository">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-17T19:42:45.217Z">
+<meta property="og:updated_time" content="2020-04-17T19:55:05.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Updating the Documentation">
 <meta name="twitter:description" content="We welcome your contributions to the documentation of SandTank. This document will help you with the process. Workflow Ensure npm and git are installed. Fork hydroframe/SandTank. Clone the repository">
@@ -130,7 +130,10 @@
 <p>To remove a page, remove the markdown file from <code>./documentation/content/docs</code> and its keys from <code>./documentation/tpl/__sidebar__</code> and <code>./documentation/tpl/__en__</code>.</p>
 <h2 id="Documenting-Templates" class="article-heading"><a href="#Documenting-Templates" class="headerlink" title="Documenting Templates"></a>Documenting Templates<a class="article-anchor" href="#Documenting-Templates" aria-hidden="true"></a></h2><p>Once a template has been created by following the steps in <a href="hydro_templates.html">Hydro Templates</a>, documenting the template is an important next step. To document a template:</p>
 <ol>
-<li>Add a page for the template by following the instructions in the <a href="#Adding/Removing_Pages">Adding/Removing Pages</a> section.</li>
+<li>Add a documentation page for the template by following the instructions in the <a href="#Adding-Removing-Pages">Adding/Removing Pages section</a>.</li>
+<li>Add a screenshot of the template in <code>./documentation/content/docs/template_gallery/</code>, and refer to this image in the new markdown file via <code>./template_gallery/&lt;image&gt;</code>.</li>
+<li>Add a description of the template in the markdown file.</li>
+<li>Submit changes by following steps 6-9 in <a href="#Workflow">the workflow</a>.</li>
 </ol>
 <h2 id="Front-Page" class="article-heading"><a href="#Front-Page" class="headerlink" title="Front Page"></a>Front Page<a class="article-anchor" href="#Front-Page" aria-hidden="true"></a></h2><p>To modify the <a href="https://hydroframe.github.io/SandTank/">front page</a>, modify the <a href="http://jade-lang.com/" target="_blank" rel="noopener">jade</a> file at <code>./documentation/content/index.jade</code>.</p>
 <h2 id="Top-Menu-Bar" class="article-heading"><a href="#Top-Menu-Bar" class="headerlink" title="Top Menu Bar"></a>Top Menu Bar<a class="article-anchor" href="#Top-Menu-Bar" aria-hidden="true"></a></h2><h3 id="Modifying-Pages-1" class="article-heading"><a href="#Modifying-Pages-1" class="headerlink" title="Modifying Pages"></a>Modifying Pages<a class="article-anchor" href="#Modifying-Pages-1" aria-hidden="true"></a></h3><p>Many of the top menu bar pages are located in their own directories in <code>./documentation/content</code>. For instance, the <a href="https://hydroframe.github.io/SandTank/gallery/">gallery</a> can be found in <code>./documentation/content/gallery/index.md</code>. Images can be added to this directory (remember to <code>git add</code> the image files), and then referred to in the markdown file.</p>
@@ -146,7 +149,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2020-04-17T19:42:45.217Z" itemprop="dateModified">Last updated: 2020-04-17</time>
+                <time class="article-footer-updated" datetime="2020-04-17T19:55:05.656Z" itemprop="dateModified">Last updated: 2020-04-17</time>
                 <a href="contributing.html" class="article-footer-prev" title="Contributing"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               

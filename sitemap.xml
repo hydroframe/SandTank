@@ -4,14 +4,28 @@
   <url>
     <loc>https://hydroframe.github.io/SandTank/docs/hydro_templates.html</loc>
     
-    <lastmod>2020-04-17T19:42:45.221Z</lastmod>
+    <lastmod>2020-04-17T19:55:05.660Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/hillslope_template.html</loc>
+    
+    <lastmod>2020-04-17T19:55:05.660Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/default_template.html</loc>
+    
+    <lastmod>2020-04-17T19:55:05.656Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/docs/documentation_update.html</loc>
     
-    <lastmod>2020-04-17T19:42:45.217Z</lastmod>
+    <lastmod>2020-04-17T19:55:05.656Z</lastmod>
     
   </url>
   
@@ -37,13 +51,6 @@
   </url>
   
   <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/default_template.html</loc>
-    
-    <lastmod>2020-04-17T17:42:22.028Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://hydroframe.github.io/SandTank/docs/docker.html</loc>
     
     <lastmod>2020-04-17T17:42:22.028Z</lastmod>
@@ -52,13 +59,6 @@
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/docs/domain_json.html</loc>
-    
-    <lastmod>2020-04-17T17:42:22.028Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/hillslope_template.html</loc>
     
     <lastmod>2020-04-17T17:42:22.028Z</lastmod>
     
