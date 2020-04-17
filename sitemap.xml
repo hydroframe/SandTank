@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/hydro_templates.html</loc>
+    
+    <lastmod>2020-04-17T19:42:45.221Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hydroframe.github.io/SandTank/docs/documentation_update.html</loc>
     
-    <lastmod>2020-04-17T19:28:21.712Z</lastmod>
+    <lastmod>2020-04-17T19:42:45.217Z</lastmod>
     
   </url>
   
@@ -45,13 +52,6 @@
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/docs/domain_json.html</loc>
-    
-    <lastmod>2020-04-17T17:42:22.028Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/hydro_templates.html</loc>
     
     <lastmod>2020-04-17T17:42:22.028Z</lastmod>
     
