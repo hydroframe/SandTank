@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/contributing.html</loc>
+    
+    <lastmod>2020-04-17T19:21:15.869Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/documentation_update.html</loc>
+    
+    <lastmod>2020-04-17T19:21:15.869Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hydroframe.github.io/SandTank/index.html</loc>
     
     <lastmod>2020-04-17T17:42:22.036Z</lastmod>
@@ -24,13 +38,6 @@
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/docs/docker.html</loc>
-    
-    <lastmod>2020-04-17T17:42:22.028Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/documentation_update.html</loc>
     
     <lastmod>2020-04-17T17:42:22.028Z</lastmod>
     
@@ -94,13 +101,6 @@
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/about/index.html</loc>
-    
-    <lastmod>2020-04-17T17:42:22.024Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/contributing.html</loc>
     
     <lastmod>2020-04-17T17:42:22.024Z</lastmod>
     

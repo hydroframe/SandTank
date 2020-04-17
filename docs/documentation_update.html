@@ -39,17 +39,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/SandTank/atom.xml" title="SandTank">
   <!-- Open Graph -->
-  <meta name="description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. General Workflow Fork hydroframe/SandTank. Clone the repository to your computer and install">
+  <meta name="description" content="We welcome your contributions to the documentation of SandTank. This document will help you with the process. Workflow Ensure npm and git are installed. Fork hydroframe/SandTank. Clone the repository">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Updating the Documentation">
 <meta property="og:url" content="https://hydroframe.github.io/SandTank/docs/documentation_update.html">
 <meta property="og:site_name" content="SandTank">
-<meta property="og:description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. General Workflow Fork hydroframe/SandTank. Clone the repository to your computer and install">
+<meta property="og:description" content="We welcome your contributions to the documentation of SandTank. This document will help you with the process. Workflow Ensure npm and git are installed. Fork hydroframe/SandTank. Clone the repository">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-17T17:42:22.028Z">
+<meta property="og:updated_time" content="2020-04-17T19:21:15.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Updating the Documentation">
-<meta name="twitter:description" content="We welcome your contributions to the development of SandTank. This document will help you with the process. General Workflow Fork hydroframe/SandTank. Clone the repository to your computer and install">
+<meta name="twitter:description" content="We welcome your contributions to the documentation of SandTank. This document will help you with the process. Workflow Ensure npm and git are installed. Fork hydroframe/SandTank. Clone the repository">
   <!-- Google Analytics -->
   
 </head>
@@ -90,8 +90,9 @@
                 <h1 class="article-title" itemprop="name">Updating the Documentation</h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <p>We welcome your contributions to the development of SandTank. This document will help you with the process.</p>
-<h2 id="General-Workflow" class="article-heading"><a href="#General-Workflow" class="headerlink" title="General Workflow"></a>General Workflow<a class="article-anchor" href="#General-Workflow" aria-hidden="true"></a></h2><ol>
+                <p>We welcome your contributions to the documentation of SandTank. This document will help you with the process.</p>
+<h2 id="Workflow" class="article-heading"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow<a class="article-anchor" href="#Workflow" aria-hidden="true"></a></h2><ol>
+<li>Ensure <a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a> and <a href="https://git-scm.com/" target="_blank" rel="noopener">git</a> are installed.</li>
 <li>Fork <a href="https://github.com/hydroframe/SandTank" target="_blank" rel="noopener">hydroframe/SandTank</a>.</li>
 <li><p>Clone the repository to your computer and install dependencies.</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone https://github.com/&lt;username&gt;/SandTank.git</span><br><span class="line">$ cd SandTank</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
@@ -102,20 +103,46 @@
 <li><p>Modify the documentation code inside <code>./documentation</code> (see below for more details). To view the updates at <code>http://localhost:4000/SandTank</code>, re-build the documentation.</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm run doc</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>Stage the changes to commit.</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git add ./documentation/&lt;path&gt;/&lt;to&gt;/&lt;file&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>Commit changes using commitizen.</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm run commit</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Push the branch:</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git push origin new_feature</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>Create a pull request and describe the change. Once the code is merged, the online documentation will be updated automatically.</p>
+<li><p>Create a pull request and describe the changes. Once the changes are merged, the online documentation will be updated automatically.</p>
 </li>
 </ol>
-<h2 id="Edit-User-Manual" class="article-heading"><a href="#Edit-User-Manual" class="headerlink" title="Edit User Manual"></a>Edit User Manual<a class="article-anchor" href="#Edit-User-Manual" aria-hidden="true"></a></h2><p>The user manual is located in <code>./documentation/content/docs/index.md</code>. Follow steps 1-4 in the <a href="#General-Workflow">general workflow</a>, and modify this file. Once you are satisfied with the changes, follow steps 4-7 in the <a href="#General-Workflow">general workflow</a> to contribute the changes.</p>
+<h2 id="Modifying-Pages" class="article-heading"><a href="#Modifying-Pages" class="headerlink" title="Modifying Pages"></a>Modifying Pages<a class="article-anchor" href="#Modifying-Pages" aria-hidden="true"></a></h2><p>Documentation pages can be modified by editing the appropriate <a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener">markdown</a> file in <code>./documentation/content/docs</code>. To find the correct file, substitute the web page’s <code>.html</code> ending with <code>.md</code>. For instance, the web page <code>https://hydroframe.github.io/SandTank/docs/docker.html</code> can be edited by modifying <code>./documentation/content/docs/docker.md</code>.</p>
+<p>The user manual page can be found at <code>./documentation/content/docs/index.md</code>.</p>
+<h2 id="Adding-Removing-Pages" class="article-heading"><a href="#Adding-Removing-Pages" class="headerlink" title="Adding/Removing Pages"></a>Adding/Removing Pages<a class="article-anchor" href="#Adding-Removing-Pages" aria-hidden="true"></a></h2><p>To add a documentation page:</p>
+<ol>
+<li><p>Add a <a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener">markdown</a> file in <code>./documentation/content/docs/</code>. Follow style from other markdown files. For instance, begin the file with:</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: ...</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Add the file to the side bar in <code>./documentation/tpl/__sidebar__</code>. For the key (left-hand side), use the file name without the extension. For the value (right-hand side), use <code>.html</code> for the file name ending, rather than <code>.md</code>.</p>
+</li>
+<li><p>Add an english translation for the file in <code>./documentation/tpl/__en__</code>. Use the same key (left-hand side) as in step 2. The translation will be the value (right-hand side).</p>
+</li>
+</ol>
+<p>To remove a page, remove the markdown file from <code>./documentation/content/docs</code> and its keys from <code>./documentation/tpl/__sidebar__</code> and <code>./documentation/tpl/__en__</code>.</p>
+<h2 id="Front-Page" class="article-heading"><a href="#Front-Page" class="headerlink" title="Front Page"></a>Front Page<a class="article-anchor" href="#Front-Page" aria-hidden="true"></a></h2><p>To modify the <a href="https://hydroframe.github.io/SandTank/">front page</a>, modify the <a href="http://jade-lang.com/" target="_blank" rel="noopener">jade</a> file at <code>./documentation/content/index.jade</code>.</p>
+<h2 id="Top-Menu-Bar" class="article-heading"><a href="#Top-Menu-Bar" class="headerlink" title="Top Menu Bar"></a>Top Menu Bar<a class="article-anchor" href="#Top-Menu-Bar" aria-hidden="true"></a></h2><h3 id="Modifying-Pages-1" class="article-heading"><a href="#Modifying-Pages-1" class="headerlink" title="Modifying Pages"></a>Modifying Pages<a class="article-anchor" href="#Modifying-Pages-1" aria-hidden="true"></a></h3><p>Many of the top menu bar pages are located in their own directories in <code>./documentation/content</code>. For instance, the <a href="https://hydroframe.github.io/SandTank/gallery/">gallery</a> can be found in <code>./documentation/content/gallery/index.md</code>. Images can be added to this directory (remember to <code>git add</code> the image files), and then referred to in the markdown file.</p>
+<h3 id="Adding-Removing-Pages-1" class="article-heading"><a href="#Adding-Removing-Pages-1" class="headerlink" title="Adding/Removing Pages"></a>Adding/Removing Pages<a class="article-anchor" href="#Adding-Removing-Pages-1" aria-hidden="true"></a></h3><p>To add a top menu page:</p>
+<ol>
+<li><p>Add a directory in <code>./documentation/content</code> with an <code>index.md</code> file inside. The <code>index.md</code> file will be the page that opens.</p>
+</li>
+<li><p>Add a menu entry to <code>./documentation/data/menu.yml</code>. The key (left-hand side) should be the directory name. The value (right-hand side) should be the same name enclosed by <code>/</code> characters.</p>
+</li>
+<li><p>Add an english translation for the menu path in <code>./documentation/tpl/__en__</code>. Use the same key (left-hand side) as in step 2. The translation will be the value (right-hand side).</p>
+</li>
+</ol>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2020-04-17T17:42:22.028Z" itemprop="dateModified">Last updated: 2020-04-17</time>
+                <time class="article-footer-updated" datetime="2020-04-17T19:21:15.869Z" itemprop="dateModified">Last updated: 2020-04-17</time>
                 <a href="contributing.html" class="article-footer-prev" title="Contributing"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               
@@ -124,7 +151,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#General-Workflow"><span class="toc-text">General Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Edit-User-Manual"><span class="toc-text">Edit User Manual</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow"><span class="toc-text">Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Modifying-Pages"><span class="toc-text">Modifying Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-Removing-Pages"><span class="toc-text">Adding/Removing Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Front-Page"><span class="toc-text">Front Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Top-Menu-Bar"><span class="toc-text">Top Menu Bar</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modifying-Pages-1"><span class="toc-text">Modifying Pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adding-Removing-Pages-1"><span class="toc-text">Adding/Removing Pages</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
