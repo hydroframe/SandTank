@@ -46,7 +46,7 @@
 <meta property="og:site_name" content="SandTank">
 <meta property="og:description" content="The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. h">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-21T14:51:07.324Z">
+<meta property="og:updated_time" content="2020-04-21T21:20:10.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Templates">
 <meta name="twitter:description" content="The default template is the Sandtank model; however, the inputs listed below can be altered below to create custom templates. Templates can be run using by appending name to the sand tank call, i.e. h">
@@ -103,6 +103,8 @@
 <p><strong>Note</strong>: when creating the necessary inputs for a template, the dx, dy, dx ratio must be 1 to 1 to 1 in order for the inputs to be properly visualized in the web application.</p>
 <h2 id="Steps-for-creating-a-new-template" class="article-heading"><a href="#Steps-for-creating-a-new-template" class="headerlink" title="Steps for creating a new template"></a>Steps for creating a new template<a class="article-anchor" href="#Steps-for-creating-a-new-template" aria-hidden="true"></a></h2><p>This section describes the steps for creating a new template by copying and modifying an existing template. In the new template directory you will need to replace the model input files and make the necessary edits to the <code>run.tcl</code> script and <code>domain.json</code> file. Refer to the list in the previous sections for the inputs you will need before you get started. Note that for this workflow you do not need to build the docker you can simply, clone the repo modify the template and launch the docker following the instructions below.</p>
 <ol>
+<li><p>Follow steps 1-4 of <a href="contributing.html#Workflow">the Workflow</a> to clone and install the repository.</p>
+</li>
 <li><p>Create your new template directory</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>  ./deploy/pvw/simulations/templates/</span><br><span class="line">cp -r ./default ./NewTemplate</span><br></pre></td></tr></table></figure>
 </li>
@@ -124,16 +126,12 @@
 <li>Update parameter values to match your indicator file</li>
 </ul>
 </li>
-<li><p>Edit the <code>domain.json</code> file so that it matches the new <code>run.tcl</code> script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the <code>domain.json</code> file are outlined in the <a href="domain_json.html"> domain.json </a>.</p>
+<li><p>Edit the <code>domain.json</code> file so that it matches the new <code>run.tcl</code> script (i.e. well placements/well keys, dimensions, constant head boundary heights, soil type keys, etc). All of the elements found in the <code>domain.json</code> file are outlined in the <a href="#domain-json"> domain.json </a>.</p>
 </li>
-<li><p>Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd ./</span><br><span class="line"></span><br><span class="line">export APP=$PWD/deploy/pvw</span><br><span class="line">export HOST=localhost:9000</span><br><span class="line"></span><br><span class="line">docker run --rm                   \</span><br><span class="line">  -e PROTOCOL=&quot;ws&quot;                 \</span><br><span class="line">  -p 0.0.0.0:9000:80                \</span><br><span class="line">  -e SERVER_NAME=&quot;$&#123;HOST&#125;&quot;           \</span><br><span class="line">  -v &quot;$&#123;APP&#125;:/pvw&quot;                    \</span><br><span class="line">  -it hydroframe/sandtank:web-service</span><br></pre></td></tr></table></figure>
-<p>Open your browser to <code>http://localhost:9000/?name=“NewTemplate”</code></p>
-<p>Use <code>Ctrl+C</code> to stop the container.</p>
+<li><p>Once the new inputs are placed in the new template directory and edits are complete, you can test your changes simply by re-runing the docker image. Follow the instructions <a href="run_application.html#Using-Custom-Templates">for using custom templates</a>.</p>
 </li>
-<li><p>When you have completed your template, add documentation by following the <a href="documentation_update.html#Documenting-Templates">Documenting Templates instructions</a>.</p>
+<li><p>After you are satisfied with the new template, contribute it to the project by following the <a href="contributing.html#Contributing-Templates">Contributing Templates</a> instructions.</p>
 </li>
-<li>Follow the instructions in the <a href="contributing.html">Contributing Plan</a> to submit your changes.</li>
 </ol>
 <h1 id="domain-json" class="article-heading"><a href="#domain-json" class="headerlink" title="domain.json"></a>domain.json<a class="article-anchor" href="#domain-json" aria-hidden="true"></a></h1><h2 id="Explanation-of-the-variables-in-the-JSON-file" class="article-heading"><a href="#Explanation-of-the-variables-in-the-JSON-file" class="headerlink" title="Explanation of the variables in the JSON file"></a>Explanation of the variables in the JSON file<a class="article-anchor" href="#Explanation-of-the-variables-in-the-JSON-file" aria-hidden="true"></a></h2><ul>
 <li><strong>Dimensions</strong>: number of cells in x, y, and z direction. Note at this point the dimensions of all cells (i.e. dx,dy, dz) must be a 1:1:1 ratio.</li>
@@ -162,7 +160,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2020-04-21T14:51:07.324Z" itemprop="dateModified">Last updated: 2020-04-21</time>
+                <time class="article-footer-updated" datetime="2020-04-21T21:20:10.168Z" itemprop="dateModified">Last updated: 2020-04-21</time>
                 <a href="run_application.html" class="article-footer-prev" title="Running the Application"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="documentation_update.html" class="article-footer-next" title="Documentation Update"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

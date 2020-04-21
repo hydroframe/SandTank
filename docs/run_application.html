@@ -46,7 +46,7 @@
 <meta property="og:site_name" content="SandTank">
 <meta property="og:description" content="In addition to the web application, the Sandtank application may be ran on a personal computer. Because running the application requires Docker, administrator privileges are required. To run the appli">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-21T20:48:45.548Z">
+<meta property="og:updated_time" content="2020-04-21T21:20:10.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Running the Application">
 <meta name="twitter:description" content="In addition to the web application, the Sandtank application may be ran on a personal computer. Because running the application requires Docker, administrator privileges are required. To run the appli">
@@ -111,29 +111,27 @@
 <li><p>Access the application by opening a web browser at <a href="http://localhost:9000/" target="_blank" rel="noopener">http://localhost:9000/</a></p>
 </li>
 </ol>
-<h2 id="Using-Custom-Templates" class="article-heading"><a href="#Using-Custom-Templates" class="headerlink" title="Using Custom Templates"></a>Using Custom Templates<a class="article-anchor" href="#Using-Custom-Templates" aria-hidden="true"></a></h2><p>To create and use custom templates, follow these steps:</p>
+<h2 id="Using-Custom-Templates" class="article-heading"><a href="#Using-Custom-Templates" class="headerlink" title="Using Custom Templates"></a>Using Custom Templates<a class="article-anchor" href="#Using-Custom-Templates" aria-hidden="true"></a></h2><p>To use custom templates, follow these steps:</p>
 <ol>
-<li><p>Create a copy of the directory named <code>templates</code> in <code>./deploy/pvw/simulations</code> <a href="https://github.com/hydroframe/SandTank/tree/master/deploy/pvw/simulations" target="_blank" rel="noopener">in the repository</a>.</p>
-</li>
-<li><p>The directories inside the new <code>templates</code> directory are the current templates. Copy one of them to a new directory. For instance, copy <code>default</code> to <code>newTemplate</code>.</p>
-</li>
-<li><p>Modify the contents of the <code>newTemplate</code> directory by following the <a href="template.html">Template instructions</a>.</p>
+<li><p>Follow the steps <a href="template.html#Steps-for-creating-a-new-template">for creating a new template</a>.</p>
 </li>
 <li><p>To try it out, follow the steps for <a href="run_application.html">Running the Application</a>, except, for the <code>docker run</code> command, add an additional argument like the following:</p>
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run -p 0.0.0.0:9000:80 -v /path/to/templates:/pvw/simulations/templates hydroframe/sandtank:web-service</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>where <code>/path/to/templates</code> is the path to your local <code>templates</code> directory. This will replace the <code>templates</code> directory inside the docker container with your local one.</p>
-<ol start="5">
-<li><p>Access the application by appending <code>?name=&lt;template_name&gt;</code> to the end of the url, where <code>&lt;template_name&gt;</code> is the name of your new template directory. For example, <a href="http://localhost:9000/?name=newTemplate" target="_blank" rel="noopener">http://localhost:9000/?name=newTemplate</a>.</p>
+<ol start="3">
+<li><p>Access the application by appending <code>?name=&lt;template_name&gt;</code> to the end of the url, where <code>&lt;template_name&gt;</code> is the name of your new template directory. For example, <a href="http://localhost:9000/?name=NewTemplate" target="_blank" rel="noopener">http://localhost:9000/?name=NewTemplate</a>.</p>
 </li>
 <li><p>To update the application after modifying the new template files, simply refresh the page in the browser.</p>
+</li>
+<li><p>After you are satisfied with the new template, contribute it to the project by following the <a href="contributing.html#Contributing-Templates">Contributing Templates</a> instructions.</p>
 </li>
 </ol>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2020-04-21T20:48:45.548Z" itemprop="dateModified">Last updated: 2020-04-21</time>
+                <time class="article-footer-updated" datetime="2020-04-21T21:20:10.168Z" itemprop="dateModified">Last updated: 2020-04-21</time>
                 <a href="video.html" class="article-footer-prev" title="Video"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="template.html" class="article-footer-next" title="Template"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

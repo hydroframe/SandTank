@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/documentation_update.html</loc>
+    
+    <lastmod>2020-04-21T21:20:10.168Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/sustainability.html</loc>
+    
+    <lastmod>2020-04-21T21:20:10.168Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hydroframe.github.io/SandTank/docs/template.html</loc>
+    
+    <lastmod>2020-04-21T21:20:10.168Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hydroframe.github.io/SandTank/docs/run_application.html</loc>
     
-    <lastmod>2020-04-21T20:48:45.548Z</lastmod>
+    <lastmod>2020-04-21T21:20:10.168Z</lastmod>
     
   </url>
   
@@ -26,20 +47,6 @@
     <loc>https://hydroframe.github.io/SandTank/docs/index.html</loc>
     
     <lastmod>2020-04-21T19:10:24.938Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/documentation_update.html</loc>
-    
-    <lastmod>2020-04-21T15:11:18.391Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/template.html</loc>
-    
-    <lastmod>2020-04-21T14:51:07.324Z</lastmod>
     
   </url>
   
@@ -87,13 +94,6 @@
   
   <url>
     <loc>https://hydroframe.github.io/SandTank/docs/hydro_templates.html</loc>
-    
-    <lastmod>2020-04-21T14:28:12.548Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hydroframe.github.io/SandTank/docs/sustainability.html</loc>
     
     <lastmod>2020-04-21T14:28:12.548Z</lastmod>
     
