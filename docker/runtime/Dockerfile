@@ -90,6 +90,7 @@ COPY --from=devimage  /opt/paraview  /opt/paraview
 COPY --from=devimage  /opt/hypre     /opt/hypre
 COPY --from=devimage  /opt/parflow   /opt/parflow
 COPY --from=devimage  /opt/ecoslim   /opt/ecoslim
+COPY --from=devimage  /pvw           /pvw
 
 ENV PARFLOW_DIR      /opt/parflow
 ENV LD_LIBRARY_PATH  /opt/parflow/lib/

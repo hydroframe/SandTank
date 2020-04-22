@@ -67,6 +67,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ${!SYSTEM_PYTHON_PIP} install wheel && \
         ${!SYSTEM_PYTHON_PIP} install mako
 
+# Get node and npm
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
+    apt-get update && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
 # -----------------------------------------------------------------------------
 # Non privilege user: ubuntu
 # -----------------------------------------------------------------------------
@@ -79,7 +85,8 @@ RUN groupadd ubuntu && \
     mkdir -p /opt/hypre && chown -R ubuntu:ubuntu /opt/hypre && \
     mkdir -p /opt/parflow && chown -R ubuntu:ubuntu /opt/parflow && \
     mkdir -p /opt/cmake && chown -R ubuntu:ubuntu /opt/cmake && \
-    mkdir -p /opt/ecoslim && chown -R ubuntu:ubuntu /opt/ecoslim
+    mkdir -p /opt/ecoslim && chown -R ubuntu:ubuntu /opt/ecoslim && \
+    mkdir -p /pvw && chown -R ubuntu:ubuntu /pvw
 
 USER ubuntu
 
@@ -154,6 +161,21 @@ WORKDIR /home/ubuntu/EcoSLIM
 # Build
 RUN /usr/bin/make
 RUN install -m 755 -o ubuntu -g ubuntu EcoSLIM.exe /opt/ecoslim
+
+# -----------------------------------------------------------------------------
+# Sandtank Client
+# -----------------------------------------------------------------------------
+
+# Copy the sandtank repo, install the client, and move it
+COPY --chown=ubuntu:ubuntu . /home/ubuntu/sandtank-tmp
+RUN SANDTANK_DIR=/home/ubuntu/sandtank-tmp && \
+    rm -rf $SANDTANK_DIR/client/node_modules && \
+    rm -rf $SANDTANK_DIR/deploy/pvw/www && \
+    cd $SANDTANK_DIR/client && \
+    npm install && \
+    npm run build && \
+    mv $SANDTANK_DIR/deploy/pvw/* /pvw/ && \
+    rm -rf $SANDTANK_DIR
 
 # -----------------------------------------------------------------------------
 # Environment
