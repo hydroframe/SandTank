@@ -38,13 +38,7 @@ jobs:
     - name: Create Docker Tag
       # If a git tag was pushed, use the git tag for the docker tag
       # Otherwise, use "latest"
-      run: |
-        if [[ $REF == refs/tags/* ]]
-        then
-          echo "::set-env name=DOCKER_TAG::${REF#'refs/tags/'}"
-        else
-          echo "::set-env name=DOCKER_TAG::latest"
-        fi
+      run: . ./scripts/github-actions/create_docker_tag.sh
       env:
         REF: ${{ github.ref }}
 
