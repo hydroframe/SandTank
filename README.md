@@ -1,5 +1,7 @@
 # ParFlow Sandtank
 
+[![Docker](https://github.com/hydroframe/SandTank/workflows/Docker/badge.svg)](https://github.com/hydroframe/SandTank/actions?query=workflow%3ADocker)
+
 This application aims to provide a standalone solution for simulating a specific Sand tank setup using ParFlow and an interactive Web UI for adjusting the various parameters that can be adjusted by the user.
 
 See the [full documentation here](https://hydroframe.github.io/SandTank/).
