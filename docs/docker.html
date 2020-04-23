@@ -46,7 +46,7 @@
 <meta property="og:site_name" content="SandTank">
 <meta property="og:description" content="The ParaFlow Sandtank relies on a docker image to serve the web application along with the infrastructure to run the simulation codes and visualization server. This provides a streamlined execution an">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-22T14:22:14.897Z">
+<meta property="og:updated_time" content="2020-04-23T23:03:23.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker">
 <meta name="twitter:description" content="The ParaFlow Sandtank relies on a docker image to serve the web application along with the infrastructure to run the simulation codes and visualization server. This provides a streamlined execution an">
@@ -102,7 +102,7 @@
               <div class="article-content" itemprop="articleBody">
                 <p>The ParaFlow Sandtank relies on a docker image to serve the web application along with the infrastructure to run the simulation codes and visualization server. This provides a streamlined execution and deployment of the application.</p>
 <p>The sections below mainly focus on how a maintainer can rebuild each component that compose that end-product docker image.</p>
-<p>The following set of users can safely skip this section and simply use the publicly available image under the name <code>hydroframe/sandtank:web-service</code> on DockerHub. The workflow for this level of development is provided in the template section.</p>
+<p>The following set of users can safely skip this section and simply use the publicly available image under the name <code>hydroframe/sandtank</code> on DockerHub. The workflow for this level of development is provided in the template section.</p>
 <p>Users that can safely skip the Docker Build section:</p>
 <ul>
 <li>User that want to create/edit a <em>template</em></li>
@@ -116,29 +116,19 @@
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./docker/development</span><br><span class="line">./build.sh</span><br></pre></td></tr></table></figure>
 <h4 id="Docker-Runtime" class="article-heading"><a href="#Docker-Runtime" class="headerlink" title="Docker Runtime"></a>Docker Runtime<a class="article-anchor" href="#Docker-Runtime" aria-hidden="true"></a></h4><p>This will create a local docker image named <code>sandtank-runtime</code> which will only copy the end products from <code>sandtank-dev</code> into a more light-weight image meant to just run the application.</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./docker/runtime</span><br><span class="line">./build.sh</span><br></pre></td></tr></table></figure>
-<h4 id="Docker-Web" class="article-heading"><a href="#Docker-Web" class="headerlink" title="Docker Web"></a>Docker Web<a class="article-anchor" href="#Docker-Web" aria-hidden="true"></a></h4><p>This will create a local docker image named <code>pvw-sandtank-runtime</code> that extends <code>sandtank-runtime</code> with the ParaViewWeb infrastructure for managing web server and process manager.</p>
+<h4 id="Docker-Web" class="article-heading"><a href="#Docker-Web" class="headerlink" title="Docker Web"></a>Docker Web<a class="article-anchor" href="#Docker-Web" aria-hidden="true"></a></h4><p>This will create a local docker image named <code>hydroframe/sandtank</code> that extends <code>sandtank-runtime</code> with the ParaViewWeb infrastructure for managing web server and process manager.</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./docker/web</span><br><span class="line">./build.sh</span><br></pre></td></tr></table></figure>
-<h3 id="Publish-docker-images-to-HydroFrame" class="article-heading"><a href="#Publish-docker-images-to-HydroFrame" class="headerlink" title="Publish docker images to HydroFrame"></a>Publish docker images to HydroFrame<a class="article-anchor" href="#Publish-docker-images-to-HydroFrame" aria-hidden="true"></a></h3><p>Updated sand tank versions should be published to the HydroFrame docker-hub and tagged.</p>
-<p>Before anything you need to login into docker-hub by running the following command lines:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker login</span><br></pre></td></tr></table></figure>
-<p>Then provide your <code>Docker</code> ID and password at the prompts.<br>To tag your image, the command looks like:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker tag &lt;<span class="built_in">local</span>-image-tag&gt; &lt;desired-tag-name-for-registry&gt;</span><br></pre></td></tr></table></figure>
-<p>For example in our use case we will publish the following set of images:</p>
-<ul>
-<li>sandtank-runtime     =&gt; hydroframe/sandtank:runtime</li>
-<li>pvw-sandtank-runtime =&gt; hydroframe/sandtank:web-service</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker tag sandtank-runtime hydroframe/sandtank:runtime</span><br><span class="line">docker push hydroframe/sandtank:runtime</span><br></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker tag pvw-sandtank-runtime hydroframe/sandtank:web-service</span><br><span class="line">docker push hydroframe/sandtank:web-service</span><br></pre></td></tr></table></figure>
+<h3 id="Publish-docker-images-to-HydroFrame" class="article-heading"><a href="#Publish-docker-images-to-HydroFrame" class="headerlink" title="Publish docker images to HydroFrame"></a>Publish docker images to HydroFrame<a class="article-anchor" href="#Publish-docker-images-to-HydroFrame" aria-hidden="true"></a></h3><p>When a pull request is merged, the <a href="https://hub.docker.com/r/hydroframe/sandtank" target="_blank" rel="noopener">hydroframe/sandtank:latest image on dockerhub</a> should be automatically updated via the <a href="https://github.com/hydroframe/SandTank/actions?query=workflow%3ADocker" target="_blank" rel="noopener">GitHub Docker action</a>. None of the other images will be pushed.</p>
+<p>When a new <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">git tag</a> is pushed to the repository, it indicates that a new release is available. If a new tag is pushed, then a new docker image will also be pushed whose tag matches the git tag. For instance, if the git tag was <code>v1.0</code>, the new docker image pushed to dockerhub will be <code>hydroframe/sandtank:v1.0</code>.</p>
 <h3 id="Manage-docker-image-as-a-file-archive" class="article-heading"><a href="#Manage-docker-image-as-a-file-archive" class="headerlink" title="Manage docker image as a file archive"></a>Manage docker image as a file archive<a class="article-anchor" href="#Manage-docker-image-as-a-file-archive" aria-hidden="true"></a></h3><p>If network is not available it can be convenient to capture a docker image so you can share it to someone else through a thumb-drive or any other media.</p>
 <p>In order to capture a docker image into a file, you can run the following command line:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker save hydroframe/sandtank:web-service | gzip &gt; sandtank-web-service.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker save hydroframe/sandtank | gzip &gt; sandtank.tar.gz</span><br></pre></td></tr></table></figure>
 <p>Then once the user want to import that image to its local running docker, the following command line can be used:</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker load &lt; sandtank-web-service.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker load &lt; sandtank.tar.gz</span><br></pre></td></tr></table></figure>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2020-04-22T14:22:14.897Z" itemprop="dateModified">Last updated: 2020-04-22</time>
+                <time class="article-footer-updated" datetime="2020-04-23T23:03:23.265Z" itemprop="dateModified">Last updated: 2020-04-23</time>
                 <a href="web_application.html" class="article-footer-prev" title="Web Application"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="default_template.html" class="article-footer-next" title="Default"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
