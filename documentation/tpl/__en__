@@ -1,0 +1,34 @@
+menu:
+  manual: User Manual
+  docs: Documentation
+  gallery: Gallery
+  about: About
+  application: Application
+
+page:
+  contents: Contents
+  back_to_top: Back to Top
+  improve: Improve this doc
+  prev: Prev
+  next: Next
+  last_updated: "Last updated: %s"
+
+sidebar:
+  docs:
+    getting_started: Getting Started
+    overview: Overview
+    manual: User Manual
+    video: Video
+    run_application: Running the Application
+    development: Development
+    template: Template
+    documentation_update: Documentation Update
+    web_application: Web Application
+    docker: Docker
+    templates: Templates
+    default_template: Default
+    hillslope_template: Hillslope
+    community: Community
+    sustainability: Sustainability
+    troubleshooting: Troubleshooting
+    contributing: Contributing

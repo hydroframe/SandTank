@@ -1,0 +1,18 @@
+docs:
+  getting_started:
+    overview: index.html
+    manual: ../manual
+    video: video.html
+    run_application: run_application.html
+  development:
+    template: template.html
+    documentation_update: documentation_update.html
+    web_application: web_application.html
+    docker: docker.html
+  templates:
+    default_template: default_template.html
+    hillslope_template: hillslope_template.html
+  community:
+    sustainability: sustainability.html
+    troubleshooting: troubleshooting.html
+    contributing: contributing.html
