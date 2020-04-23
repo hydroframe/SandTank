@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Interactively simulate and visualize groundwater movement",
   "dependencies": {
-    "commitizen": "^4.0.4"
+    "commitizen": "^4.0.4",
+    "semantic-release": "^17.0.7"
   },
   "devDependencies": {
     "kw-doc": "^1.3.0"
@@ -12,7 +13,8 @@
     "commit": "git cz",
     "doc": "kw-doc -c ./documentation/config.js",
     "doc:publish": "kw-doc -c ./documentation/config.js -mp",
-    "doc:www": "kw-doc -c ./documentation/config.js -s"
+    "doc:www": "kw-doc -c ./documentation/config.js -s",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
