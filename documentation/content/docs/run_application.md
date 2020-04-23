@@ -18,13 +18,13 @@ To run the application on a local computer, follow these instructions:
 4. Pull the application by running:
 
     ```bash
-    $ docker pull hydroframe/sandtank:web-service
+    $ docker pull hydroframe/sandtank
     ```
 
 5. When it finishes downloading, run:
 
     ```bash
-    $ docker run -p 9000:80 -it hydroframe/sandtank:web-service
+    $ docker run -p 9000:80 -it hydroframe/sandtank
     ```
 
 6. Access the application by opening a web browser at http://localhost:9000/
@@ -38,7 +38,7 @@ To use custom templates, follow these steps:
 2. To try it out, follow the steps for [Running the Application](run_application.html), except, for the `docker run` command, add an additional argument like the following:
 
     ```bash
-    $ docker run -p 9000:80 -it -v /path/to/templates:/pvw/simulations/templates hydroframe/sandtank:web-service
+    $ docker run -p 9000:80 -it -v /path/to/templates:/pvw/simulations/templates hydroframe/sandtank
     ```
 
 where `/path/to/templates` is the path to your local `templates` directory. This will replace the `templates` directory inside the docker container with your local one.

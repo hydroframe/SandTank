@@ -38,7 +38,7 @@ docker run --rm                   \
   -p 9000:80                        \
   -e SERVER_NAME="${HOST}"           \
   -v "${APP}:/pvw"                    \
-  -it hydroframe/sandtank:web-service
+  -it hydroframe/sandtank
 ```
 
 Open your browser to `http://localhost:9000/`
@@ -60,7 +60,7 @@ docker run --rm                 \
   -p 9100:80                      \
   -e SERVER_NAME="${HOST}"         \
   -v "${APP}:/pvw"                  \
-  -d hydroframe/sandtank:web-service
+  -d hydroframe/sandtank
 ```
 
 Open your browser to `http://localhost:9100/`
