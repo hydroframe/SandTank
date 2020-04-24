@@ -1,5 +1,8 @@
 # ParFlow Sandtank
 
+[![Docker](https://github.com/hydroframe/SandTank/workflows/Docker/badge.svg?branch=master)](https://github.com/hydroframe/SandTank/actions?query=workflow%3ADocker+branch%3Amaster)
+[![Docs](https://github.com/hydroframe/SandTank/workflows/Docs/badge.svg?branch=master)](https://github.com/hydroframe/SandTank/actions?query=workflow%3ADocs+branch%3Amaster)
+
 This application aims to provide a standalone solution for simulating a specific Sand tank setup using ParFlow and an interactive Web UI for adjusting the various parameters that can be adjusted by the user.
 
 See the [full documentation here](https://hydroframe.github.io/SandTank/).
@@ -36,7 +39,7 @@ docker run --rm                   \
   -p 9000:80                        \
   -e SERVER_NAME="${HOST}"           \
   -v "${APP}:/pvw"                    \
-  -it hydroframe/sandtank:web-service
+  -it hydroframe/sandtank
 ```
 
 Open your browser to `http://localhost:9000/`
@@ -58,7 +61,7 @@ docker run --rm                 \
   -p 9100:80                      \
   -e SERVER_NAME="${HOST}"         \
   -v "${APP}:/pvw"                  \
-  -d hydroframe/sandtank:web-service
+  -d hydroframe/sandtank
 ```
 
 Open your browser to `http://localhost:9100/`

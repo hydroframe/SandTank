@@ -5,7 +5,7 @@ The ParaFlow Sandtank relies on a docker image to serve the web application alon
 
 The sections below mainly focus on how a maintainer can rebuild each component that compose that end-product docker image.
 
-The following set of users can safely skip this section and simply use the publicly available image under the name `hydroframe/sandtank:web-service` on DockerHub. The workflow for this level of development is provided in the template section.
+The following set of users can safely skip this section and simply use the publicly available image under the name `hydroframe/sandtank` on DockerHub. The workflow for this level of development is provided in the template section.
 
 Users that can safely skip the Docker Build section:
 - User that want to create/edit a *template*
@@ -40,7 +40,7 @@ cd ./docker/runtime
 
 #### Docker Web
 
-This will create a local docker image named `pvw-sandtank-runtime` that extends `sandtank-runtime` with the ParaViewWeb infrastructure for managing web server and process manager.
+This will create a local docker image named `hydroframe/sandtank` that extends `sandtank-runtime` with the ParaViewWeb infrastructure for managing web server and process manager.
 
 ```sh
 cd ./docker/web
@@ -48,35 +48,9 @@ cd ./docker/web
 ```
 
 ### Publish docker images to HydroFrame
-Updated sand tank versions should be published to the HydroFrame docker-hub and tagged.
+When a pull request is merged, the [hydroframe/sandtank:latest image on dockerhub](https://hub.docker.com/r/hydroframe/sandtank) should be automatically updated via the [GitHub Docker action](https://github.com/hydroframe/SandTank/actions?query=workflow%3ADocker). None of the other images will be pushed.
 
-Before anything you need to login into docker-hub by running the following command lines:
-
-```sh
-docker login
-```
-
-Then provide your `Docker` ID and password at the prompts.
-To tag your image, the command looks like:
-
-```sh
-docker tag <local-image-tag> <desired-tag-name-for-registry>
-```
-
-For example in our use case we will publish the following set of images:
-
-- sandtank-runtime     => hydroframe/sandtank:runtime
-- pvw-sandtank-runtime => hydroframe/sandtank:web-service
-
-```sh
-docker tag sandtank-runtime hydroframe/sandtank:runtime
-docker push hydroframe/sandtank:runtime
-```
-
-```sh
-docker tag pvw-sandtank-runtime hydroframe/sandtank:web-service
-docker push hydroframe/sandtank:web-service
-```
+When a new [git tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) is pushed to the repository, it indicates that a new release is available. If a new tag is pushed, then a new docker image will also be pushed whose tag matches the git tag. For instance, if the git tag was `v1.0`, the new docker image pushed to dockerhub will be `hydroframe/sandtank:v1.0`.
 
 ### Manage docker image as a file archive
 
@@ -85,11 +59,11 @@ If network is not available it can be convenient to capture a docker image so yo
 In order to capture a docker image into a file, you can run the following command line:
 
 ```sh
-docker save hydroframe/sandtank:web-service | gzip > sandtank-web-service.tar.gz
+docker save hydroframe/sandtank | gzip > sandtank.tar.gz
 ```
 
 Then once the user want to import that image to its local running docker, the following command line can be used:
 
 ```sh
-docker load < sandtank-web-service.tar.gz
+docker load < sandtank.tar.gz
 ```

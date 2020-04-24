@@ -38,7 +38,7 @@ docker run --rm                   \
   -p 9000:80                        \
   -e SERVER_NAME="localhost:9000"    \
   -v "$PWD/deploy/pvw:/pvw"           \
-  -it hydroframe/sandtank:web-service
+  -it hydroframe/sandtank
 ```
 
 Use `Ctrl+C` to stop the container.
