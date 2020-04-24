@@ -31,5 +31,5 @@ jobs:
     - name: Publish
       if: github.event_name == 'push'
       env:
-        HYDROFRAME_BOT_TOKEN: ${{ secrets.HYDROFRAME_BOT_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.HYDROFRAME_BOT_TOKEN }}
       run: ./scripts/github-actions/publish_docs.sh
