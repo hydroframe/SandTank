@@ -1,6 +1,6 @@
 {
   "name": "sandtank",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Interactively simulate and visualize groundwater movement",
   "dependencies": {
     "@semantic-release/changelog": "^5.0.1",
