@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/hydroframe/SandTank/compare/v1.0.1...v1.0.2) (2020-04-30)
+
+
+### Bug Fixes
+
+* **nowells:** remove noWells example ([65afe10](https://github.com/hydroframe/SandTank/commit/65afe109a926ee6e608974a24ed25d2a03fbbbf1))
+
 ## [1.0.1](https://github.com/hydroframe/SandTank/compare/v1.0.0...v1.0.1) (2020-04-29)
 
 
