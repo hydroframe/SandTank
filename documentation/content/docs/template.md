@@ -1,7 +1,7 @@
 title: Templates
 ---
 
-The default template is the Sandtank model; however, the inputs listed below can be altered to create custom templates. Templates can be used by appending name to the sand tank call, i.e. http://localhost:9000/?name=noWells (see [Using Custom Templates](run_application.html#Using-Custom-Templates) for more details).
+The default template is the Sandtank model; however, the inputs listed below can be altered to create custom templates. Templates can be used by appending name to the sand tank call, i.e. http://localhost:9000/?name=hillslop (see [Using Custom Templates](run_application.html#Using-Custom-Templates) for more details).
 
 The existing templates can be found in the repository at `./deploy/pvw/simulations/templates`. Each template has its own directory that must contain the following:
 - A `run.tcl` script for ParFlow to use to read the simulation
