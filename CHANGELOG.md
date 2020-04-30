@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/hydroframe/SandTank/compare/v1.0.3...v1.0.4) (2020-04-30)
+
+
+### Bug Fixes
+
+* **semantic-release:** use the github plugin to publish releases ([e2b5a95](https://github.com/hydroframe/SandTank/commit/e2b5a958f29474767f83cbf7453633d080066863))
+
 ## [1.0.3](https://github.com/hydroframe/SandTank/compare/v1.0.2...v1.0.3) (2020-04-30)
 
 
