@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/hydroframe/SandTank/compare/v1.0.4...v1.0.5) (2020-04-30)
+
+
+### Bug Fixes
+
+* **semantic-release:** set git environment variables ([65d5e5b](https://github.com/hydroframe/SandTank/commit/65d5e5b8a841363f346298ebc473072be62a9ee2))
+
 ## [1.0.4](https://github.com/hydroframe/SandTank/compare/v1.0.3...v1.0.4) (2020-04-30)
 
 
