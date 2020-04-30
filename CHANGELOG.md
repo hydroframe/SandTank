@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/hydroframe/SandTank/compare/v1.0.2...v1.0.3) (2020-04-30)
+
+
+### Bug Fixes
+
+* **bundle.sh:** remove newline at end ([719bcb8](https://github.com/hydroframe/SandTank/commit/719bcb89c60f85f4d54d6daee592ab17f2e94d68))
+
 ## [1.0.2](https://github.com/hydroframe/SandTank/compare/v1.0.1...v1.0.2) (2020-04-30)
 
 
