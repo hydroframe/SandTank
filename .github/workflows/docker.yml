@@ -1,11 +1,12 @@
 name: Docker
 
 on:
-  push:
-    branches: [ master ]
-    tags: ['*']
+  # Build on pull request to confirm the build works
   pull_request:
     branches: [ master ]
+  # Build on release to push a new image
+  release:
+    types: [ created ]
 
 jobs:
 
@@ -35,21 +36,28 @@ jobs:
         add_git_labels: true
         push: false
 
+    - name: Build web service
+      uses: docker/build-push-action@v1.0.1
+      with:
+        repository: hydroframe/sandtank
+        tags: latest
+        path: docker/web
+        add_git_labels: true
+        push: false
+
     - name: Create Docker Tag
-      # If a git tag was pushed, use the git tag for the docker tag
-      # Otherwise, use "latest"
+      if: github.event_name == 'release'
       run: . ./scripts/github-actions/create_docker_tag.sh
       env:
         REF: ${{ github.ref }}
 
-    - name: Build and push web service
+    - name: Push web service
+      if: github.event_name == 'release'
       uses: docker/build-push-action@v1.0.1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: hydroframe/sandtank
-        tags: ${{ env.DOCKER_TAG }}
+        tags: ${{ env.DOCKER_TAG }},latest
         path: docker/web
         add_git_labels: true
-        # Do not push for pull requests. Only after they have been merged.
-        push: ${{ github.event_name == 'push' }}
