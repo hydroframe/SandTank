@@ -28,7 +28,7 @@
     "url": "https://github.com/hydroframe/SandTank.git"
   },
   "author": "HydroFrame",
-  "license": "",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/hydroframe/SandTank/issues"
   },
