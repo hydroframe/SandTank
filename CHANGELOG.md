@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/hydroframe/SandTank/compare/v1.0.5...v1.0.6) (2020-05-01)
+
+
+### Bug Fixes
+
+* **logo:** Update application logo ([7723976](https://github.com/hydroframe/SandTank/commit/77239764bd5d53d9d8c1b6a5e2ac9c0f9a1cb07c))
+
 ## [1.0.5](https://github.com/hydroframe/SandTank/compare/v1.0.4...v1.0.5) (2020-04-30)
 
 
