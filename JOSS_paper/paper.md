@@ -14,10 +14,13 @@ authors:
     orcid: 0000-0001-7871-6269
     affiliation: 1
   - name: Sebastien Jourdain
+    orcid: 0000-0001-8083-271X
     affiliation: 5
   - name: Patrick O'leary
+    orcid: 0000-0003-2829-4277
     affiliation: 5
   - name: Patrick Avery
+    orcid: 0000-0003-2254-1345
     affiliation: 5
   - name: Lisa Gallagher
     orcid:  0000-0002-5556-7739
