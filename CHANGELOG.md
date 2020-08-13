@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/hydroframe/SandTank/compare/v1.0.6...v1.0.7) (2020-08-13)
+
+
+### Bug Fixes
+
+* **docker:** update all client dependencies ([d94347c](https://github.com/hydroframe/SandTank/commit/d94347c0de8f07c92247c35324800b2774e6c88a)), closes [babel/babel#11216](https://github.com/babel/babel/issues/11216) [#16](https://github.com/hydroframe/SandTank/issues/16) [#18](https://github.com/hydroframe/SandTank/issues/18) [#19](https://github.com/hydroframe/SandTank/issues/19)
+
 ## [1.0.6](https://github.com/hydroframe/SandTank/compare/v1.0.5...v1.0.6) (2020-05-01)
 
 
