@@ -5,10 +5,6 @@
 #  BASE_IMAGE
 #    *  ubuntu:18.04
 #
-#  PYTHON_VERSION
-#    *  2
-#       3
-#
 #  BUILD_TYPE
 #    *  Release
 #
@@ -20,18 +16,8 @@
 ARG BASE_IMAGE=ubuntu:18.04
 FROM ${BASE_IMAGE}
 
-ARG PYTHON_VERSION=2
 ARG BUILD_TYPE=Release
 ARG PARFLOW_COMMIT=9c0b0f54acd6fbef2902c3d52a6bc82c285b335b
-
-# The following environment variables help with the Python 2 vs 3 option while
-# we still support both of them.  In order for this approach to work, we need
-# the RUN command to use bash instead of sh for variable indirection.
-SHELL ["/bin/bash", "-c"]
-
-ENV SYSTEM_PYTHON_2_PIP pip
-ENV SYSTEM_PYTHON_3_PIP pip3
-ENV SYSTEM_PYTHON_PIP "SYSTEM_PYTHON_${PYTHON_VERSION}_PIP"
 
 # -----------------------------------------------------------------------------
 # Timezone handling for tzdata
@@ -60,12 +46,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libopenmpi-dev \
         tcl-dev tk-dev libopenblas-dev liblapack-dev openssh-server \
         pkg-config && \
-        if [ "${PYTHON_VERSION}" = "2" ]; then apt-get install -y --no-install-recommends python2.7-dev python-pip python-setuptools; fi && \
-        if [ "${PYTHON_VERSION}" = "3" ]; then apt-get install -y --no-install-recommends python3-dev python3-pip python3-setuptools; fi && \
-        if [ "${PYTHON_VERSION}" = "3" ]; then update-alternatives --install /usr/bin/python python /usr/bin/python3 1; fi && \
+        apt-get install -y --no-install-recommends python3-dev python3-pip python3-setuptools && \
+        update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
         rm -rf /var/lib/apt/lists/* && \
-        ${!SYSTEM_PYTHON_PIP} install wheel && \
-        ${!SYSTEM_PYTHON_PIP} install mako
+        pip3 install wheel && \
+        pip3 install mako
 
 # Get node and npm
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
@@ -147,7 +132,7 @@ USER ubuntu
 # -----------------------------------------------------------------------------
 
 RUN cd /opt/paraview && \
-    curl -L https://www.paraview.org/files/v5.7/ParaView-5.7.0-osmesa-MPI-Linux-Python2.7-64bit.tar.gz | tar --strip-components=1 -xzv
+    curl -L https://www.paraview.org/files/v5.7/ParaView-5.7.0-osmesa-MPI-Linux-Python3.7-64bit.tar.gz | tar --strip-components=1 -xzv
 
 # -----------------------------------------------------------------------------
 # EcoSLIM

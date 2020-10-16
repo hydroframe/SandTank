@@ -8,10 +8,6 @@
 #  DEV_IMAGE
 #    *  sandtank-dev
 #
-#  PYTHON_VERSION
-#    *  2
-#       3
-#
 #  BUILD_TYPE
 #    *  Release
 #
@@ -27,20 +23,7 @@ FROM ${DEV_IMAGE} AS devimage
 
 FROM ${BASE_IMAGE}
 
-ARG PYTHON_VERSION=2
 ARG BUILD_TYPE=Release
-
-ENV SYSTEM_PYTHON_2_PIP pip
-ENV SYSTEM_PYTHON_3_PIP pip3
-ENV SYSTEM_PYTHON_PIP "SYSTEM_PYTHON_${PYTHON_VERSION}_PIP"
-
-# -----------------------------------------------------------------------------
-# The following environment variables help with the Python 2 vs 3 option while
-# we still support both of them.  In order for this approach to work, we need
-# the RUN command to use bash instead of sh for variable indirection.
-# -----------------------------------------------------------------------------
-
-SHELL ["/bin/bash", "-c"]
 
 # -----------------------------------------------------------------------------
 # Timezone handling for tzdata
@@ -62,12 +45,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libopenmpi-dev \
         libgomp1 \
         tcl-dev tk-dev libopenblas-base liblapack-dev openssh-server && \
-        if [ "${PYTHON_VERSION}" = "2" ]; then apt-get install -y --no-install-recommends python2.7-dev python-pip python-setuptools; fi && \
-        if [ "${PYTHON_VERSION}" = "3" ]; then apt-get install -y --no-install-recommends python3-dev python3-pip python3-setuptools; fi && \
-        if [ "${PYTHON_VERSION}" = "3" ]; then update-alternatives --install /usr/bin/python python /usr/bin/python3 1; fi && \
+        apt-get install -y --no-install-recommends python3-dev python3-pip python3-setuptools && \
+        update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
         rm -rf /var/lib/apt/lists/* && \
-        ${!SYSTEM_PYTHON_PIP} install wheel && \
-        ${!SYSTEM_PYTHON_PIP} install mako
+        pip3 install wheel && \
+        pip3 install mako
 
 # -----------------------------------------------------------------------------
 # Non privilege user: ubuntu

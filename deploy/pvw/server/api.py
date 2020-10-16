@@ -13,11 +13,6 @@ from vtkmodules.vtkCommonDataModel import vtkImageData
 # import Twisted reactor for later callback
 from twisted.internet import reactor
 
-if sys.version_info >= (2,7):
-    buffer = memoryview
-else:
-    buffer = buffer
-
 # =============================================================================
 # Helper method
 # =============================================================================
@@ -130,7 +125,6 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
 
         updateFileSecurity(self.workdir)
 
-
     # -------------------------------------------------------------------------
 
     def pushIndicator(self):
@@ -159,7 +153,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.publish('parflow.sandtank.indicator',
             {
             'dimensions': indicatorDimensions,
-            'array': self.addAttachment(buffer(indicatorArray).tobytes()),
+            'array': self.addAttachment(memoryview(indicatorArray).tobytes()),
             }
         )
 
@@ -267,7 +261,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             print('push saturation: %s' % saturationFile)
             self.publish('parflow.sandtank.saturation', {
                 'time': self.lastProcessedTimestep,
-                'array': self.addAttachment(buffer(saturationArray).tobytes())
+                'array': self.addAttachment(memoryview(saturationArray).tobytes())
             })
 
     # -------------------------------------------------------------------------
@@ -291,7 +285,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                 self.publish('parflow.sandtank.concentration', {
                     'time': self.lastEcoSLIMTimestep,
                     'range': dataRange,
-                    'array': self.addAttachment(buffer(array).tobytes())
+                    'array': self.addAttachment(memoryview(array).tobytes())
                 })
             elif self.lastEcoSLIMTimestep > -1:
                 self.lastEcoSLIMTimestep -= 1
@@ -308,7 +302,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         mask = solidImage.GetClientSideObject().GetOutput().GetPointData().GetArray('vtkValidPointMask')
         return {
             'scale': scale,
-            'array': self.addAttachment(buffer(mask).tobytes()),
+            'array': self.addAttachment(memoryview(mask).tobytes()),
         }
 
     # -------------------------------------------------------------------------
