@@ -1,8 +1,3 @@
-import vtkURLExtract from 'vtk.js/Sources/Common/Core/URLExtract';
-
-// Process arguments from URL
-const userParams = vtkURLExtract.extractURLParameters();
-
 export default {
   state: {
     busyCount: 0,
@@ -37,7 +32,6 @@ export default {
     PARFLOW_JOB(state, getters) {
       const runId = getters.PVW_RUN_ID;
       return {
-        application: 'parflow',
         runId,
         runLength: state.runLength,
         runReset: state.runReset,
@@ -90,7 +84,6 @@ export default {
       state.busyCount += 1;
 
       const job = getters.PARFLOW_JOB;
-      const { application, runId } = job;
 
       if (job.runReset) {
         await dispatch('PVW_RESET');
@@ -98,40 +91,23 @@ export default {
 
       // Push configuration
       await dispatch('PVW_CONFIG_UPDATE', job);
+    },
+    PARFLOW_RUN_COMPLETE({ state, getters, dispatch }, { returncode }) {
+      state.busyCount -= 1;
 
-      const task = JSON.stringify({ application, runId });
-      return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
+      const job = getters.PARFLOW_JOB;
+      if (job.runReset) {
+        state.execCount = 1;
+      } else {
+        state.execCount += 1;
+      }
 
-        xhr.onreadystatechange = (e) => {
-          if (xhr.readyState === 4) {
-            state.busyCount -= 1;
-            if (job.runReset) {
-              state.execCount = 1;
-            } else {
-              state.execCount += 1;
-            }
-            if (xhr.status === 200 || xhr.status === 0) {
-              state.runReset = 0;
-              dispatch('PARFLOW_RESET_WELLS');
-              resolve(JSON.parse(xhr.responseText));
-            } else {
-              reject({ xhr, e });
-            }
-          }
-        };
-
-        // Make request
-        if (userParams.dev) {
-          xhr.open('POST', 'http://localhost:9000/paraview/', true);
-        } else {
-          xhr.open('POST', window.SANDTANK_SESSION_MANAGER_URL, true);
-        }
-
-        xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-        xhr.responseType = 'text';
-        xhr.send(task);
-      });
+      if (returncode === 0) {
+        state.runReset = 0;
+        dispatch('PARFLOW_RESET_WELLS');
+      } else {
+        console.error('Parflow run failed');
+      }
     },
     PARFLOW_RESET_WELLS({ state }) {
       const { wells } = state;
