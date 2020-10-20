@@ -1,4 +1,6 @@
 import os, sys, shutil, types, inspect, traceback, logging, re, json, fnmatch, time
+import subprocess
+from concurrent.futures import ThreadPoolExecutor as Pool
 
 from wslink import register as exportRpc
 
@@ -53,6 +55,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.templateName = templateName
         self.domain = None
         self.refreshRate = 0.5 # in seconds
+        self.parflowWorkerPool = Pool(max_workers=1)
 
         simple.LoadDistributedPlugin('ParFlow')
         self.reset()
@@ -124,6 +127,25 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                 f.write('set well_%s_value      %s\n' % (key, abs(value)))
 
         updateFileSecurity(self.workdir)
+
+        # Run parflow
+        self.runParflow()
+
+    # -------------------------------------------------------------------------
+
+    def runParflow(self):
+        runId = self.runId
+        cmd = ['su - ubuntu -c "export PARFLOW_DIR=/opt/parflow && '
+               f'/pvw/simulations/runSimulation.sh {runId}"']
+        f = self.parflowWorkerPool.submit(subprocess.run, cmd, shell=True)
+        f.add_done_callback(self.parflowRunComplete)
+
+    # -------------------------------------------------------------------------
+
+    def parflowRunComplete(self, future):
+        self.publish('parflow.sandtank.run.complete', {
+            'returncode': future.result().returncode
+        })
 
     # -------------------------------------------------------------------------
 
@@ -333,3 +355,9 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
     def onExit(self):
         if os.path.exists(self.workdir):
             shutil.rmtree(self.workdir)
+
+    # -------------------------------------------------------------------------
+
+    @property
+    def runId(self):
+        return os.path.split(self.workdir)[-1]

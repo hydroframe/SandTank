@@ -162,6 +162,12 @@ export default {
                 dispatch('SANDTANK_CONCENTRATION_UPDATE', concentration);
               });
 
+            validClient
+              .getRemote()
+              .Parflow.subscribeToRunComplete(([output]) => {
+                dispatch('PARFLOW_RUN_COMPLETE', output);
+              });
+
             // Initialize server
             validClient
               .getRemote()
