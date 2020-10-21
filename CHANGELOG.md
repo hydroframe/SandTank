@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/hydroframe/SandTank/compare/v1.0.7...v1.0.8) (2020-10-21)
+
+
+### Bug Fixes
+
+* **runSimulation.sh:** spelling ([2e35bd9](https://github.com/hydroframe/SandTank/commit/2e35bd9718f9d53d145b904f6a65705da1207a1d))
+
 ## [1.0.7](https://github.com/hydroframe/SandTank/compare/v1.0.6...v1.0.7) (2020-08-13)
 
 
