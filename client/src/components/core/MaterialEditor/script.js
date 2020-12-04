@@ -76,10 +76,10 @@ export default {
     },
     indicators() {
       if (this.domain && this.domain.setup && this.domain.setup.indicators) {
-        return this.domain.setup.indicators.map(({ key }, idx) => ({
+        return this.domain.setup.indicators.map(({ key }) => ({
           key,
           value: this.permeabilityMap[key],
-          color: this.palette[idx],
+          color: this.palette[key],
         }));
       }
       return [];
