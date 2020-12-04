@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/hydroframe/SandTank/compare/v1.0.8...v1.0.9) (2020-12-04)
+
+
+### Bug Fixes
+
+* **Indicator:** Color mapping ([a13e19d](https://github.com/hydroframe/SandTank/commit/a13e19d3cbf12fa0fee66cdb5be8b00de595b7ab))
+
 ## [1.0.8](https://github.com/hydroframe/SandTank/compare/v1.0.7...v1.0.8) (2020-10-21)
 
 

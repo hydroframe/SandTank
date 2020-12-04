@@ -1,6 +1,6 @@
 # ParFlow Sandtank
 
-[![Docker](https://github.com/hydroframe/SandTank/workflows/Docker/badge.svg?event=release&branch=v1.0.8)](https://github.com/hydroframe/SandTank/actions?query=workflow%3ADocker+event%3Arelease)
+[![Docker](https://github.com/hydroframe/SandTank/workflows/Docker/badge.svg?event=release&branch=v1.0.9)](https://github.com/hydroframe/SandTank/actions?query=workflow%3ADocker+event%3Arelease)
 [![Docs](https://github.com/hydroframe/SandTank/workflows/Docs/badge.svg?branch=master)](https://github.com/hydroframe/SandTank/actions?query=workflow%3ADocs+branch%3Amaster)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3983619.svg)](https://doi.org/10.5281/zenodo.3983619)
 
