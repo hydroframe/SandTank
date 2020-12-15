@@ -3,20 +3,18 @@
   "dimensions": [100, 1, 50],
   "bounds": [0.5, 99.5, 0.25, 0.75, 0.5, 49.5],
   "wells": [
-    { "name": "A", "position": [11, 15], "key": "1" },
-    { "name": "B", "position": [23, 1], "key": "2" },
-    { "name": "D", "position": [29, 27], "key": "4" },
-    { "name": "G", "position": [54, 15], "key": "7" },
-    { "name": "H", "position": [57, 1], "key": "8" },
-    { "name": "I", "position": [82, 1], "key": "9" },
-    { "name": "J", "position": [87, 14], "key": "10" },
-    { "name": "K", "position": [92, 26], "key": "11" }
+    { "name": "A", "position": [12, 12], "key": "1" },
+    { "name": "B", "position": [36, 30], "key": "2" },
+    { "name": "H", "position": [78, 48], "key": "8" },
+    { "name": "I", "position": [82, 48], "key": "9" },
+    { "name": "J", "position": [97, 30], "key": "10" },
+    { "name": "K", "position": [98, 23], "key": "11" }
   ],
   "server": {
-    "refreshRate": 0.5
+    "refreshRate": 0.25
   },
   "setup": {
-    "simulationLength": 10,
+    "simulationLength": 20,
     "maxHeight": 50,
     "hLeft": 30,
     "hRight": 30,
@@ -39,42 +37,32 @@
     },
     {
       "name": "A",
-      "pressureCell": [11, 0, 15],
-      "iRange": [11, 11]
+      "pressureCell": [12, 0, 12],
+      "iRange": [12, 12]
     },
     {
       "name": "B",
-      "pressureCell": [23, 0, 1],
-      "iRange": [23, 23]
-    },
-    {
-      "name": "D",
-      "pressureCell": [29, 0, 27],
-      "iRange": [29, 29]
-    },
-    {
-      "name": "G",
-      "pressureCell": [54, 0, 15],
-      "iRange": [54, 54]
+      "pressureCell": [36, 0, 30],
+      "iRange": [36, 36]
     },
     {
       "name": "H",
-      "pressureCell": [57, 0, 1],
-      "iRange": [57, 57]
+      "pressureCell": [78, 0, 48],
+      "iRange": [78, 78]
     },
     {
       "name": "I",
-      "pressureCell": [82, 0, 1],
+      "pressureCell": [82, 0, 48],
       "iRange": [82, 82]
     },{
       "name": "J",
-      "pressureCell": [87, 0, 14],
-      "iRange": [87, 87]
+      "pressureCell": [97, 0, 30],
+      "iRange": [97, 97]
     },
     {
       "name": "K",
-      "pressureCell": [92, 0, 26],
-      "iRange": [92, 92]
+      "pressureCell": [98, 0, 23],
+      "iRange": [98, 98]
     }
   ],
   "flows": [
