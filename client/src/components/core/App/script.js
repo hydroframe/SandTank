@@ -29,10 +29,29 @@ export default {
       flowMap: 'SANDTANK_FLOW_MAP',
       storageMap: 'SANDTANK_STORAGE_MAP',
       domain: 'SANDTANK_DOMAIN',
-      //
+      totalStorage: 'SANDTANK_TOTAL_STORAGE',
+      pumping: 'SANDTANK_PUMPING',
       time: 'SANDTANK_TIME',
       config: 'PARFLOW_JOB',
     }),
+    yield() {
+      const calc_yield =  this.pumping * (this.config.waterUseEfficiency * 0.004) *
+        (this.config.irrigationEfficiency * 0.2);
+      return calc_yield;
+    },
+    yieldInfo() {
+      return `Yield = ${this.yield.toFixed(4)} ton`;
+    },
+    revenue() {
+      const revenue = this.yield * 120;
+      return revenue;
+    },
+    revenueInfo() {
+      return `Revenue = $${this.revenue.toFixed(2)}`;
+    },
+    totalStorageInfo() {
+      return `Total Storage = ${this.totalStorage.toLocaleString()} ${this.storageUnits.lake}`;
+    },
     storageUnits() {
       const units = {};
       if (this.domain && this.domain.storages) {
@@ -71,6 +90,7 @@ export default {
   methods: {
     ...mapMutations({
       setTypeToLake: 'PARFLOW_LAKE_SET',
+      setRecharge: 'PARFLOW_RECHARGE_SET',
     }),
     ...mapActions({
       pvwConnect: 'PVW_CONNECT',

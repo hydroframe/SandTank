@@ -111,6 +111,10 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             f.write('set hleft          %s\n' % self.lastConfig['hLeft'])
             f.write('set hright         %s\n' % self.lastConfig['hRight'])
             f.write('\n')
+            f.write('set recharge       %s\n' % self.lastConfig['recharge'])
+            f.write('set waterUseEfficiency         %s\n' % self.lastConfig['waterUseEfficiency'])
+            f.write('set irrigationEfficiency       %s\n' % self.lastConfig['irrigationEfficiency'])
+            f.write('\n')
             f.write('set lake           %s\n' % self.lastConfig['isLake'])
 
             # Porosity
@@ -188,6 +192,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         gotFile = False
         nextSaturationFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
         nextNextSaturationFile = os.path.join(self.workdir, '%s.out.satur.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 2).zfill(5)))
+        nextWellForcingFile = os.path.join(self.workdir, 'well_forcing.pfb')
         nextPressureFile = os.path.join(self.workdir, '%s.out.press.%s.pfb' % (self.runName, str(self.lastProcessedTimestep + 1).zfill(5)))
         nextConcentrationFile = os.path.join(self.workdir, 'SLIM_SandTank_test_cgrid.%s.vtk' % str(self.lastEcoSLIMTimestep + 1).zfill(8))
         nextNextConcentrationFile = os.path.join(self.workdir, 'SLIM_SandTank_test_cgrid.%s.vtk' % str(self.lastEcoSLIMTimestep + 2).zfill(8))
@@ -203,6 +208,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         if os.path.exists(nextNextSaturationFile):
             try:
                 self.pushSaturation(nextSaturationFile)
+                self.pushWellForcing(nextWellForcingFile)
                 self.pushPressureData(nextPressureFile)
                 self.lastProcessedTimestep += 1
                 gotFile = True
@@ -269,9 +275,13 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             array = imageData.GetCellData().GetArray(0)
             size = array.GetNumberOfTuples()
 
-            # Data convertion
+            # Data conversion
             saturationArray = vtkUnsignedCharArray()
             saturationArray.SetNumberOfTuples(size)
+
+            # Extract total storage in the domain
+            totalStorage = {}
+            totalDomainStorage = 0.0
             for i in range(size):
                 value = array.GetValue(i)
                 if value >= 1.0:
@@ -280,11 +290,42 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                     saturationArray.SetValue(i, 0)
                 else:
                     saturationArray.SetValue(i, int(value * 255))
+
+                p = saturationArray.GetValue(i)
+                totalDomainStorage += p
+
             print('push saturation: %s' % saturationFile)
             self.publish('parflow.sandtank.saturation', {
                 'time': self.lastProcessedTimestep,
                 'array': self.addAttachment(memoryview(saturationArray).tobytes())
             })
+
+            totalStorage['value'] = totalDomainStorage * 0.3
+            self.publish('parflow.sandtank.totalstorage', totalStorage)
+
+    # -------------------------------------------------------------------------
+
+    def pushWellForcing(self, wellForcingFile):
+        if os.path.exists(wellForcingFile):
+            self.pfbReader.FileNames=[wellForcingFile]
+            self.pfbReader.UpdatePipeline()
+            imageData = self.pfbReader.GetClientSideObject().GetOutput().GetBlock(0)
+            array = imageData.GetCellData().GetArray(0)
+            size = array.GetNumberOfTuples()
+
+            pumping = {}
+            totalPumping = 0.0
+
+            # Extract total pumping in the domain, compute yield
+            for i in range(size):
+                value = array.GetValue(i)
+                if value < 0:
+                    totalPumping += value
+
+            # Extract total pumping
+            pumping['value'] = -1 * totalPumping
+
+            self.publish('parflow.sandtank.pumping', pumping)
 
     # -------------------------------------------------------------------------
 

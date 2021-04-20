@@ -129,6 +129,8 @@ export default {
       setJobLength: 'PARFLOW_RUN_LENGTH_SET',
       setLeftPressure: 'PARFLOW_LEFT_PRESSURE_SET',
       setRightPressure: 'PARFLOW_RIGHT_PRESSURE_SET',
+      setIrrigationEfficiency: 'PARFLOW_IE_SET',
+      setWaterUseEfficiency: 'PARFLOW_WUE_SET',
       setTypeToLake: 'PARFLOW_LAKE_SET',
       updateWell: 'PARFLOW_WELL_SET',
     }),
