@@ -56,7 +56,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         self.domain = None
         self.refreshRate = 0.5 # in seconds
         self.parflowWorkerPool = Pool(max_workers=1)
-
+        self.totalPumping = 0.0
         simple.LoadDistributedPlugin('ParFlow')
         self.reset()
 
@@ -77,7 +77,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
         shutil.copytree(tplPath, self.workdir)
         self.lastProcessedTimestep = -1
         self.lastEcoSLIMTimestep = -1
-
+        self.totalPumping = 0.0
         updateFileSecurity(self.workdir)
 
         # Reset any concentration
@@ -314,16 +314,15 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             size = array.GetNumberOfTuples()
 
             pumping = {}
-            totalPumping = 0.0
 
             # Extract total pumping in the domain, compute yield
             for i in range(size):
                 value = array.GetValue(i)
                 if value < 0:
-                    totalPumping += value
+                    self.totalPumping += value
 
             # Extract total pumping
-            pumping['value'] = -1 * totalPumping
+            pumping['value'] = -1 * self.totalPumping
 
             self.publish('parflow.sandtank.pumping', pumping)
 
