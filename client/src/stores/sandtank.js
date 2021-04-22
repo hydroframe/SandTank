@@ -111,11 +111,11 @@ export default {
         state.saturationArray = new Uint8Array(arrayBuffer);
       });
     },
-    SANDTANK_TOTAL_STORAGE_UPDATE({ state }, { value }) {
-      state.totalStorage = value;
+    SANDTANK_TOTAL_STORAGE_UPDATE({ state }, totalStorage) {
+      state.totalStorage = totalStorage;
     },
-    SANDTANK_PUMPING_UPDATE({ state }, { value }) {
-      state.pumping = value;
+    SANDTANK_PUMPING_UPDATE({ state }, totalPumping) {
+      state.pumping = totalPumping;
     },
     SANDTANK_CONCENTRATION_UPDATE({ state }, { array, range }) {
       state.concentrationDataRange = range;

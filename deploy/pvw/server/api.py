@@ -280,8 +280,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             saturationArray.SetNumberOfTuples(size)
 
             # Extract total storage in the domain
-            totalStorage = {}
-            totalDomainStorage = 0.0
+            totalStorage = 0.0
             for i in range(size):
                 value = array.GetValue(i)
                 if value >= 1.0:
@@ -292,7 +291,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                     saturationArray.SetValue(i, int(value * 255))
 
                 p = saturationArray.GetValue(i)
-                totalDomainStorage += p
+                totalStorage += p
 
             print('push saturation: %s' % saturationFile)
             self.publish('parflow.sandtank.saturation', {
@@ -300,7 +299,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
                 'array': self.addAttachment(memoryview(saturationArray).tobytes())
             })
 
-            totalStorage['value'] = totalDomainStorage * 0.3
+            totalStorage *= 0.3
             self.publish('parflow.sandtank.totalstorage', totalStorage)
 
     # -------------------------------------------------------------------------
@@ -313,18 +312,13 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             array = imageData.GetCellData().GetArray(0)
             size = array.GetNumberOfTuples()
 
-            pumping = {}
-
-            # Extract total pumping in the domain, compute yield
+            # Extract total pumping in the domain
             for i in range(size):
                 value = array.GetValue(i)
                 if value < 0:
-                    self.totalPumping += value
+                    self.totalPumping += -1 * value
 
-            # Extract total pumping
-            pumping['value'] = -1 * self.totalPumping
-
-            self.publish('parflow.sandtank.pumping', pumping)
+            self.publish('parflow.sandtank.pumping', self.totalPumping)
 
     # -------------------------------------------------------------------------
 
