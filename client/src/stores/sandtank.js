@@ -148,7 +148,7 @@ export default {
       commit('PARFLOW_LEFT_PRESSURE_SET', state.domain.setup.hLeft);
       commit('PARFLOW_RIGHT_PRESSURE_SET', state.domain.setup.hRight);
       commit('PARFLOW_RECHARGE_SET', state.domain.setup.recharge);
-      commit('PARFLOW_IE_SET_SET', state.domain.setup.irrigationEfficiency);
+      commit('PARFLOW_IE_SET', state.domain.setup.irrigationEfficiency);
       commit('PARFLOW_WUE_SET', state.domain.setup.waterUseEfficiency);
       commit('PARFLOW_RESET_SET', true);
       return dispatch('PVW_RESET');
