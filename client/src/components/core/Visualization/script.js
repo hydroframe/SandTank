@@ -61,6 +61,12 @@ export default {
       concentrationRange: 'SANDTANK_CONCENTRATION_RANGE',
       concentration: 'SANDTANK_CONCENTRATION_ARRAY',
     }),
+    showWueSlider() {
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('waterUseEfficiency');
+    },
+    showIrrigationSlider() {
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('irrigationEfficiency');
+    },
     wellIncrement() {
       return (
         (this.domain && this.domain.setup && this.domain.setup.wellIncrement) ||

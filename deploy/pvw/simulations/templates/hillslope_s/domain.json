@@ -27,6 +27,7 @@
       { "key": 3, "value": 0.3 }
     ]
   },
+  "features": ["waterUseEfficiency", "irrigationEfficiency", "recharge", "totalStorage", "yield", "revenue"],
   "pressures": [
     {
       "name": "Landfill",

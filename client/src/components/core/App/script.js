@@ -86,6 +86,18 @@ export default {
       }
       return `River flow ${this.flowMap.river} ${this.flowUnits.river}`;
     },
+    showRechargeSlider() {
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('recharge');
+    },
+    showYield() {
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('yield');
+    },
+    showRevenue() {
+      return this.showYield && this.domain.features.includes('revenue');
+    },
+    showTotalStorage() {
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('totalStorage');
+    }
   },
   methods: {
     ...mapMutations({

@@ -100,6 +100,10 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             self.lastProcessedTimestep = startNumber
             self.lastEcoSLIMTimestep = startNumber
 
+        # TODO - remove these lines
+        print(self.lastConfig)
+        print(filePath)
+
         with open(filePath, 'w') as f:
             # Global
             f.write('# Global settings\n')
@@ -111,9 +115,23 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             f.write('set hleft          %s\n' % self.lastConfig['hLeft'])
             f.write('set hright         %s\n' % self.lastConfig['hRight'])
             f.write('\n')
-            f.write('set recharge       %s\n' % self.lastConfig['recharge'])
-            f.write('set waterUseEfficiency         %s\n' % self.lastConfig['waterUseEfficiency'])
+
+            if 'recharge' in self.lastConfig:
+                f.write('set recharge       %s\n' % self.lastConfig['recharge'])
+            else:
+                f.write('set recharge       0\n')
+
+            if 'waterUseEfficiency' in self.lastConfig:
+                f.write('set waterUseEfficiency         %s\n' % self.lastConfig['waterUseEfficiency'])
+            else:
+                f.write('set waterUseEfficiency         0\n')
+
+            # TODO - fix this
+            #if 'irrigationEfficiency' in self.lastConfig:
             f.write('set irrigationEfficiency       %s\n' % self.lastConfig['irrigationEfficiency'])
+            #else:
+            #    f.write('set irrigationEfficiency       0\n')
+
             f.write('\n')
             f.write('set lake           %s\n' % self.lastConfig['isLake'])
 

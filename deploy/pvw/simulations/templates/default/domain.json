@@ -23,9 +23,6 @@
     "maxHeight": 50,
     "hLeft": 30,
     "hRight": 30,
-    "recharge": 1,
-    "waterUseEfficiency": 1,
-    "irrigationEfficiency": 1,
     "wellIncrement": 1,
     "indicators": [
       { "key": 1, "value": 1.0 },
