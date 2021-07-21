@@ -142,17 +142,17 @@
     />
   </v-layout>
 
-  <v-layout style="height: 50px;" align-center>
+  <v-layout v-if="showOpacitySliders && (showWueSlider || showIrrigationSlider)" style="height: 50px;" align-center>
     <v-slider
       class="mx-4"
       label="Irrigation Efficiency"
       v-model="jobConfig.irrigationEfficiency"
       @input="setIrrigationEfficiency"
-      min="1"
+      min="0"
       step="0.01"
       max="5"
       hide-details
-      v-show="showOpacitySliders"
+      v-if="showIrrigationSlider"
       thumb-label
     />
     <v-slider
@@ -160,11 +160,11 @@
       label="Water Use Efficiency"
       v-model="jobConfig.waterUseEfficiency"
       @input="setWaterUseEfficiency"
-      min="1"
+      min="0"
       step="0.01"
       max="5"
       hide-details
-      v-show="showOpacitySliders"
+      v-if="showWueSlider"
       thumb-label
     />
   </v-layout>

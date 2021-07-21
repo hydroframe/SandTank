@@ -86,6 +86,22 @@ export default {
       }
       return `River flow ${this.flowMap.river} ${this.flowUnits.river}`;
     },
+    showRechargeSlider() {
+      // If "features" list found in domain and it contains "recharge", display recharge slider
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('recharge');
+    },
+    showYield() {
+      // If "features" list found in domain and it contains "yield", display yield info
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('yield');
+    },
+    showRevenue() {
+      // If "features" list found in domain and it contains "revenue", display revenue info
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('revenue');
+    },
+    showTotalStorage() {
+      // If "features" list found in domain and it contains "totalStorage", display total storage info
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('totalStorage');
+    },
   },
   methods: {
     ...mapMutations({

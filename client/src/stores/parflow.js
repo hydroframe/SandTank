@@ -6,7 +6,7 @@ export default {
     runReset: 1,
     hLeft: 30,
     hRight: 30,
-    recharge: 1,
+    recharge: 0,
     irrigationEfficiency: 1,
     waterUseEfficiency: 1,
     isLake: 0,

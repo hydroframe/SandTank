@@ -36,10 +36,6 @@ puts ""
 puts "hleft:        $hleft"
 puts "hright:       $hright"
 puts ""
-puts "recharge:     $recharge"
-puts "waterUseEfficiency:             $waterUseEfficiency"
-puts "irrigationEfficiency:           $irrigationEfficiency"
-puts ""
 puts "lake:         $lake"
 puts ""
 puts "k_1:         $k_1"
@@ -533,11 +529,11 @@ pfset Patch.y-upper.BCPressure.alltime.Value      0.0
 if {$lake == 1} {
   pfset Patch.z-upper.BCPressure.Type               FluxConst
   pfset Patch.z-upper.BCPressure.Cycle              constant
-  pfset Patch.z-upper.BCPressure.alltime.Value      [expr (-0.003 * $recharge)]
+  pfset Patch.z-upper.BCPressure.alltime.Value      0.0
 } else {
   pfset Patch.z-upper.BCPressure.Type               OverlandFlow
   pfset Patch.z-upper.BCPressure.Cycle              constant
-  pfset Patch.z-upper.BCPressure.alltime.Value      [expr (-0.003 * $recharge)]
+  pfset Patch.z-upper.BCPressure.alltime.Value      0.0
 }
 
 # -----------------------------------------------------------------------------

@@ -17,7 +17,7 @@
       dense
       hide-details
       class="mx-4"
-      style="max-width: 100px; padding-top:10px"
+      style="max-width: 100px;"
     />
     <v-slider
       class="mx-4"
@@ -30,6 +30,7 @@
       hide-details
       thumb-label
       :thumb-size="20"
+      v-if="showRechargeSlider"
       style="padding-top:10px"
     />
     <v-spacer />
@@ -84,9 +85,9 @@
       </template>
       <span>
         <p>{{ informations }}</p>
-        <p>{{ yieldInfo }}</p>
-        <p>{{ revenueInfo }}</p>
-        <p>{{ totalStorageInfo }}</p>
+        <p v-if="showYield">{{ yieldInfo }}</p>
+        <p v-if="showRevenue">{{ revenueInfo }}</p>
+        <p v-if="showTotalStorage">{{ totalStorageInfo }}</p>
       </span>
     </v-tooltip>
 
