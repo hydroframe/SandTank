@@ -294,7 +294,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             saturationArray = vtkUnsignedCharArray()
             saturationArray.SetNumberOfTuples(size)
 
-            # Extract total storage in the domain
+            # Extract and publish saturation and total storage in the domain
             totalStorage = 0.0
             for i in range(size):
                 value = array.GetValue(i)
@@ -327,7 +327,7 @@ class SandTankEngine(pv_protocols.ParaViewWebProtocol):
             array = imageData.GetCellData().GetArray(0)
             size = array.GetNumberOfTuples()
 
-            # Extract total pumping in the domain
+            # Extract and publish total pumping in the domain
             for i in range(size):
                 value = array.GetValue(i)
                 if value < 0:

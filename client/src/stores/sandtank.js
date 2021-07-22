@@ -112,9 +112,11 @@ export default {
       });
     },
     SANDTANK_TOTAL_STORAGE_UPDATE({ state }, totalStorage) {
+      // Total storage is a single value, so we don't need an array parameter
       state.totalStorage = totalStorage;
     },
     SANDTANK_PUMPING_UPDATE({ state }, totalPumping) {
+      // Total pumping is a single value, so we don't need an array parameter
       state.pumping = totalPumping;
     },
     SANDTANK_CONCENTRATION_UPDATE({ state }, { array, range }) {
