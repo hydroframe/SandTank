@@ -35,7 +35,9 @@ export default {
       config: 'PARFLOW_JOB',
     }),
     yield() {
-      const calc_yield =  this.pumping * (this.config.waterUseEfficiency * 0.004) *
+      const calc_yield =
+        this.pumping *
+        (this.config.waterUseEfficiency * 0.004) *
         (this.config.irrigationEfficiency * 0.2);
       return calc_yield;
     },
@@ -50,7 +52,8 @@ export default {
       return `Revenue = $${this.revenue.toFixed(2)}`;
     },
     totalStorageInfo() {
-      return `Total Storage = ${this.totalStorage.toLocaleString()} ${this.storageUnits.lake}`;
+      return `Total Storage = ${this.totalStorage.toLocaleString()}
+        ${this.storageUnits.lake}`;
     },
     storageUnits() {
       const units = {};
@@ -88,19 +91,31 @@ export default {
     },
     showRechargeSlider() {
       // If "features" list found in domain and it contains "recharge", display recharge slider
-      return this.domain.hasOwnProperty('features') && this.domain.features.includes('recharge');
+      return (
+        this.domain.hasOwnProperty('features') &&
+        this.domain.features.includes('recharge')
+      );
     },
     showYield() {
       // If "features" list found in domain and it contains "yield", display yield info
-      return this.domain.hasOwnProperty('features') && this.domain.features.includes('yield');
+      return (
+        this.domain.hasOwnProperty('features') &&
+        this.domain.features.includes('yield')
+      );
     },
     showRevenue() {
       // If "features" list found in domain and it contains "revenue", display revenue info
-      return this.domain.hasOwnProperty('features') && this.domain.features.includes('revenue');
+      return (
+        this.domain.hasOwnProperty('features') &&
+        this.domain.features.includes('revenue')
+      );
     },
     showTotalStorage() {
       // If "features" list found in domain and it contains "totalStorage", display total storage info
-      return this.domain.hasOwnProperty('features') && this.domain.features.includes('totalStorage');
+      return (
+        this.domain.hasOwnProperty('features') &&
+        this.domain.features.includes('totalStorage')
+      );
     },
   },
   methods: {
