@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/hydroframe/SandTank/compare/v1.1.0...v1.1.1) (2021-07-26)
+
+
+### Bug Fixes
+
+* **ci:** Correct docker build fix ([1bfc49e](https://github.com/hydroframe/SandTank/commit/1bfc49e49643f89dc3f1264488c9b9647bf2bcf2))
+* **ci:** Update docker build ([68f3a1b](https://github.com/hydroframe/SandTank/commit/68f3a1b8991f2d5d198de8e4631bfebc25064479))
+
 # [1.1.0](https://github.com/hydroframe/SandTank/compare/v1.0.9...v1.1.0) (2021-07-26)
 
 
