@@ -62,7 +62,7 @@ export default {
     },
     PARFLOW_WUE(state) {
       return state.waterUseEfficiency;
-    }
+    },
   },
   mutations: {
     PARFLOW_RESET_SET(state, value) {
