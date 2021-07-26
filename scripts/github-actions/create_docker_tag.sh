@@ -9,7 +9,7 @@
 
 if [[ $REF == refs/tags/* ]]
 then
-  echo "::set-env name=DOCKER_TAG::${REF#'refs/tags/'}"
+  echo "name=DOCKER_TAG::${REF#'refs/tags/'}" >> $GITHUB_ENV
 else
-  echo "::set-env name=DOCKER_TAG::latest"
+  echo "name=DOCKER_TAG::latest" >> $GITHUB_ENV
 fi
