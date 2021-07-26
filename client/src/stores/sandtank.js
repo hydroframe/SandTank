@@ -12,6 +12,8 @@ export default {
   state: {
     indicatorArray: null,
     saturationArray: null,
+    totalStorage: 0.0,
+    pumping: 0.0,
     solidArray: null,
     solidScaling: 1,
     time: 0,
@@ -40,6 +42,12 @@ export default {
     },
     SANDTANK_SATURATION(state) {
       return state.saturationArray;
+    },
+    SANDTANK_TOTAL_STORAGE(state) {
+      return state.totalStorage;
+    },
+    SANDTANK_PUMPING(state) {
+      return state.pumping;
     },
     SANDTANK_CONCENTRATION_RANGE(state) {
       return state.concentrationDataRange;
@@ -103,6 +111,14 @@ export default {
         state.saturationArray = new Uint8Array(arrayBuffer);
       });
     },
+    SANDTANK_TOTAL_STORAGE_UPDATE({ state }, totalStorage) {
+      // Total storage is a single value, so we don't need an array parameter
+      state.totalStorage = totalStorage;
+    },
+    SANDTANK_PUMPING_UPDATE({ state }, totalPumping) {
+      // Total pumping is a single value, so we don't need an array parameter
+      state.pumping = totalPumping;
+    },
     SANDTANK_CONCENTRATION_UPDATE({ state }, { array, range }) {
       state.concentrationDataRange = range;
       if (array) {
@@ -133,6 +149,9 @@ export default {
       dispatch('PARFLOW_RESET_WELLS');
       commit('PARFLOW_LEFT_PRESSURE_SET', state.domain.setup.hLeft);
       commit('PARFLOW_RIGHT_PRESSURE_SET', state.domain.setup.hRight);
+      commit('PARFLOW_RECHARGE_SET', state.domain.setup.recharge);
+      commit('PARFLOW_IE_SET', state.domain.setup.irrigationEfficiency);
+      commit('PARFLOW_WUE_SET', state.domain.setup.waterUseEfficiency);
       commit('PARFLOW_RESET_SET', true);
       return dispatch('PVW_RESET');
     },

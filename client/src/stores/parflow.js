@@ -6,6 +6,9 @@ export default {
     runReset: 1,
     hLeft: 30,
     hRight: 30,
+    recharge: 0,
+    irrigationEfficiency: 1,
+    waterUseEfficiency: 1,
     isLake: 0,
     k: {},
     wells: {
@@ -37,6 +40,9 @@ export default {
         runReset: state.runReset,
         hLeft: state.hLeft,
         hRight: state.hRight,
+        recharge: state.recharge,
+        irrigationEfficiency: state.irrigationEfficiency,
+        waterUseEfficiency: state.waterUseEfficiency,
         isLake: state.isLake,
         k: state.k,
         wells: state.wells,
@@ -47,6 +53,15 @@ export default {
     },
     PARFLOW_WELLS(state) {
       return state.wells;
+    },
+    PARFLOW_RECHARGE(state) {
+      return state.recharge;
+    },
+    PARFLOW_IE(state) {
+      return state.irrigationEfficiency;
+    },
+    PARFLOW_WUE(state) {
+      return state.waterUseEfficiency;
     },
   },
   mutations: {
@@ -61,6 +76,15 @@ export default {
     },
     PARFLOW_RIGHT_PRESSURE_SET(state, value) {
       state.hRight = value;
+    },
+    PARFLOW_RECHARGE_SET(state, value) {
+      state.recharge = value;
+    },
+    PARFLOW_IE_SET(state, value) {
+      state.irrigationEfficiency = value;
+    },
+    PARFLOW_WUE_SET(state, value) {
+      state.waterUseEfficiency = value;
     },
     PARFLOW_LAKE_SET(state, value) {
       state.isLake = value ? 1 : 0;
