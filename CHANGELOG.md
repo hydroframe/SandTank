@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/hydroframe/SandTank/compare/v1.0.9...v1.1.0) (2021-07-26)
+
+
+### Features
+
+* **agrosystem:** Water use, irrigation, recharge, total storage, yield, and revenue features added for new agrosystem template ([47a3f55](https://github.com/hydroframe/SandTank/commit/47a3f55b8b2dae4b7b6aa128263ee5695b43c241))
+
 ## [1.0.9](https://github.com/hydroframe/SandTank/compare/v1.0.8...v1.0.9) (2020-12-04)
 
 
