@@ -25,6 +25,9 @@ authors:
   - name: Lisa Gallagher
     orcid:  0000-0002-5556-7739
     affiliation: "3, 4"
+  - name: Calla Chennault
+    orcid: 0000-0002-6258-0042
+    affiliation: "2"
   - name: Reed M. Maxwell
     orcid: 0000-0002-1364-4441
     affiliation: "2, 3, 4"
