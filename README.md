@@ -9,6 +9,7 @@ This application aims to provide a standalone solution for simulating a specific
 See the [full documentation here](https://hydroframe.github.io/SandTank/).
 
 ## Build the web client
+*Note: Node.js version 17 or lower is required*
 
 ```sh
 cd ./client
