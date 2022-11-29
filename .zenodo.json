@@ -1,0 +1,55 @@
+{
+    "description": "<a href=\"https://github.com/hydroframe/SandTank/compare/v1.1.0...v1.1.1\">1.1.1</a> (2021-07-26)\nBug Fixes\n<ul>\n<li><strong>ci:</strong> Correct docker build fix (<a href=\"https://github.com/hydroframe/SandTank/commit/1bfc49e49643f89dc3f1264488c9b9647bf2bcf2\">1bfc49e</a>)</li>\n<li><strong>ci:</strong> Update docker build (<a href=\"https://github.com/hydroframe/SandTank/commit/68f3a1b8991f2d5d198de8e4631bfebc25064479\">68f3a1b</a>)</li>\n</ul>", 
+    "license": "other-open", 
+    "title": "ParFlow Sand Tank: A tool for groundwater exploration", 
+    "version": "v1.1.1", 
+    "upload_type": "software", 
+    "publication_date": "2021-07-26", 
+    "creators": [
+        {
+            "affiliation": "University of Arizona, Department of Hydrology and Atmospheric Sciences", 
+            "name": "Laura E. Condon"
+        }, 
+        {
+            "affiliation": "University of Arizona, Department of Hydrology and Atmospheric Sciences", 
+            "name": "Abram Farley"
+        }, 
+        {
+            "affiliation": "Kitware, Inc.", 
+            "name": "Sebastien Jourdain"
+        }, 
+        {
+            "affiliation": "Kitware, Inc.",   
+            "name": "Patrick O'leary"
+        }, 
+        {
+            "affiliation": "Kitware, Inc.",
+            "name": "Patrick Avery"
+        }, 
+        {
+            "affiliation": "Princeton University, Department of Civil and Environmental Engineering",
+            "name": "Lisa Gallagher"
+        }, 
+        {
+            "affiliation": "Princeton University, Department of Civil and Environmental Engineering", 
+            "name": "Calla Chennault"
+        }, 
+        {
+            "affiliation": "Princeton University, Department of Civil and Environmental Engineering", 
+            "name": "Reed M. Maxwell"
+        }
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/hydroframe/SandTank/tree/v1.1.1", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.3983619", 
+            "relation": "isVersionOf"
+        }
+    ]
+}
