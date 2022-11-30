@@ -1,0 +1,10 @@
+{
+"k_1": 1.0,
+"k_2": 0.6,
+"k_3": 0.3,
+"k_4":0.05,
+"hleft": 40,
+"hright": 40,
+"well_1_action": "Extraction",
+"well_1_value": 1
+}
