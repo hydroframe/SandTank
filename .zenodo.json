@@ -1,7 +1,7 @@
 {
     "license": "BSD License",
     "title": "ParFlow Sand Tank: A tool for groundwater exploration",
-    "version": "v1.1.2",
+    "version": "v1.1.3",
     "upload_type": "software",
     "publication_date": "2021-07-26",
     "creators": [
@@ -42,7 +42,7 @@
     "related_identifiers": [
         {
             "scheme": "url",
-            "identifier": "https://github.com/hydroframe/SandTank/tree/v1.1.2",
+            "identifier": "https://github.com/hydroframe/SandTank/tree/v1.1.3",
             "relation": "isSupplementTo"
         },
         {
