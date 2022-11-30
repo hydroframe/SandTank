@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/hydroframe/SandTank/compare/v1.1.2...v1.1.3) (2022-11-30)
+
+
+### Bug Fixes
+
+* **zenodo:** semantic-release is now fixed ([218fa30](https://github.com/hydroframe/SandTank/commit/218fa304f9c26fe31f69109a200c92fbca2e2f3c))
+
 ## [1.1.2](https://github.com/hydroframe/SandTank/compare/v1.1.1...v1.1.2) (2022-11-30)
 
 
