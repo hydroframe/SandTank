@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/hydroframe/SandTank/compare/v1.1.6...v1.1.7) (2022-12-01)
+
+
+### Bug Fixes
+
+* **zenodo:** update zenodo version to match ([38d26f5](https://github.com/hydroframe/SandTank/commit/38d26f56b637a5eb9ee50c66d2ddb8edfa2ebdd2))
+
 ## [1.1.6](https://github.com/hydroframe/SandTank/compare/v1.1.5...v1.1.6) (2022-12-01)
 
 
