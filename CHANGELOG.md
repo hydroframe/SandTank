@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/hydroframe/SandTank/compare/v1.1.3...v1.1.4) (2022-12-01)
+
+
+### Bug Fixes
+
+* **zenodo:** token should work now ([b8d23a8](https://github.com/hydroframe/SandTank/commit/b8d23a8526f550da139146e997a7efbc59bb3aee))
+
 ## [1.1.3](https://github.com/hydroframe/SandTank/compare/v1.1.2...v1.1.3) (2022-11-30)
 
 
