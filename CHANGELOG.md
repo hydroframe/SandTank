@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/hydroframe/SandTank/compare/v1.1.4...v1.1.5) (2022-12-01)
+
+
+### Bug Fixes
+
+* **zenodo:** remove invalid relation ([a23fab4](https://github.com/hydroframe/SandTank/commit/a23fab4105100c594b0f05be75cce8d6d6ce5c70))
+
 ## [1.1.4](https://github.com/hydroframe/SandTank/compare/v1.1.3...v1.1.4) (2022-12-01)
 
 
