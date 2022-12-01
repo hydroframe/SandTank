@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/hydroframe/SandTank/compare/v1.1.5...v1.1.6) (2022-12-01)
+
+
+### Bug Fixes
+
+* **zenodo:** change license to "other-open" ([26bbc32](https://github.com/hydroframe/SandTank/commit/26bbc32f92b7b0b4e704103a4d1c59dd88fc8801))
+
 ## [1.1.5](https://github.com/hydroframe/SandTank/compare/v1.1.4...v1.1.5) (2022-12-01)
 
 
