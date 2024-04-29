@@ -104,7 +104,7 @@ WORKDIR /home/ubuntu/parflow/build
 # Configure
 RUN /opt/cmake/bin/cmake /home/ubuntu/parflow/src \
   -DHYPRE_ROOT=/opt/hypre                         \
-  -DCMAKE_BUILD_TYPE=Release                      \
+  -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                \
   -DPARFLOW_AMPS_LAYER=mpi1                       \
   -DPARFLOW_AMPS_SEQUENTIAL_IO=ON                 \
   -DPARFLOW_ENABLE_HYPRE=ON                       \
@@ -144,6 +144,7 @@ RUN cd /home/ubuntu && \
 WORKDIR /home/ubuntu/EcoSLIM
 
 # Build
+RUN /opt/cmake/bin/cmake .
 RUN /usr/bin/make
 RUN install -m 755 -o ubuntu -g ubuntu EcoSLIM.exe /opt/ecoslim
 
