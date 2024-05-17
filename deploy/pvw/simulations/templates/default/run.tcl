@@ -718,7 +718,7 @@ puts $fileID "0.00000001        ! Molecular Diffusivity"
 puts $fileID "0.25d0        ! fraction of Dx/Vx for numerical stability"
 puts $fileID "0             ! Number of indicators provided. If this value is great than 0 an indicator file must be included"
 puts $fileID "\"\"            ! Name of the indictor file to use set to '' if not using an indicator file"
-puts $fileId "True          ! use velfile"
+puts $fileID "True          ! use velfile"
 close $fileID
 
 # -----------------------------------------------------------------------------
