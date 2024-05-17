@@ -104,7 +104,7 @@ WORKDIR /home/ubuntu/parflow/build
 # Configure
 RUN /opt/cmake/bin/cmake /home/ubuntu/parflow/src \
   -DHYPRE_ROOT=/opt/hypre                         \
-  -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                \
+  -DCMAKE_BUILD_TYPE=Release                      \
   -DPARFLOW_AMPS_LAYER=mpi1                       \
   -DPARFLOW_AMPS_SEQUENTIAL_IO=ON                 \
   -DPARFLOW_ENABLE_HYPRE=ON                       \
@@ -116,6 +116,7 @@ RUN /opt/cmake/bin/cmake /home/ubuntu/parflow/src \
 
 # Build
 RUN /opt/cmake/bin/cmake --build .
+RUN /usr/bin/make
 
 # Install
 RUN /opt/cmake/bin/cmake --install . --prefix /opt/parflow
