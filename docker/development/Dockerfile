@@ -17,8 +17,8 @@ ARG BASE_IMAGE=ubuntu:18.04
 FROM ${BASE_IMAGE}
 
 ARG BUILD_TYPE=Release
-#ARG PARFLOW_COMMIT=9c0b0f54acd6fbef2902c3d52a6bc82c285b335b
-ARG PARFLOW_COMMIT=dd49e6fc53266e9fbe4db570d81bca61b79506ad
+ARG PARFLOW_COMMIT=9c0b0f54acd6fbef2902c3d52a6bc82c285b335b
+#ARG PARFLOW_COMMIT=dd49e6fc53266e9fbe4db570d81bca61b79506ad
 
 # -----------------------------------------------------------------------------
 # Timezone handling for tzdata
@@ -141,7 +141,8 @@ RUN cd /opt/paraview && \
 # -----------------------------------------------------------------------------
 
 RUN cd /home/ubuntu && \
-    git clone --recursive https://github.com/reedmaxwell/EcoSLIM.git
+    git clone --recursive https://github.com/reedmaxwell/EcoSLIM.git && \
+    cd /home/ubuntu/EcoSLIM && git checkout 616cda79c96a7d0e4588b3924296ffe4adb792ed
 
 WORKDIR /home/ubuntu/EcoSLIM
 
