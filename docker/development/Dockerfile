@@ -140,12 +140,19 @@ RUN cd /opt/paraview && \
 # EcoSLIM
 # -----------------------------------------------------------------------------
 
-# Nov 14, 2019 (original sandtank version) 7371e45f2e7abc1d8a12977d552659efaff712ac
+# EcoSLIM repo commit Ids: (Bill Hasling observations)
+# Nov 14, 2019 (used in sandtank running from July 2021-May 2024) 7371e45f2e7abc1d8a12977d552659efaff712ac
 # Sep 10, 2021 (Steve Smith change) 5ed1bf81fc77abd9e180fd67d483f9ac86ddbe62
 # Apr 29, 2023 zperzam change) be9859274e11fdc28b4749bfadc782f4acc8c30f
+# The Sep 10 2021 version requires latest parflow build, but works the same as Nov 14, 2019 version
+# The Apr 29 2023 version only gets particles only from left/right ends (not working as expected in Sandtank)
+
+# The Apr 29 2023 version contained significant algorithm changes:
+#    * introduced two new required parameters in slimin.txt for: velfile and boolName
+#    * Computed and used BoundFlux in place/in addition to EvapoTransp
 RUN cd /home/ubuntu && \
     git clone --recursive https://github.com/reedmaxwell/EcoSLIM.git && \
-    cd /home/ubuntu/EcoSLIM && git checkout be9859274e11fdc28b4749bfadc782f4acc8c30f
+    cd /home/ubuntu/EcoSLIM && git checkout 5ed1bf81fc77abd9e180fd67d483f9ac86ddbe62
 
 WORKDIR /home/ubuntu/EcoSLIM
 
