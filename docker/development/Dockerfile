@@ -140,9 +140,11 @@ RUN cd /opt/paraview && \
 # EcoSLIM
 # -----------------------------------------------------------------------------
 
+# Nov 14, 2019 (original sandtank version) 7371e45f2e7abc1d8a12977d552659efaff712ac
+# Sep 10, 2021 5ed1bf81fc77abd9e180fd67d483f9ac86ddbe62
 RUN cd /home/ubuntu && \
     git clone --recursive https://github.com/reedmaxwell/EcoSLIM.git && \
-    cd /home/ubuntu/EcoSLIM && git checkout 7371e45f2e7abc1d8a12977d552659efaff712ac
+    cd /home/ubuntu/EcoSLIM && git checkout 5ed1bf81fc77abd9e180fd67d483f9ac86ddbe62
 
 WORKDIR /home/ubuntu/EcoSLIM
 
