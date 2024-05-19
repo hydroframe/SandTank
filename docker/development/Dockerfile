@@ -17,8 +17,8 @@ ARG BASE_IMAGE=ubuntu:18.04
 FROM ${BASE_IMAGE}
 
 ARG BUILD_TYPE=Release
-ARG PARFLOW_COMMIT=9c0b0f54acd6fbef2902c3d52a6bc82c285b335b
-#ARG PARFLOW_COMMIT=dd49e6fc53266e9fbe4db570d81bca61b79506ad
+#ARG PARFLOW_COMMIT=9c0b0f54acd6fbef2902c3d52a6bc82c285b335b
+ARG PARFLOW_COMMIT=dd49e6fc53266e9fbe4db570d81bca61b79506ad
 
 # -----------------------------------------------------------------------------
 # Timezone handling for tzdata
