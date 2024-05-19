@@ -142,7 +142,7 @@ RUN cd /opt/paraview && \
 
 RUN cd /home/ubuntu && \
     git clone --recursive https://github.com/reedmaxwell/EcoSLIM.git && \
-    cd /home/ubuntu/EcoSLIM && git checkout 616cda79c96a7d0e4588b3924296ffe4adb792ed
+    cd /home/ubuntu/EcoSLIM && git checkout 7371e45f2e7abc1d8a12977d552659efaff712ac
 
 WORKDIR /home/ubuntu/EcoSLIM
 
