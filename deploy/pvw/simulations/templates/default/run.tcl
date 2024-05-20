@@ -719,7 +719,7 @@ puts $fileID "0.25d0        ! fraction of Dx/Vx for numerical stability"
 puts $fileID "0             ! Number of indicators provided. If this value is great than 0 an indicator file must be included"
 puts $fileID "\"\"            ! Name of the indictor file to use set to '' if not using an indicator file"
 puts $fileID "True          ! use velfile"
-puts $fileID "\"\"          ! Boolname"
+# puts $fileID "\"\"          ! Boolname not allowed in Sept 10 2021 version"
 close $fileID
 
 # -----------------------------------------------------------------------------
