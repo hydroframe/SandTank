@@ -24,6 +24,7 @@ if (!window.SANDTANK_SESSION_MANAGER_URL) {
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 Vue.use(Vuetify);
+
 Vue.config.productionTip = false;
 Vue.use(VueGtag,
   {config: 
