@@ -3,6 +3,7 @@ import 'core-js/modules/web.immediate';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Vuetify from 'vuetify';
+import VueGtag from 'vue-gtag';
 
 import 'typeface-roboto';
 
@@ -24,7 +25,18 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuex);
 Vue.use(Vuetify);
-
+Vue.config.productionTip = false;
+Vue.use(VueGtag,
+  {config: 
+     {
+       id: 'G-YY63PD0T3J',
+       params: {
+         send_page_view: false
+       }
+     }
+   }
+ );
+ 
 // ----------------------------------------------------------------------------
 
 const store = createStore();
