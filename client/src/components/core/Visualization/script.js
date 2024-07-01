@@ -61,6 +61,14 @@ export default {
       concentrationRange: 'SANDTANK_CONCENTRATION_RANGE',
       concentration: 'SANDTANK_CONCENTRATION_ARRAY',
     }),
+    showWueSlider() {
+      // If "features" list found in domain and it contains "waterUseEfficiency", display slider
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('waterUseEfficiency');
+    },
+    showIrrigationSlider() {
+      // If "features" list found in domain and it contains "irrigationEfficiency", display slider
+      return this.domain.hasOwnProperty('features') && this.domain.features.includes('irrigationEfficiency');
+    },
     wellIncrement() {
       return (
         (this.domain && this.domain.setup && this.domain.setup.wellIncrement) ||
@@ -129,6 +137,8 @@ export default {
       setJobLength: 'PARFLOW_RUN_LENGTH_SET',
       setLeftPressure: 'PARFLOW_LEFT_PRESSURE_SET',
       setRightPressure: 'PARFLOW_RIGHT_PRESSURE_SET',
+      setIrrigationEfficiency: 'PARFLOW_IE_SET',
+      setWaterUseEfficiency: 'PARFLOW_WUE_SET',
       setTypeToLake: 'PARFLOW_LAKE_SET',
       updateWell: 'PARFLOW_WELL_SET',
     }),

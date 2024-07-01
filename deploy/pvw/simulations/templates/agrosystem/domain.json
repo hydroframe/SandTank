@@ -1,0 +1,92 @@
+{
+  "help": "https://www.hydroframe.org/sand-tank-user-manual",
+  "dimensions": [100, 1, 50],
+  "bounds": [0.5, 99.5, 0.25, 0.75, 0.5, 49.5],
+  "wells": [
+    { "name": "A", "position": [11, 15], "key": "1" },
+    { "name": "B", "position": [23, 1], "key": "2" },
+    { "name": "G", "position": [54, 15], "key": "7" },
+    { "name": "H", "position": [57, 15], "key": "8" },
+    { "name": "I", "position": [82, 1], "key": "9" },
+    { "name": "K", "position": [92, 26], "key": "11" }
+  ],
+  "server": {
+    "refreshRate": 0.5
+  },
+  "setup": {
+    "simulationLength": 10,
+    "maxHeight": 50,
+    "hLeft": 30,
+    "hRight": 30,
+    "recharge": 1,
+    "waterUseEfficiency": 1,
+    "irrigationEfficiency": 1,
+    "indicators": [
+      { "key": 1, "value": 0.4 },
+      { "key": 2, "value": 0.25 },
+      { "key": 3, "value": 0.3 }
+    ]
+  },
+  "features": ["waterUseEfficiency", "irrigationEfficiency", "recharge", "totalStorage", "yield", "revenue"],
+  "pressures": [
+    {
+      "name": "Landfill",
+      "pressureCell": [39, 0, 40],
+      "iRange": [32, 45]
+    },
+    {
+      "name": "River",
+      "pressureCell": [68, 0, 30],
+      "iRange": [37, 92]
+    },
+    {
+      "name": "A",
+      "pressureCell": [11, 0, 15],
+      "iRange": [11, 11]
+    },
+    {
+      "name": "B",
+      "pressureCell": [23, 0, 1],
+      "iRange": [23, 23]
+    },
+    {
+      "name": "G",
+      "pressureCell": [54, 0, 15],
+      "iRange": [54, 54]
+    },
+    {
+      "name": "H",
+      "pressureCell": [57, 0, 15],
+      "iRange": [57, 57]
+    },
+    {
+      "name": "I",
+      "pressureCell": [82, 0, 1],
+      "iRange": [82, 82]
+    },
+    {
+      "name": "K",
+      "pressureCell": [92, 0, 26],
+      "iRange": [92, 92]
+    }
+  ],
+  "flows": [
+    {
+      "name": "river",
+      "cells": [3455, 3556, 3457, 3358, 3359, 3360, 3261, 3262, 3163, 3164, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3172, 3173, 3274, 3275, 3276, 3377, 3378, 3379, 3480, 3481, 3482],
+      "ratio": 4.47213595499958e-07,
+      "unit": "m3/s"
+    }
+  ],
+  "storages": [
+    {
+      "name": "lake",
+      "cells": [3455, 3556, 3457, 3358, 3359, 3360, 3261, 3262, 3163, 3164, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3172, 3173, 3274, 3275, 3276, 3377, 3378, 3379, 3480, 3481, 3482],
+      "ratio": 1.0,
+      "unit": "m3"
+    }
+  ]
+
+
+
+}

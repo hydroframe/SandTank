@@ -25,6 +25,9 @@ authors:
   - name: Lisa Gallagher
     orcid:  0000-0002-5556-7739
     affiliation: "3, 4"
+  - name: Calla Chennault
+    orcid: 0000-0002-6258-0042
+    affiliation: "2"
   - name: Reed M. Maxwell
     orcid: 0000-0002-1364-4441
     affiliation: "2, 3, 4"
@@ -51,6 +54,9 @@ The `Sand Tank` application simulates groundwater and surface water fluxes as we
 
 The Sand Tank application makes this model accessible to anyone for education and exploration.  Our application uses ParFlow for its simulation backend and [ParaView](https://www.paraview.org/) for the data loading and processing. The communication infrastructure relies on the [ParaViewWeb](https://www.paraview.org/web/) framework. We use model templates deployed in Docker images to setup the Sand Tank framework. Users can build the application locally or interact with it through our web deployment. When interacting with a template users can interactively change model parameters like subsurface processes or pump/inject water into the subsurface and watch the system respond to their changes in real time as the simulation runs.  Additionally, our template setup will allow more advanced users to build custom templates of increasing complexity for both research and educational purposes.
 
+# Statement of Need
+The traditional method for demonstrating groundwater flow in the classroom is with a physical sand tank model. These physical models are excellent teaching tools; however, they are expensive and require some training to operate. As a result, their application is limited.  The virtual `Sand Tank` we have developed makes this teaching tool broadly accessible to anyone with internet access.  Furthermore, the lesson plans and help that we include make it easy for teachers without a background in hydrology to pick this up with no training.
+ 
 # Uses and Functionality
 The `Sand Tank` is designed for real time exploration of groundwater flow. We have a web application which facilitates easy use by students and teachers, but the framework is also very flexible and can accommodate much more complex templates that can be customized by users for research.
 

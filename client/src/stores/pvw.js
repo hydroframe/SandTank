@@ -136,6 +136,18 @@ export default {
 
             validClient
               .getRemote()
+              .Parflow.subscribeToTotalStorage(([totalStorage]) => {
+                dispatch('SANDTANK_TOTAL_STORAGE_UPDATE', totalStorage);
+              });
+
+            validClient
+              .getRemote()
+              .Parflow.subscribeToPumping(([pumping]) => {
+                dispatch('SANDTANK_PUMPING_UPDATE', pumping);
+              });
+
+            validClient
+              .getRemote()
               .Parflow.subscribeToIndicator(([indicator]) => {
                 dispatch('SANDTANK_INDICATOR_UPDATE', indicator);
               });
@@ -152,7 +164,9 @@ export default {
                 dispatch('SANDTANK_STORAGES_UPDATE', storages);
               });
 
-            validClient.getRemote().Parflow.subscribeToFlows(([flows]) => {
+            validClient
+              .getRemote()
+              .Parflow.subscribeToFlows(([flows]) => {
               dispatch('SANDTANK_FLOWS_UPDATE', flows);
             });
 
