@@ -50,8 +50,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         apt-get install -y --no-install-recommends python3-dev python3-pip python3-setuptools && \
         update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
         rm -rf /var/lib/apt/lists/* && \
+        pip3 install --upgrade pip && \
         pip3 install wheel && \
-        pip3 install mako
+        pip3 install mako && \
+        pip3 install pftools[all]
 
 # Get node and npm
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
