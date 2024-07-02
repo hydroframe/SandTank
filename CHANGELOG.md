@@ -1,3 +1,38 @@
+## [1.1.7](https://github.com/hydroframe/SandTank/compare/v1.1.6...v1.1.7) (2022-12-01)
+
+
+### Bug Fixes
+
+* **zenodo:** update zenodo version to match ([38d26f5](https://github.com/hydroframe/SandTank/commit/38d26f56b637a5eb9ee50c66d2ddb8edfa2ebdd2))
+
+## [1.1.6](https://github.com/hydroframe/SandTank/compare/v1.1.5...v1.1.6) (2022-12-01)
+
+
+### Bug Fixes
+
+* **zenodo:** change license to "other-open" ([26bbc32](https://github.com/hydroframe/SandTank/commit/26bbc32f92b7b0b4e704103a4d1c59dd88fc8801))
+
+## [1.1.5](https://github.com/hydroframe/SandTank/compare/v1.1.4...v1.1.5) (2022-12-01)
+
+
+### Bug Fixes
+
+* **zenodo:** remove invalid relation ([a23fab4](https://github.com/hydroframe/SandTank/commit/a23fab4105100c594b0f05be75cce8d6d6ce5c70))
+
+## [1.1.4](https://github.com/hydroframe/SandTank/compare/v1.1.3...v1.1.4) (2022-12-01)
+
+
+### Bug Fixes
+
+* **zenodo:** token should work now ([b8d23a8](https://github.com/hydroframe/SandTank/commit/b8d23a8526f550da139146e997a7efbc59bb3aee))
+
+## [1.1.3](https://github.com/hydroframe/SandTank/compare/v1.1.2...v1.1.3) (2022-11-30)
+
+
+### Bug Fixes
+
+* **zenodo:** semantic-release is now fixed ([218fa30](https://github.com/hydroframe/SandTank/commit/218fa304f9c26fe31f69109a200c92fbca2e2f3c))
+
 ## [1.1.2](https://github.com/hydroframe/SandTank/compare/v1.1.1...v1.1.2) (2022-11-30)
 
 
