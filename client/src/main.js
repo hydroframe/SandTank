@@ -24,14 +24,10 @@ if (!window.SANDTANK_SESSION_MANAGER_URL) {
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 Vue.use(Vuetify);
-Vue.config.productionTip = false;
 Vue.use(VueGtag,
   {config: 
      {
-       id: 'G-YY63PD0T3J',
-       params: {
-         send_page_view: false
-       }
+       id: 'G-YY63PD0T3J'
      }
    }
  );

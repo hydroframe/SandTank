@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 # This builds the sandtank-dev docker image from the git repo pull in the current directory
-# This is the first base image of the sandtank application. This is used by the runtime docker image build.
-# This will be run with the root directory as the docker context
+# This is the a base image of the sandtank application. 
+# This image is used by the docker image built by docker/runtime folder.
+# The image built by the docker/runtime folder is used by the image built by docker/web folder.
+# The image from docker/web folder is run in a container to deploy Sandtank.
 
 # Usage to build using docker (on a laptop):
 #   bash build.sh

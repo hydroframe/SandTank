@@ -17,8 +17,8 @@ ARG BASE_IMAGE=ubuntu:18.04
 FROM ${BASE_IMAGE}
 
 ARG BUILD_TYPE=Release
-#ARG PARFLOW_COMMIT=9c0b0f54acd6fbef2902c3d52a6bc82c285b335b
-ARG PARFLOW_COMMIT=dd49e6fc53266e9fbe4db570d81bca61b79506ad
+# Use explicit parflow commit ID to version from July 1, 2024
+ARG PARFLOW_COMMIT=b52ffd52e2499f212bbace811e3999fcc4241c7a
 
 # -----------------------------------------------------------------------------
 # Timezone handling for tzdata
@@ -141,17 +141,16 @@ RUN cd /opt/paraview && \
 # -----------------------------------------------------------------------------
 # EcoSLIM
 # -----------------------------------------------------------------------------
-
 # EcoSLIM repo commit Ids: (Bill Hasling observations)
 # Nov 14, 2019 (used in sandtank running from July 2021-May 2024) 7371e45f2e7abc1d8a12977d552659efaff712ac
 # Sep 10, 2021 (Steve Smith change) 5ed1bf81fc77abd9e180fd67d483f9ac86ddbe62
-# Apr 29, 2023 zperzam change) be9859274e11fdc28b4749bfadc782f4acc8c30f
-# The Sep 10 2021 version requires latest parflow build, but works the same as Nov 14, 2019 version
-# The Apr 29 2023 version only gets particles only from left/right ends (not working as expected in Sandtank)
+#    This version requires latest parflow build, but works the same as Nov 14, 2019 version
+# Apr 29, 2023 (zperzam change) be9859274e11fdc28b4749bfadc782f4acc8c30f
+#    This version contains significant algorithm changes and only gets particles from left/right ends (not working as expected in Sandtank)  
+#    Significant changes of Apr 29, 2023 include:
+#        introduced two new required parameters in slimin.txt for: velfile and boolName
+#        Computed and used BoundFlux in place/in addition to EvapoTransp
 
-# The Apr 29 2023 version contained significant algorithm changes:
-#    * introduced two new required parameters in slimin.txt for: velfile and boolName
-#    * Computed and used BoundFlux in place/in addition to EvapoTransp
 RUN cd /home/ubuntu && \
     git clone --recursive https://github.com/reedmaxwell/EcoSLIM.git && \
     cd /home/ubuntu/EcoSLIM && git checkout 5ed1bf81fc77abd9e180fd67d483f9ac86ddbe62
