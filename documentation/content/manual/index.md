@@ -88,6 +88,10 @@ Now let's walk through a simple exercise using the ParFlow Sandtank to test your
 17. Watch as the water table drops down---you may have to select **"Run"** multiple times.
 18. Good Job! The skills are strong with you! Now go look at some associated lessons and become more of an expert!
 
+## Maintenance Note
+
+Please note that the ParFlow SankTank occasionally undergoes system maintenance on the second Tuesday of each month. The maintenance window is typically restricted between 6am and 2pm Eastern Time. During this window, ParFlow SandTank users may experience temporary downtime and/or reduced functionality.
+
 <center>
 ![](../logos/NSF_4-Color_bitmap_Logo.png) ![](../logos/CO-Mines-logo-stacked-4C.png) ![](../logos/ua_stack_rgb_4.png) ![](../logos/Boise-State-Logo.jpg) ![](../logos/boulder-fl-vertical-b-2.png)
 ![](../logos/ncar_highres_transback.png) ![](../logos/logo.png) ![](../logos/SDSClogo-plusname-red.gif) ![](../logos/vertical_logo_blue.png) ![](../logos/Kitware_Print_186.png)
