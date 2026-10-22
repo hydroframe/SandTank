@@ -56,10 +56,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         pip3 install pftools[all]
 
 # Get node and npm
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
-    apt-get update && \
-    apt-get install -y nodejs && \
-    rm -rf /var/lib/apt/lists/*
+ARG NODE_VERSION=12.22.12
+ARG NODE_SHA256=e6d052364bfa2c17da92cf31794100cfd709ba147415ddaeed2222eec9ca1469
+RUN curl -fsSLo /tmp/node.tar.xz https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
+    echo "${NODE_SHA256}  /tmp/node.tar.xz" | sha256sum -c - && \
+    tar -xJf /tmp/node.tar.xz -C /usr/local --strip-components=1 --no-same-owner && \
+    rm /tmp/node.tar.xz && \
+    node --version && npm --version
 
 # -----------------------------------------------------------------------------
 # Non privilege user: ubuntu
