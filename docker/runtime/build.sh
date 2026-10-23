@@ -18,4 +18,7 @@ if [[ $DOCKER == "" ]]; then DOCKER=docker ; fi
 ${DOCKER} image rm sandtank-runtime:latest
 ${DOCKER} rmi $(${DOCKER} images -f "dangling=true" -q)
 
-$DOCKER build -t sandtank-runtime $SCRIPT_DIR
+BUILD_ARGS=""
+if [[ $DOCKER == "podman" ]]; then BUILD_ARGS="--build-arg DEV_IMAGE=localhost/sandtank-dev:latest" ; fi
+
+$DOCKER build $BUILD_ARGS -t sandtank-runtime $SCRIPT_DIR
