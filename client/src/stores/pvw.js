@@ -140,11 +140,9 @@ export default {
                 dispatch('SANDTANK_TOTAL_STORAGE_UPDATE', totalStorage);
               });
 
-            validClient
-              .getRemote()
-              .Parflow.subscribeToPumping(([pumping]) => {
-                dispatch('SANDTANK_PUMPING_UPDATE', pumping);
-              });
+            validClient.getRemote().Parflow.subscribeToPumping(([pumping]) => {
+              dispatch('SANDTANK_PUMPING_UPDATE', pumping);
+            });
 
             validClient
               .getRemote()
@@ -164,9 +162,7 @@ export default {
                 dispatch('SANDTANK_STORAGES_UPDATE', storages);
               });
 
-            validClient
-              .getRemote()
-              .Parflow.subscribeToFlows(([flows]) => {
+            validClient.getRemote().Parflow.subscribeToFlows(([flows]) => {
               dispatch('SANDTANK_FLOWS_UPDATE', flows);
             });
 
@@ -230,10 +226,7 @@ export default {
       });
     },
     async PVW_RESET({ state }) {
-      return state.client
-        .getRemote()
-        .Parflow.reset()
-        .catch(console.error);
+      return state.client.getRemote().Parflow.reset().catch(console.error);
     },
     async PVW_CONFIG_UPDATE({ state }, config = null) {
       return state.client
@@ -242,10 +235,7 @@ export default {
         .catch(console.error);
     },
     PVW_EXIT({ state }) {
-      return state.client
-        .getRemote()
-        .Parflow.onExit()
-        .catch(console.error);
+      return state.client.getRemote().Parflow.onExit().catch(console.error);
     },
   },
 };

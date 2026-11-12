@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 #
 #  BASE_IMAGE
-#    *  ubuntu:18.04
+#    *  ubuntu:24.04
 #
 #  BUILD_TYPE
 #    *  Release
@@ -13,7 +13,7 @@
 #
 # -----------------------------------------------------------------------------
 
-ARG BASE_IMAGE=ubuntu:18.04
+ARG BASE_IMAGE=ubuntu:24.04
 FROM ${BASE_IMAGE}
 
 ARG BUILD_TYPE=Release
@@ -25,6 +25,7 @@ ARG PARFLOW_COMMIT=b52ffd52e2499f212bbace811e3999fcc4241c7a
 # -----------------------------------------------------------------------------
 
 ENV TZ=Europe/Paris
+ENV DEBIAN_FRONTEND=noninteractive
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # -----------------------------------------------------------------------------
@@ -40,24 +41,26 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         gfortran \
         git \
+        libatomic1 \
         libtool \
         openssl \
         libgomp1 \
         openmpi-bin \
         libopenmpi-dev \
         tcl-dev tk-dev libopenblas-dev liblapack-dev openssh-server \
-        pkg-config && \
+        pkg-config \
+        xz-utils && \
         apt-get install -y --no-install-recommends python3-dev python3-pip python3-setuptools && \
         update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
         rm -rf /var/lib/apt/lists/* && \
-        pip3 install --upgrade pip && \
-        pip3 install wheel && \
-        pip3 install mako && \
-        pip3 install pftools[all]
+        pip3 install --break-system-packages wheel mako 'pftools[all]' && \
+        curl -fsSLo /tmp/libssl1.1.deb http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb && \
+        dpkg -i /tmp/libssl1.1.deb && \
+        rm /tmp/libssl1.1.deb
 
 # Get node and npm
-ARG NODE_VERSION=12.22.12
-ARG NODE_SHA256=e6d052364bfa2c17da92cf31794100cfd709ba147415ddaeed2222eec9ca1469
+ARG NODE_VERSION=26.13.0
+ARG NODE_SHA256=d28a96af6c38596f6d9d97c0ee531c13d238d757742387d1928de822d959e997
 RUN curl -fsSLo /tmp/node.tar.xz https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
     echo "${NODE_SHA256}  /tmp/node.tar.xz" | sha256sum -c - && \
     tar -xJf /tmp/node.tar.xz -C /usr/local --strip-components=1 --no-same-owner && \
@@ -68,10 +71,12 @@ RUN curl -fsSLo /tmp/node.tar.xz https://nodejs.org/dist/v${NODE_VERSION}/node-v
 # Non privilege user: ubuntu
 # -----------------------------------------------------------------------------
 
-# Create a non-root user
-RUN groupadd ubuntu && \
-    useradd -g ubuntu -d /home/ubuntu ubuntu && \
-    mkhomedir_helper ubuntu && \
+# ubuntu:24.04 already ships user ubuntu (UID 1000); create only if missing
+RUN if ! id ubuntu >/dev/null 2>&1; then \
+        groupadd ubuntu && \
+        useradd -g ubuntu -d /home/ubuntu ubuntu && \
+        mkhomedir_helper ubuntu; \
+    fi && \
     mkdir -p /opt/paraview && chown -R ubuntu:ubuntu /opt/paraview && \
     mkdir -p /opt/hypre && chown -R ubuntu:ubuntu /opt/hypre && \
     mkdir -p /opt/parflow && chown -R ubuntu:ubuntu /opt/parflow && \
@@ -86,7 +91,7 @@ USER ubuntu
 # -----------------------------------------------------------------------------
 
 RUN cd /opt/cmake && \
-    curl -L https://cmake.org/files/v3.15/cmake-3.15.0-Linux-x86_64.tar.gz | tar --strip-components=1 -xzv
+    curl -L https://github.com/Kitware/CMake/releases/download/v3.28.6/cmake-3.28.6-linux-x86_64.tar.gz | tar --strip-components=1 -xzv
 
 # -----------------------------------------------------------------------------
 # Hypre
@@ -94,7 +99,7 @@ RUN cd /opt/cmake && \
 
 RUN mkdir -p /home/ubuntu/hypre && cd /home/ubuntu/hypre && \
     curl -L https://github.com/hypre-space/hypre/archive/v2.17.0.tar.gz | tar --strip-components=1 -xzv && \
-    cd src && ./configure --prefix=/opt/hypre --with-MPI && \
+    cd src && CFLAGS="-O2 -Wno-error=implicit-function-declaration" ./configure --prefix=/opt/hypre --with-MPI && \
     make install
 
 # -----------------------------------------------------------------------------
@@ -161,7 +166,7 @@ RUN cd /home/ubuntu && \
 WORKDIR /home/ubuntu/EcoSLIM
 
 # Build
-RUN /opt/cmake/bin/cmake .
+RUN /opt/cmake/bin/cmake -DCMAKE_Fortran_FLAGS="-fallow-argument-mismatch" .
 RUN /usr/bin/make
 RUN install -m 755 -o ubuntu -g ubuntu EcoSLIM.exe /opt/ecoslim
 
@@ -184,8 +189,8 @@ RUN SANDTANK_DIR=/home/ubuntu/sandtank-tmp && \
 # Environment
 # -----------------------------------------------------------------------------
 
-ENV PARFLOW_DIR /opt/parflow
-ENV LD_LIBRARY_PATH /opt/parflow/lib/
-ENV PATH /opt/ecoslim:/opt/parflow/bin:/opt/paraview/bin:/opt/cmake/bin:$PATH
+ENV PARFLOW_DIR=/opt/parflow
+ENV LD_LIBRARY_PATH=/opt/parflow/lib/:/opt/paraview/lib/
+ENV PATH=/opt/ecoslim:/opt/parflow/bin:/opt/paraview/bin:/opt/cmake/bin:$PATH
 
 USER ubuntu
