@@ -63,11 +63,17 @@ export default {
     }),
     showWueSlider() {
       // If "features" list found in domain and it contains "waterUseEfficiency", display slider
-      return this.domain.hasOwnProperty('features') && this.domain.features.includes('waterUseEfficiency');
+      return (
+        this.domain.hasOwnProperty('features') &&
+        this.domain.features.includes('waterUseEfficiency')
+      );
     },
     showIrrigationSlider() {
       // If "features" list found in domain and it contains "irrigationEfficiency", display slider
-      return this.domain.hasOwnProperty('features') && this.domain.features.includes('irrigationEfficiency');
+      return (
+        this.domain.hasOwnProperty('features') &&
+        this.domain.features.includes('irrigationEfficiency')
+      );
     },
     wellIncrement() {
       return (

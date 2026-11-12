@@ -24,14 +24,12 @@ if (!window.SANDTANK_SESSION_MANAGER_URL) {
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 Vue.use(Vuetify);
-Vue.use(VueGtag,
-  {config: 
-     {
-       id: 'G-YY63PD0T3J'
-     }
-   }
- );
- 
+Vue.use(VueGtag, {
+  config: {
+    id: 'G-YY63PD0T3J',
+  },
+});
+
 // ----------------------------------------------------------------------------
 
 const store = createStore();

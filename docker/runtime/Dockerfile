@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 #
 #  BASE_IMAGE
-#    *  ubuntu:18.04
+#    *  ubuntu:24.04
 #
 #  DEV_IMAGE
 #    *  sandtank-dev
@@ -16,7 +16,7 @@
 #
 # -----------------------------------------------------------------------------
 
-ARG BASE_IMAGE=ubuntu:18.04
+ARG BASE_IMAGE=ubuntu:24.04
 ARG DEV_IMAGE=sandtank-dev
 
 FROM ${DEV_IMAGE} AS devimage
@@ -30,6 +30,7 @@ ARG BUILD_TYPE=Release
 # -----------------------------------------------------------------------------
 
 ENV TZ=Europe/Paris
+ENV DEBIAN_FRONTEND=noninteractive
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # -----------------------------------------------------------------------------
@@ -44,20 +45,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         openmpi-bin \
         libopenmpi-dev \
         libgomp1 \
-        tcl-dev tk-dev libopenblas-base liblapack-dev openssh-server && \
+        tcl-dev tk-dev libopenblas0 liblapack-dev openssh-server && \
         apt-get install -y --no-install-recommends python3-dev python3-pip python3-setuptools && \
         update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
         rm -rf /var/lib/apt/lists/* && \
-        pip3 install wheel && \
-        pip3 install mako
+        pip3 install --break-system-packages wheel mako && \
+        curl -fsSLo /tmp/libssl1.1.deb http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb && \
+        dpkg -i /tmp/libssl1.1.deb && \
+        rm /tmp/libssl1.1.deb
 
 # -----------------------------------------------------------------------------
 # Non privilege user: ubuntu
 # -----------------------------------------------------------------------------
 
-# Create a non-root user
-RUN groupadd ubuntu && \
-    useradd -g ubuntu -d /home/ubuntu ubuntu && \
+# ubuntu:24.04 already ships user ubuntu (UID 1000); create only if missing, then pin 4444
+RUN if ! id ubuntu >/dev/null 2>&1; then \
+        groupadd ubuntu && \
+        useradd -g ubuntu -d /home/ubuntu ubuntu; \
+    fi && \
     usermod -u 4444 ubuntu && \
     groupmod -g 4444 ubuntu && \
     mkhomedir_helper ubuntu && \
@@ -74,6 +79,6 @@ COPY --from=devimage  /opt/parflow   /opt/parflow
 COPY --from=devimage  /opt/ecoslim   /opt/ecoslim
 COPY --from=devimage  /pvw           /pvw
 
-ENV PARFLOW_DIR      /opt/parflow
-ENV LD_LIBRARY_PATH  /opt/parflow/lib/
-ENV PATH             /opt/ecoslim:/opt/parflow/bin:/opt/paraview/bin:/opt/cmake/bin:$PATH
+ENV PARFLOW_DIR=/opt/parflow
+ENV LD_LIBRARY_PATH=/opt/parflow/lib/:/opt/paraview/lib/
+ENV PATH=/opt/ecoslim:/opt/parflow/bin:/opt/paraview/bin:/opt/cmake/bin:$PATH
